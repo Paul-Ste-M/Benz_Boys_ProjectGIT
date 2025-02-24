@@ -1,0 +1,28 @@
+[
+    {
+        "INSTRUMENT_SOUND_FILE": "assets/sounds/guitar.mp3",
+        "instrument": "GUITAR",
+        "chords": [
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "A",
+            "B"
+        ]
+    },
+    {
+     "INSTRUMENT_SOUND_FILE": "assets/sounds/PIANO.mp3",
+        "instrument": "PIANO",
+        "chords": [
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "A",
+            "B"
+        ]   
+    }
+]
