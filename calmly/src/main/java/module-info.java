@@ -2,6 +2,7 @@ module com.calmly {
     requires javafx.controls;
     requires javafx.fxml;
     requires json.simple;
+    requires jfugue;
 
     opens com.calmly to javafx.fxml;
     exports com.calmly;
