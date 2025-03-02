@@ -1,7 +1,8 @@
 package com.model;
 
-import com.calmly.*;
-import java.lang.Thread;
+
+import com.calmly.Music;
+
 
 public class MusicPlayer {
 
