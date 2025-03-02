@@ -1,7 +1,10 @@
 package com.model;
 
+import java.util.ArrayList;
+import java.util.UUID;
+
 public class UserList {
-    private Arraylist<User> Users;
+    private ArrayList<User> Users;
     private UserList userList;
 
 
@@ -11,7 +14,7 @@ public class UserList {
     public UserList getInstance(){
     }
 
-    public void addUser (String fistName, String lastName. String, password, Int User UUID, String eail){
+    public void addUser (String fistName, String lastName, String password, int User UUID, String email){
 
     }
     public User getUser(String userName, String password){
