@@ -3,40 +3,60 @@ package com.model;
 import java.util.UUID;
 
 public class User {
-    
+
     private String firstName;
     private String lastName;
     private String userName;
-    private String password;
+    private String hashedPassword; // Store hashed passwords
     private String email;
     private UUID userID;
+    private String password;
 
-public User(String firstName, String lastName, String userName,  String password, String email, UUID userID){
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.userName = userName;
-    this.password = password;
-    this.email = email;
-}
+    // Constructor for creating a new user (password will be hashed)
+    public User(String firstName, String lastName, String userName, String password, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.userID = UUID.randomUUID(); 
+    }
 
-public String getfirstName() {
-    return firstName;
-}
-public String getlastName() {
-    return lastName;
-}
-public String getUsername() {
-    return userName;
-}
-public String getpassword() {
-    return password;
-}
-public String getemail(){
-    return email; 
-}
-public UUID userID(){
-    return userID;
-}
+    // Constructor for loading user from JSON (password is already hashed)
+    public User(String firstName, String lastName, String userName, String password, String email, UUID userID) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.userID = userID;
+    }
+
+    // Getters
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getUsername() {
+        return userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public UUID getUserID() {
+        return userID;
+    }
+
+    public String getpassword() {
+        return password;
+    }
+
 public boolean Author(String firstName, String lastName, String userName, String password, String email, UUID userID){
     return true;
 }
