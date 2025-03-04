@@ -16,8 +16,8 @@ public class Note {
     }
 
     // Constructor for rest notes (pauses)
-    public Note(Type type) {
-        this.pitch = null; // No pitch for rests
+    public Note(Pitch pitch, Type type) {
+        this.pitch = pitch; // No pitch for rests
         this.type = type;
         // this.isMinor = false;
         this.isRest = true;
@@ -41,7 +41,7 @@ public class Note {
         } else {
             System.out.println("Playing guitar note: " + pitch + " " + type);
             // Format the pitch to JFugue format and create a pattern
-            String noteString = getNoteStringForJFugue(pitch);
+            String noteString = getNoteStringForJFugue();
             Pattern pattern = new Pattern("I[Guitar] " + noteString);  // Play with Guitar instrument
             player.play(pattern);  // Play the note using JFugue player
         }
@@ -59,7 +59,7 @@ public class Note {
     }
 
     // Map the Pitch enum to JFugue note string representation
-    private String getNoteStringForJFugue(Pitch pitch) {
+    public String getNoteStringForJFugue() {
         switch (pitch) {
             case C: return "C";
             case D: return "D";
@@ -68,6 +68,7 @@ public class Note {
             case G: return "G";
             case A: return "A";
             case B: return "B";
+            case R: return "R";
             // You can extend this mapping based on your pitch enum
             default: return "C";  // Default to C
         }

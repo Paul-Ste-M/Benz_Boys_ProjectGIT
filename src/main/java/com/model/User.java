@@ -5,9 +5,9 @@ public class User {
     private String firstName;
     private String lastName;
     private String userName;
-    private String password;
     private String email;
     private UUID userID;
+    private String password;
 
     public User(String firstName, String lastName, String userName, String password, String email) {
         this.firstName = firstName;
