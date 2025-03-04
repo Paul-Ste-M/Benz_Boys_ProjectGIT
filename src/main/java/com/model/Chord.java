@@ -3,6 +3,9 @@ package com.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jfugue.pattern.Pattern;
+import org.jfugue.player.Player;
+
 public class Chord {
     private List<Note> notes;
     private Note leadingNote;
@@ -45,8 +48,21 @@ public class Chord {
     }
 
     public void playChord() {
-        for (Note note : notes) {
-            note.playNote();
+//        for (Note note : notes) {
+//            note.playNote();
+//        }
+        if(isSingleNote) {
+            for (Note note : notes) {
+                note.playNote();
+            }
+        } else {
+            Player player = new Player();
+            String musicString = "";
+            for(int i = 0; i < notes.size(); i++) {
+                musicString = musicString + "V" + i + " I[Guitar] " + notes.get(i).getNoteStringForJFugue() + " "; 
+            }
+            Pattern finalMusicString = new Pattern(musicString);
+            player.play(finalMusicString);
         }
     }
 
