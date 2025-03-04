@@ -16,8 +16,6 @@
                             {
                                 "type": "QUARTER",
                                 "pitch": "C",
-                                "noteWorth": 1,
-                                "halfBeat": false,
                                 "isMinor": false
                             }
                           
@@ -59,8 +57,6 @@
                             {
                                 "type": "QUARTER",
                                 "pitch": "E",
-                                "noteWorth": 3,
-                                "halfBeat": false,
                                 "isMinor": false
                             }
                         ],

@@ -3,16 +3,16 @@ package com.model;
 public class SongTest {
     public static void main(String[] args) {
         // Create an author
-        Author author = new Author("John Doe", "johndoe123");
+        Author author = new Author("John", "Doe", "johndoe", "password", "jdoe@gmail.com");
 
         // Create a song
         Song maryHadALittleLamb = new Song("Mary Had a Little Lamb", author);
 
         // Define the melody using notes
-        Note e = new Note(Pitch.E, Type.QUARTER, 1, false, false);
-        Note d = new Note(Pitch.D, Type.QUARTER, 1, false, false);
-        Note c = new Note(Pitch.C, Type.QUARTER, 1, false, false);
-        Note g = new Note(Pitch.G, Type.QUARTER, 1, false, false);
+        Note e = new Note(Pitch.E, Type.QUARTER,false);
+        Note d = new Note(Pitch.D, Type.QUARTER,false);
+        Note c = new Note(Pitch.C, Type.QUARTER,false);
+        Note g = new Note(Pitch.G, Type.QUARTER,false);
         Note restQuarter = new Note(Type.QUARTER); // Rest for a quarter note duration
 
 

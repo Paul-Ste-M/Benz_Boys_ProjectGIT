@@ -6,18 +6,12 @@ import org.jfugue.player.Player;
 public class Note {
     private Pitch pitch;
     private Type type;
-    // private int noteWorth;
-    // private boolean halfBeat;
-    // private boolean isMinor;
     private boolean isRest;  // New flag for rest notes
 
     // Constructor for normal notes
-    public Note(Pitch pitch, Type type, int noteWorth, boolean halfBeat, boolean isMinor) {
+    public Note(Pitch pitch, Type type, boolean isMinor) {
         this.pitch = pitch;
         this.type = type;
-        // this.noteWorth = noteWorth;
-        // this.halfBeat = halfBeat;
-        // this.isMinor = isMinor;
         this.isRest = false;
     }
 
@@ -25,8 +19,6 @@ public class Note {
     public Note(Type type) {
         this.pitch = null; // No pitch for rests
         this.type = type;
-        // this.noteWorth = 0;
-        // this.halfBeat = false;
         // this.isMinor = false;
         this.isRest = true;
     }

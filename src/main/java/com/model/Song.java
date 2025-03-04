@@ -19,7 +19,7 @@ public class Song {
         this.author = author.getName();
         this.authorUsername = author.getUsername();
         this.songID = UUID.randomUUID();
-        this.authorID = author.getAuthorID();
+        this.authorID = author.getUserID();
         this.genre = new ArrayList<>();
         this.measures = new ArrayList<>();
         this.published = false;
@@ -66,8 +66,36 @@ public class Song {
         comments.add(newComment);
     }
 
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+
     public ArrayList<Comment> getComments() {
         return comments;
+    }
+
+    public ArrayList<Genre> getGenres() {
+        ArrayList<Genre> genreNames = new ArrayList<>();
+        for (Genre g : genre) {
+            genreNames.add(g);
+        }
+        return genreNames;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public UUID getSongID() {
+        return songID;
+    }
+
+    public UUID getAuthorID() {
+        return authorID;
     }
 
 

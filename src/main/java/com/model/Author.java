@@ -1,75 +1,72 @@
 package com.model;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
-public class Author {
-    private String name;
-    private String username;
-    private UUID authorID;
+public class Author extends User {
+    private ArrayList<UUID> createdSongs;
+    private Measure selectedMeasure;
 
-    public Author(String name, String username) {
-        this.name = name;
-        this.authorID = UUID.randomUUID();
+    public Author(String firstName, String lastName, String userName, String password, String email) {
+        super(firstName, lastName, userName, password, email);
+        this.createdSongs = new ArrayList<>();
+    }
+    public void addSong(Song song) {
+        // Implementation to add a song
     }
 
-    public String getName() {
-        return name;
+    public void removeSong(Song song) {
+        // Implementation to remove a song
     }
 
-    public String getUsername() {
-        return username;
+    public Song createNewSong(String title, Author author, Song selectedSong) {
+        // Implementation to create a new song
+        return new Song(title, author);}
+
+    public void publishSong(Song song) {
+        // Implementation to publish a song
     }
 
-    public UUID getAuthorID() {
-        return authorID;
+    public void editSong(Song song) {
+        // Implementation to edit a song
     }
-// import java.util.ArrayList;
-// import java.util.UUID;
 
-// public class Author {
+    public void saveSong(Song song) {
+        // Implementation to save a song
+    }
 
-//     private ArrayList<UUID> createdSongs;
-//     private Measure selectedMeasure;
+    public Measure addMeasure(Measure measure) {
+        this.selectedMeasure = measure;
+        return measure;
+    }
 
-//     public Author()
-// public void removeSong(Song selectedSong){
+    public void addGenre(String genre) {
+        // Implementation to add a genre
+    }
 
-// }
-// public Song createNewSong(String title String author Song selectedSong){
+    public void editMeasure(Measure measure) {
+        // Implementation to edit a measure
+    }
 
-// }
-// public void publishSong(Song song){
+    public void removeMeasure(Measure measure, int position) {
+        // Implementation to remove a measure at a specific position
+    }
 
-// }
-// public void  editSong(song Song){
+    public void editChord(String type, String pitch, int position) {
+        // Implementation to edit a chord
+    }
 
-// }
-// public void saveSong(song Song){
-    
-// }
-// public Measure addMeasure(Measure measure){
+    public void makeNoteIntoChord(int position) {
+        // Implementation to make a note into a chord
+    }
 
-// }
-// public void addGenre(String genre){
+    public void makeChordIntoNote(int position) {
+        // Implementation to make a chord into a note
+    }
 
-// }
-// public void editMeasure(Measure measure){
-    
-// }
-// public void removeMeasure(Measure measure, int position){
+    public void removeNote(int position) {
+        // Implementation to remove a note
+    }
 
-// }
-// public editChord(String type, String pitch, int position){
-
-// }
-// public void makeNoteIntoChord(int position){
-
-// }
-// public void makeChordIntoNote(int position){
-
-// }
-// public void removeNote(int position){
-    
-// }
 
 }

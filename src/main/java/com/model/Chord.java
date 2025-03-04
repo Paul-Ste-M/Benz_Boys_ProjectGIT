@@ -7,6 +7,9 @@ public class Chord {
     private List<Note> notes;
     private Note leadingNote;
     private boolean isSingleNote;
+    private boolean isMinor;
+
+
 
     public Chord() {
         this.notes = new ArrayList<>();
@@ -18,7 +21,7 @@ public class Chord {
         this.isSingleNote = isSingleNote;
         
         // Convert leadingNote to an actual Note object (assuming Type and Pitch enums exist)
-        this.leadingNote = new Note(Pitch.valueOf(leadingNote), Type.valueOf(type), 1, false, false);
+        this.leadingNote = new Note(Pitch.valueOf(leadingNote), Type.valueOf(type),false);
         
         if (!isSingleNote) {
             // Generate a chord based on the leading note
@@ -67,7 +70,7 @@ public class Chord {
     }
 
     public void changeNote(String type, String pitch) {
-        this.leadingNote = new Note(Pitch.valueOf(pitch), Type.valueOf(type), 1, false, false);
+        this.leadingNote = new Note(Pitch.valueOf(pitch), Type.valueOf(type), false);
         if (isSingleNote) {
             this.notes.clear();
             this.notes.add(leadingNote);
