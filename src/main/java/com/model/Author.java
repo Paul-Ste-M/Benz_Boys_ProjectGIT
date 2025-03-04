@@ -1,52 +1,75 @@
 package com.model;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class Author {
+    private String name;
+    private String username;
+    private UUID authorID;
 
-    private ArrayList<UUID> createdSongs;
-    private Measure selectedMeasure;
+    public Author(String name, String username) {
+        this.name = name;
+        this.authorID = UUID.randomUUID();
+    }
 
-    public Author()
-public void removeSong(Song selectedSong){
+    public String getName() {
+        return name;
+    }
 
-}
-public Song createNewSong(String title String author Song selectedSong){
+    public String getUsername() {
+        return username;
+    }
 
-}
-public void publishSong(Song song){
+    public UUID getAuthorID() {
+        return authorID;
+    }
+// import java.util.ArrayList;
+// import java.util.UUID;
 
-}
-public void  editSong(song Song){
+// public class Author {
 
-}
-public void saveSong(song Song){
+//     private ArrayList<UUID> createdSongs;
+//     private Measure selectedMeasure;
+
+//     public Author()
+// public void removeSong(Song selectedSong){
+
+// }
+// public Song createNewSong(String title String author Song selectedSong){
+
+// }
+// public void publishSong(Song song){
+
+// }
+// public void  editSong(song Song){
+
+// }
+// public void saveSong(song Song){
     
-}
-public Measure addMeasure(Measure measure){
+// }
+// public Measure addMeasure(Measure measure){
 
-}
-public void addGenre(String genre){
+// }
+// public void addGenre(String genre){
 
-}
-public void editMeasure(Measure measure){
+// }
+// public void editMeasure(Measure measure){
     
-}
-public void removeMeasure(Measure measure, int position){
+// }
+// public void removeMeasure(Measure measure, int position){
 
-}
-public editChord(String type, String pitch, int position){
+// }
+// public editChord(String type, String pitch, int position){
 
-}
-public void makeNoteIntoChord(int position){
+// }
+// public void makeNoteIntoChord(int position){
 
-}
-public void makeChordIntoNote(int position){
+// }
+// public void makeChordIntoNote(int position){
 
-}
-public void removeNote(int position){
+// }
+// public void removeNote(int position){
     
-}
+// }
 
 }
