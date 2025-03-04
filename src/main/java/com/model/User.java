@@ -7,7 +7,6 @@ public class User {
     private String firstName;
     private String lastName;
     private String userName;
-    private String hashedPassword; // Store hashed passwords
     private String email;
     private UUID userID;
     private String password;
