@@ -87,6 +87,10 @@ public class SongLibrary {
         songs.add(newSong);
     }
 
+    public void addSong(Song song) {
+        songs.add(song);
+    }
+
     public void displaySongs() {
         for (Song song : songs) {
             System.out.println(song.getTitle() + " by " + song.getAuthor());
