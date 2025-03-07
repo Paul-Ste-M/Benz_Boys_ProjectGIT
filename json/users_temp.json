@@ -1,0 +1,25 @@
+[
+    {
+        "firstName": "John",
+        "lastName": "Doe",
+        "password": "asdjihdw",
+        "userName": "jdoe23",
+        "createdSongs": [],
+        "userID": "fb012ab1-0779-45ca-a691-f5497c9cc552",
+        "email": "jdoe@gmail.com",
+        "isAuthor": false
+    },
+    {
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "password": "sdhfhi",
+        "userName": "janedoe55",
+        "createdSongs": [
+            "5647a43d-15c6-4fe0-820d-952698250be5",
+            "5a4d25a2-130f-4e1d-ba8c-8ddee00bb6bd"
+        ],
+        "userID": "248253e9-b7e4-4023-967c-4b5a5d029961",
+        "email": "janedoe@gmail.com",
+        "isAuthor": true
+    }
+]

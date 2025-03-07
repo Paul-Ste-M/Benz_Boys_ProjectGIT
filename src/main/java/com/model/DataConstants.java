@@ -5,10 +5,12 @@ public abstract class DataConstants {
     protected static final String USER_TEMP_FILE_NAME = "json/users_temp.json";
     protected static final String USER_FIRST_NAME = "firstName";
     protected static final String USER_LAST_NAME = "lastName";
+    protected static final String USER_USERNAME = "userName";
     protected static final String USER_PASSWORD = "password";
     protected static final String USER_EMAIL = "email";
     protected static final String USER_ID = "userID";
     protected static final String USER_CREATED_SONGS = "createdSongs";
+    protected static final String USER_IS_AUTUHOR = "isAuthor";
     protected static final String SONG_FILE_NAME = "json/songs.json";
     protected static final String SONG_TEMP_FILE_NAME = "json/songs_temp.json";
     protected static final String SONG_TITLE = "title";

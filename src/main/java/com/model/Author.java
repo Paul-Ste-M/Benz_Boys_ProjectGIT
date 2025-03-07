@@ -6,13 +6,24 @@ import java.util.UUID;
 public class Author extends User {
     private ArrayList<UUID> createdSongs;
     private Measure selectedMeasure;
-
+    
+    // We might not even need this constructor
     public Author(String firstName, String lastName, String userName, String password, String email) {
         super(firstName, lastName, userName, password, email);
-        this.createdSongs = new ArrayList<>();
+        
+        this.createdSongs = this.getCreatedSongs();
     }
+
+    public Author(String firstName, String lastName, String userName, String password, String email, String userID, ArrayList<UUID> createdSongs, boolean isAuthor) {
+        super(firstName, lastName, userName, password, email, userID, createdSongs, isAuthor);
+    }
+
     public void addSong(Song song) {
         // Implementation to add a song
+    }
+
+    public void addSong(UUID songID) {
+        createdSongs.add(songID);
     }
 
     public void removeSong(Song song) {
@@ -67,6 +78,8 @@ public class Author extends User {
     public void removeNote(int position) {
         // Implementation to remove a note
     }
+
+
 
 
 }

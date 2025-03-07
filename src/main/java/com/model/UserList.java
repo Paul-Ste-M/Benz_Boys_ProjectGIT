@@ -24,6 +24,15 @@ public class UserList {
         User newUser = new User(firstName, lastName, userName, password, email);
         users.add(newUser);
     }
+    // Add existing user for debugging purposes
+    public void addUser(User user) {
+        users.add(user);
+    }
+    
+    // Returns the list of users
+    public ArrayList<User> getUsers() {
+        return this.users;
+    }
 
     // Retrieve a user based on username and password
     public User getUser(String userName, String password) {
@@ -43,7 +52,7 @@ public class UserList {
     // Display all users (for debugging purposes)
     public void displayUsers() {
         for (User user : users) {
-            System.out.println(user.getName() + " (" + user.getUsername() + ")");
+            System.out.println(user.getFullName() + " (" + user.getUsername() + ")");
         }
     }
 
