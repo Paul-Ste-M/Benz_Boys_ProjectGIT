@@ -8,7 +8,7 @@ public class Measure {
     private int beatCount;
 
     public Measure() {
-        this.chords = new ArrayList<>();
+        this.chords = new ArrayList<Chord>();
         this.beatCount = 0;
     }
 
@@ -18,12 +18,20 @@ public class Measure {
         return beatCount > 0 && beatCount <= 4; 
     }
 
-    public void addChord(String type, String pitch, int position) {
+    public int getBeatCount() {
+        return beatCount;
+    }
+
+    public List<Chord> getChords() {
+        return chords;
+    }
+
+    public void addChord(String type, String pitch, boolean isMinor, int position) {
         if (position < 0 || position > chords.size()) {
             System.out.println("Invalid position");
             return;
         }
-        Chord newChord = new Chord(type, pitch, false);
+        Chord newChord = new Chord(type, pitch, isMinor, isMinor);
         chords.add(position, newChord);
         beatCount++;
     }

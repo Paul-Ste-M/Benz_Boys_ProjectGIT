@@ -5,7 +5,7 @@
         "password": "asdjihdw",
         "userName": "jdoe23",
         "createdSongs": [],
-        "userID": "fb012ab1-0779-45ca-a691-f5497c9cc552",
+        "userID": "3ebd8b82-0fea-4a21-b8a0-c80b3174836d",
         "email": "jdoe@gmail.com",
         "isAuthor": false
     },
@@ -15,10 +15,9 @@
         "password": "sdhfhi",
         "userName": "janedoe55",
         "createdSongs": [
-            "5647a43d-15c6-4fe0-820d-952698250be5",
-            "5a4d25a2-130f-4e1d-ba8c-8ddee00bb6bd"
+            "b5464838-b736-486b-b35a-406c866f9b29"
         ],
-        "userID": "248253e9-b7e4-4023-967c-4b5a5d029961",
+        "userID": "026c7cdb-aa8d-40b6-ab06-5b06034fe83f",
         "email": "janedoe@gmail.com",
         "isAuthor": true
     }

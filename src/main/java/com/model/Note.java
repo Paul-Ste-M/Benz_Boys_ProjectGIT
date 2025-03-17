@@ -9,19 +9,23 @@ public class Note {
     private boolean isRest;  // New flag for rest notes
 
     // Constructor for normal notes
-    public Note(Pitch pitch, Type type, boolean isMinor) {
+    public Note(Pitch pitch, Type type) {
         this.pitch = pitch;
         this.type = type;
-        this.isRest = false;
+        if(getNoteStringForJFugue().equals("R")) {
+            this.isRest = true;    
+        } else {
+            this.isRest = false;
+        }
     }
 
     // Constructor for rest notes (pauses)
-    public Note(Pitch pitch, Type type) {
-        this.pitch = pitch; // No pitch for rests
-        this.type = type;
+   // public Note(Pitch pitch, Type type) {
+      //  this.pitch = pitch; // No pitch for rests
+      //  this.type = type;
         // this.isMinor = false;
-        this.isRest = true;
-    }
+       // this.isRest = true;
+    //}
 
     // Getter for rest status
     public boolean isRest() {
@@ -56,6 +60,10 @@ public class Note {
             case EIGHTH: return 200;
             default: return 400; // Default to quarter note duration
         }
+    }
+
+    public Type getType() {
+        return type;
     }
 
     // Map the Pitch enum to JFugue note string representation

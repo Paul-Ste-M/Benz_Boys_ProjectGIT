@@ -11,20 +11,26 @@ public class Chord {
     private Note leadingNote;
     private boolean isSingleNote;
     private boolean isMinor;
+    private Type type;
 
 
 
     public Chord() {
         this.notes = new ArrayList<>();
         this.isSingleNote = false;
+        this.isMinor = false;
+
     }
 
-    public Chord(String type, String leadingNote, boolean isSingleNote) {
+    public Chord(String type, String leadingNote, boolean isSingleNote, boolean isMinor) {
         this.notes = new ArrayList<>();
         this.isSingleNote = isSingleNote;
-        
+        this.isMinor = isMinor;
+        this.type = Type.valueOf(type.toUpperCase());
+
         // Convert leadingNote to an actual Note object (assuming Type and Pitch enums exist)
-        this.leadingNote = new Note(Pitch.valueOf(leadingNote), Type.valueOf(type),false);
+        //this.leadingNote = new Note(Pitch.valueOf(leadingNote.toUpperCase()), Type.valueOf(type.toUpperCase()),false);
+        this.leadingNote = new Note(Pitch.valueOf(leadingNote.toUpperCase()), this.type);
         
         if (!isSingleNote) {
             // Generate a chord based on the leading note
@@ -32,6 +38,38 @@ public class Chord {
         } else {
             notes.add(this.leadingNote);
         }
+    }
+
+    // Constructor used by DataReader
+    public Chord(String type, boolean isSingleNote, boolean isMinor) {
+        this.notes = new ArrayList<Note>();
+        this.type = Type.valueOf(type.toUpperCase());
+        this.isSingleNote = isSingleNote;
+        this.isMinor = isMinor;
+    }
+
+    public void setLeadingNote(Note leadingNote) {
+        this.leadingNote = leadingNote;
+    }
+
+    public Note getLeadingNote() {
+        return leadingNote;
+    }
+
+    public boolean isSingleNote() {
+        return isSingleNote;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public boolean isMinor() {
+        return isMinor;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     private void generateChord() {
@@ -86,7 +124,7 @@ public class Chord {
     }
 
     public void changeNote(String type, String pitch) {
-        this.leadingNote = new Note(Pitch.valueOf(pitch), Type.valueOf(type), false);
+        this.leadingNote = new Note(Pitch.valueOf(pitch), Type.valueOf(type));
         if (isSingleNote) {
             this.notes.clear();
             this.notes.add(leadingNote);

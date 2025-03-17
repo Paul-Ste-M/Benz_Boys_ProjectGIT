@@ -9,10 +9,10 @@ public class SongTest {
         Song maryHadALittleLamb = new Song("Mary Had a Little Lamb", author);
 
         // Define the melody using notes
-        Note e = new Note(Pitch.E, Type.QUARTER,false);
-        Note d = new Note(Pitch.D, Type.QUARTER,false);
-        Note c = new Note(Pitch.C, Type.QUARTER,false);
-        Note g = new Note(Pitch.G, Type.QUARTER,false);
+        Note e = new Note(Pitch.E, Type.QUARTER);
+        Note d = new Note(Pitch.D, Type.QUARTER);
+        Note c = new Note(Pitch.C, Type.QUARTER);
+        Note g = new Note(Pitch.G, Type.QUARTER);
         Note restQuarter = new Note(Pitch.R, Type.QUARTER); // Rest for a quarter note duration
 
 

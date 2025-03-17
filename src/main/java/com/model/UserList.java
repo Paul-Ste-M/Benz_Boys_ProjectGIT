@@ -1,6 +1,7 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class UserList {
     private static UserList userList;  // Singleton instance
@@ -42,6 +43,15 @@ public class UserList {
             }
         }
         return null; // User not found
+    }
+
+    // Retrieve a user based on userID
+    public User getUser(UUID userID) {
+        for ( User user : users) {
+            if (user.getUserID().equals(userID))
+                return user;
+        }
+        return null; // User not found, I don't like this though. Maybe another way?
     }
 
     // Remove a user from the list

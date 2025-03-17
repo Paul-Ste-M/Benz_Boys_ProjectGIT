@@ -16,7 +16,7 @@ public class Song {
 
     public Song(String title, Author author) {
         this.title = title;
-        this.author = author.getName();
+        this.author = author.getFullName();
         this.authorUsername = author.getUsername();
         this.songID = UUID.randomUUID();
         this.authorID = author.getUserID();
@@ -24,6 +24,18 @@ public class Song {
         this.measures = new ArrayList<>();
         this.published = false;
         this.comments = new ArrayList<>();
+    }
+
+    public Song(String title, String author, String authorUsername, UUID songID, UUID authorID, boolean published) {
+        this.title = title;
+        this.author = author;
+        this.authorUsername = authorUsername;
+        this.songID = songID;
+        this.authorID = authorID;
+        this.published = published;
+        this.genre = new ArrayList<Genre>();
+        this.measures = new ArrayList<Measure>();
+        this.comments = new ArrayList<Comment>();
     }
 
     public void addMeasure(Measure measure, int position) {
@@ -53,6 +65,14 @@ public class Song {
     public void addGenre(String genreName) {
         Genre newGenre = Genre.valueOf(genreName.toUpperCase()); // Assuming an Enum Genre exists
         genre.add(newGenre);
+    }
+
+    public boolean isPublished() {
+        return published;
+    }
+
+    public ArrayList<Measure> getMeasures() {
+        return measures;
     }
 
     public void playSong() {

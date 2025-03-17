@@ -18,6 +18,10 @@ public class SongLibrary {
         }
         return songLibrary;
     }
+    // Returns the list of songs for DataWriter
+    public ArrayList<Song> getSongs() {
+        return songs;
+    }
 
     // Get a song by name and author
     public Song getSong(String name, String author) {

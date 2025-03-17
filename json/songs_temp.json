@@ -1,0 +1,87 @@
+[
+    {
+        "measures": [
+            {
+                "chords": [
+                    {
+                        "isMinor": false,
+                        "notes": [
+                            {
+                                "pitch": "C",
+                                "type": "QUARTER"
+                            }
+                        ],
+                        "leadingNote": "C",
+                        "isSingleNote": true,
+                        "type": "QUARTER"
+                    },
+                    {
+                        "isMinor": false,
+                        "notes": [
+                            {
+                                "pitch": "A",
+                                "type": "QUARTER"
+                            }
+                        ],
+                        "leadingNote": "A",
+                        "isSingleNote": true,
+                        "type": "QUARTER"
+                    },
+                    {
+                        "isMinor": false,
+                        "notes": [
+                            {
+                                "pitch": "B",
+                                "type": "QUARTER"
+                            }
+                        ],
+                        "leadingNote": "B",
+                        "isSingleNote": true,
+                        "type": "QUARTER"
+                    },
+                    {
+                        "isMinor": false,
+                        "notes": [
+                            {
+                                "pitch": "A",
+                                "type": "QUARTER"
+                            },
+                            {
+                                "pitch": "B",
+                                "type": "QUARTER"
+                            },
+                            {
+                                "pitch": "C",
+                                "type": "QUARTER"
+                            }
+                        ],
+                        "leadingNote": "A",
+                        "isSingleNote": false,
+                        "type": "QUARTER"
+                    }
+                ]
+            }
+        ],
+        "comments": [
+            {
+                "commenterName": "Jane Doe",
+                "comment": "This is very simple, but promising!!!",
+                "username": "janedoe55"
+            },
+            {
+                "commenterName": "Jane Doe",
+                "comment": "Stay tuned for more simple songs! :D",
+                "username": "janedoe55"
+            }
+        ],
+        "author": "Jane Doe",
+        "genre": [
+            "KIDS",
+            "POP"
+        ],
+        "published": false,
+        "title": "Test Song",
+        "authorID": "026c7cdb-aa8d-40b6-ab06-5b06034fe83f",
+        "songID": "b5464838-b736-486b-b35a-406c866f9b29"
+    }
+]
