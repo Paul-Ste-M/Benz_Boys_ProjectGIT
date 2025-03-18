@@ -8,6 +8,7 @@ public class User {
     private String email;
     private UUID userID;
     private String password;
+    private boolean isAuthor;
 
     public User(String firstName, String lastName, String userName, String password, String email) {
         this.firstName = firstName;
@@ -40,8 +41,12 @@ public class User {
         // Implementation to decrease volume
     }
 
-    public String getName() {
-        return this.firstName + " " + this.lastName;
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
     }
 
     public String getUsername() {
@@ -59,4 +64,13 @@ public class User {
     public UUID getUserID() {
         return this.userID;
     }
+
+    public boolean isAuthor() {
+        return this.isAuthor;
+    }
+
+    public void setAuthor(boolean isAuthor) {
+        this.isAuthor = isAuthor;
+    }
+
 }

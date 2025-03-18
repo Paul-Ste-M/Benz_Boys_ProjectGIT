@@ -43,7 +43,7 @@ public class UserList {
     // Display all users (for debugging purposes)
     public void displayUsers() {
         for (User user : users) {
-            System.out.println(user.getName() + " (" + user.getUsername() + ")");
+            System.out.println(user.getFirstName() + user.getLastName() + " (" + user.getUsername() + ")");
         }
     }
 

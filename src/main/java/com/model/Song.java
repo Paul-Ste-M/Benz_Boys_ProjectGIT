@@ -16,7 +16,8 @@ public class Song {
 
     public Song(String title, Author author) {
         this.title = title;
-        this.author = author.getName();
+        this.author = author.getFirstName();
+        this.author = author.getLastName();
         this.authorUsername = author.getUsername();
         this.songID = UUID.randomUUID();
         this.authorID = author.getUserID();

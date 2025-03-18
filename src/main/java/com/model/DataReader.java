@@ -29,6 +29,7 @@ public class DataReader {
                 String userName = (String) userJson.get("userName");
                 String password = (String) userJson.get("password");
                 String email = (String) userJson.get("email");
+                String createdSongs = (String) userJson.get("createdSongs");
 
                 userList.addUser(firstName, lastName, userName, password, email);
             }
@@ -61,7 +62,7 @@ public class DataReader {
                 boolean published = (boolean) songJson.get("published");
 
                 // Create an Author object (assuming you have an Author class)
-                Author author = new Author(authorName, "", "", "", "");
+                Author author = new Author("Jordan", "Cantave", "", "", "");
 
                 // Create a new song
                 Song song = new Song(title, author);
@@ -134,5 +135,6 @@ public class DataReader {
         // Display all users and songs for verification
         UserList.getInstance().displayUsers();
         SongLibrary.getInstance().displaySongs();
+
     }
 }

@@ -11,6 +11,13 @@ public class Author extends User {
         super(firstName, lastName, userName, password, email);
         this.createdSongs = new ArrayList<>();
     }
+
+    public Author(User user) {
+        super(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getEmail());
+        this.createdSongs = new ArrayList<>();
+        user.setAuthor(true);
+        DataReader DataReader = new DataReader();
+    }
     public void addSong(Song song) {
         // Implementation to add a song
     }
