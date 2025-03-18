@@ -18,6 +18,11 @@ public class Author extends User {
         user.setAuthor(true);
         DataReader DataReader = new DataReader();
     }
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
     public void addSong(Song song) {
         // Implementation to add a song
     }
