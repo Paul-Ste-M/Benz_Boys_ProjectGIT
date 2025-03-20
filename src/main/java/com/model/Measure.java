@@ -73,3 +73,5 @@ public class Measure {
         }
     }
 }
+
+//loop through measures on outer loop and 

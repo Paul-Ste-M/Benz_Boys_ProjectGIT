@@ -104,6 +104,8 @@ public class Chord {
             }
             Pattern finalMusicString = new Pattern(musicString);
             player.play(finalMusicString);
+            // instead of playing one note at a time, gather the notes and play everything
+            // add if statement for if chord is minor then add minor to note
         }
     }
 
