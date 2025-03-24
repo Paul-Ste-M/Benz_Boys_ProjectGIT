@@ -81,9 +81,9 @@ public class Song {
         }
     }
 
-    public void addComment(String commentText) {
-        Comment newComment = new Comment(author, commentText, authorUsername);
-        comments.add(newComment);
+    // Adding the comment to the list
+    public void addComment(Comment newComment2) {
+        comments.add(newComment2);
     }
 
     public void setPublished(boolean published) {
