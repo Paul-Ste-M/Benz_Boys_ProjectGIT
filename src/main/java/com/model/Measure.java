@@ -67,9 +67,10 @@ public class Measure {
         chords.get(position).changeNote(type, pitch);
     }
 
-    public void playMeasure() {
+    public String playMeasure(String musicString) {
         for (Chord chord : chords) {
-            chord.playChord();
+            musicString = chord.playChord(musicString);
         }
+        return musicString + "| ";
     }
 }
