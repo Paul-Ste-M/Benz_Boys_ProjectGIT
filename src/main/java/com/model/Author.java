@@ -20,6 +20,7 @@ public class Author extends User {
 
     public void addSong(Song song) {
         // Implementation to add a song
+        createdSongs.add(song.getSongID());
     }
 
     public void addSong(UUID songID) {
@@ -28,6 +29,12 @@ public class Author extends User {
 
     public void removeSong(Song song) {
         // Implementation to remove a song
+        createdSongs.remove(song.getSongID());
+    }
+    
+    public void removeSong(UUID songID) {
+        // Implementation to remove a song
+        createdSongs.remove(songID);
     }
 
     public Song createNewSong(String title, Author author, Song selectedSong) {
@@ -36,6 +43,7 @@ public class Author extends User {
 
     public void publishSong(Song song) {
         // Implementation to publish a song
+        song.isPublished();
     }
 
     public void editSong(Song song) {
