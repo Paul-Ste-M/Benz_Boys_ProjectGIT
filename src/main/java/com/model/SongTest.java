@@ -96,16 +96,16 @@ public class SongTest {
         maryHadALittleLamb.addGenre("KIDS");
 
         // Add a comment
-        maryHadALittleLamb.addComment("A childhood classic!");
+        //maryHadALittleLamb.addComment("A childhood classic!");
 
         // Play the song
         System.out.println("Now playing: Mary Had a Little Lamb 🎵");
         maryHadALittleLamb.playSong();
 
         // Display comments
-        System.out.println("\nComments:");
-        for (Comment h : maryHadALittleLamb.getComments()) {
-            System.out.println("- " + h.getComment());
+     //   System.out.println("\nComments:");
+     //   for (Comment h : maryHadALittleLamb.getComments()) {
+            //System.out.println("- " + h.getComment());
         }
     }
-}
+

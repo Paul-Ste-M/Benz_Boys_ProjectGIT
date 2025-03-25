@@ -32,7 +32,7 @@ public abstract class DataConstants {
     protected static final String SONG_PUBLISHED = "published";
     protected static final String SONG_COMMENTS = "comments";
     protected static final String COMMENT_COMMENTER_NAME = "commenterName";
-    protected static final String COMMENT_COMMENT = "comment";
+    protected static final String COMMENT_COMMENT = "commentText";
     protected static final String COMMENT_USERNAME = "username";
     protected static final String INSTRUMENT_FILE_NAME = "json/instruments.json";
     protected static final String INSTRUMENT_TEMP_FILE_NAME = "json/instruments._temp.json";

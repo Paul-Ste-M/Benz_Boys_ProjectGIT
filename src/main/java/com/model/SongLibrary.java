@@ -71,8 +71,9 @@ public class SongLibrary {
     // Save songs (stub method, implementation depends on storage)
     public boolean saveSongs() {
         boolean result = DataWriter.saveSongs(songs); // Call the DataWriter to save songs
+        return result;
     }
-}
+
 
     // Publish a song
     public void publishSong(Song selectedSong) {
