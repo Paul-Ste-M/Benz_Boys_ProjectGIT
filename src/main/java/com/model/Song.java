@@ -86,6 +86,7 @@ public class Song {
         comments.add(newComment2);
     }
 
+    
     public void setPublished(boolean published) {
         this.published = published;
     }

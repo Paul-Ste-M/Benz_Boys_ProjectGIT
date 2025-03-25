@@ -66,14 +66,14 @@ public class SongApp {
     }
 
     /**
-     * Save project
+     * Saves project
      */
     public void saveProject(Song selectedSong, String name, String author, String username) {
         // Stub implementation
     }
 
     /**
-     * Publish a song
+     * Publishes a song
      */
     public void publishSong(Song selectedSong, String name, String author, String username) {
         if (selectedSong != null) {
@@ -82,7 +82,7 @@ public class SongApp {
     }
 
     /**
-     * Remove a song
+     * Removes a song
      */
     public void removeSong(Song selectedSong) {
         SongLibrary.getInstance().removeSong(selectedSong);
@@ -90,20 +90,11 @@ public class SongApp {
     }
 
     /**
-     * Play a song
+     * Play a songs
      */
     public void playSong(Song selectedSong) {
         if (selectedSong != null) {
             selectedSong.playSong(); 
-        }
-    }
-
-    /**
-     * Pause a song, Pausing Not Implemented Yet
-     */
-    public void pauseSong(Song selectedSong) {
-        if (selectedSong != null) {
-            selectedSong.pauseSong();
         }
     }
 
@@ -116,7 +107,7 @@ public class SongApp {
     }
 
     /**
-     * Change volume
+     * Changes the volume of the music
      */
     public void changeVolume(int volume) {
         if (volume >= 0 && volume <= 100) {
@@ -125,7 +116,7 @@ public class SongApp {
     }
 
     /**
-     * Export song
+     * Export songs
      */
     public void exportSong(Song song) {
         // Stub implementation
