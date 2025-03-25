@@ -62,24 +62,29 @@ public class Note {
         }
     }
 
+    public String getDurationStringForJFugue() {
+        return type.JFugueString;
+    }
+
     public Type getType() {
         return type;
     }
 
     // Map the Pitch enum to JFugue note string representation
     public String getNoteStringForJFugue() {
-        switch (pitch) {
-            case C: return "C";
-            case D: return "D";
-            case E: return "E";
-            case F: return "F";
-            case G: return "G";
-            case A: return "A";
-            case B: return "B";
-            case R: return "R";
-            // You can extend this mapping based on your pitch enum
-            default: return "C";  // Default to C
-        }
+        // switch (pitch) {
+        //     case C: return "C";
+        //     case D: return "D";
+        //     case E: return "E";
+        //     case F: return "F";
+        //     case G: return "G";
+        //     case A: return "A";
+        //     case B: return "B";
+        //     case R: return "R";
+        //     // You can extend this mapping based on your pitch enum
+        //     default: return "C";  // Default to C
+        // }
+        return pitch.JFugueString;
     }
 
     @Override

@@ -13,7 +13,7 @@ public class SongTest {
         Note d = new Note(Pitch.D, Type.QUARTER);
         Note c = new Note(Pitch.C, Type.QUARTER);
         Note g = new Note(Pitch.G, Type.QUARTER);
-        Note restQuarter = new Note(Pitch.R, Type.QUARTER); // Rest for a quarter note duration
+        Note restQuarter = new Note(Pitch.REST, Type.QUARTER); // Rest for a quarter note duration
 
 
         // Create measures
