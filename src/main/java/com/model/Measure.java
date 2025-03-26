@@ -74,3 +74,5 @@ public class Measure {
         return musicString + "| ";
     }
 }
+
+//loop through measures on outer loop and 

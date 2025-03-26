@@ -1,5 +1,6 @@
 package com.model;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.UUID;
 import org.jfugue.player.Player;
@@ -124,6 +125,52 @@ public class Song {
 
     public UUID getAuthorID() {
         return authorID;
+    }
+
+    public void printTabsToTextFile() {
+        try {
+            String titleNoSpaces = title.replaceAll("\\s+", "");
+            PrintWriter fileWriter = new PrintWriter(new FileOutputStream("./json/" + titleNoSpaces + ".txt"));
+
+            fileWriter.println("\""+title+"\" by " + authorUsername+ "\n");
+            fileWriter.println();
+
+            for(int i = 1; i < 7; i++) {
+                fileWriter.print(determineStringName(i) + ") |");
+                for(Measure measure : measures) {
+                    for(Chord chord : measure.getChords()) {
+                        boolean noteExistsOnLine = false;
+                        for( Note note : chord.getNotes()) {
+                            if(note.getTabsLine() == i) {
+                                fileWriter.print("-" + note.getFretNumber()+ "-");
+                                noteExistsOnLine = true;
+                            }
+                        }
+                        if(!noteExistsOnLine) { // a failsafe in case the chord has less than 6 notes.
+                            fileWriter.print("---");
+                        }
+                    }
+                    fileWriter.print("|");
+                }
+                fileWriter.println();
+            }
+
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String determineStringName(int tabsLine) {
+        switch(tabsLine) {
+            case 1: return "E";
+            case 2: return "B";
+            case 3: return "G";
+            case 4: return "D";
+            case 5: return "A";
+            case 6: return "E";
+            default: return "E";
+        }
     }
 
 

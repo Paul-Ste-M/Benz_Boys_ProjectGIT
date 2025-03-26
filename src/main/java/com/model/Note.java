@@ -7,6 +7,9 @@ public class Note {
     private Pitch pitch;
     private Type type;
     private boolean isRest;  // New flag for rest notes
+    private String octave;
+    private String fretNumber;
+    private int tabsLine;
 
     // Constructor for normal notes
     public Note(Pitch pitch, Type type) {
@@ -17,6 +20,20 @@ public class Note {
         } else {
             this.isRest = false;
         }
+    }
+
+    // Constructor for reading in notes from json
+    public Note(Pitch pitch, Type type, String octave, String fretNumber, int tabsLine) {
+        this.pitch = pitch;
+        this.type = type;
+        if(getNoteStringForJFugue().equals("R")) {
+            this.isRest = true;
+        } else {
+            this.isRest = false;
+        }
+        this.octave = octave;
+        this.fretNumber = fretNumber;
+        this.tabsLine = tabsLine;
     }
 
     // Constructor for rest notes (pauses)
@@ -74,6 +91,26 @@ public class Note {
         return pitch;
     }
 
+<<<<<<< HEAD
+=======
+    public String getOctave() {
+        return octave;
+    }
+
+    public String getFretNumber() {
+        return fretNumber;
+    }
+
+    public int getTabsLine() {
+        return tabsLine;
+    }
+
+    public void setType(Type type) {
+        if(type != null)
+            this.type = type;
+    }
+
+>>>>>>> 1709958a6a8779a9b5b671fa99ed3b790424ed26
     // Map the Pitch enum to JFugue note string representation
     public String getNoteStringForJFugue() {
         // switch (pitch) {
