@@ -7,11 +7,14 @@
                         "isMinor": false,
                         "notes": [
                             {
-                                "pitch": "C",
+                                "octave": "4",
+                                "fretNumber": "2",
+                                "tabsLine": 4,
+                                "pitch": "E",
                                 "type": "QUARTER"
                             }
                         ],
-                        "leadingNote": "C",
+                        "leadingNote": "E",
                         "isSingleNote": true,
                         "type": "QUARTER"
                     },
@@ -19,6 +22,9 @@
                         "isMinor": false,
                         "notes": [
                             {
+                                "octave": "4",
+                                "fretNumber": "2",
+                                "tabsLine": 3,
                                 "pitch": "A",
                                 "type": "QUARTER"
                             }
@@ -31,6 +37,9 @@
                         "isMinor": false,
                         "notes": [
                             {
+                                "octave": "3",
+                                "fretNumber": "2",
+                                "tabsLine": 5,
                                 "pitch": "B",
                                 "type": "QUARTER"
                             }
@@ -43,15 +52,24 @@
                         "isMinor": false,
                         "notes": [
                             {
+                                "octave": "4",
+                                "fretNumber": "2",
+                                "tabsLine": 3,
                                 "pitch": "A",
                                 "type": "QUARTER"
                             },
                             {
+                                "octave": "3",
+                                "fretNumber": "2",
+                                "tabsLine": 5,
                                 "pitch": "B",
                                 "type": "QUARTER"
                             },
                             {
-                                "pitch": "C",
+                                "octave": "4",
+                                "fretNumber": "2",
+                                "tabsLine": 4,
+                                "pitch": "E",
                                 "type": "QUARTER"
                             }
                         ],
@@ -65,12 +83,12 @@
         "comments": [
             {
                 "commenterName": "Jane Doe",
-                "comment": "This is very simple, but promising!!!",
+                "commentText": null,
                 "username": "janedoe55"
             },
             {
                 "commenterName": "Jane Doe",
-                "comment": "Stay tuned for more simple songs! :D",
+                "commentText": null,
                 "username": "janedoe55"
             }
         ],

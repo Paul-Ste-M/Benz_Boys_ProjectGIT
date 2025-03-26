@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Instrument {
     //private static final String INSTTUMENT_SOUND_FILE = "";
-    private InstrumentType instrument;
+    private InstrumentType instrumentName;
     private ArrayList<Chord> chords;
 
-    public Instrument(InstrumentType instrument, ArrayList<Chord> chords) {
-        this.instrument = instrument;
+    public Instrument(InstrumentType instrumentName, ArrayList<Chord> chords) {
+        this.instrumentName = instrumentName;
         this.chords = chords;
     }
 
@@ -23,6 +23,14 @@ public class Instrument {
         System.out.println("Chord not found");
         Chord chord = new Chord("EMPTY", true, isMinor);
         return chord;
+    }
+
+    public InstrumentType getInstrumentName() {
+        return instrumentName;
+    }
+
+    public ArrayList<Chord> getChords() {
+        return chords;
     }
 
     public void playSound(String pitch){

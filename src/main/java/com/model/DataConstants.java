@@ -27,6 +27,9 @@ public abstract class DataConstants {
     protected static final String NOTE_TYPE = "type";
     protected static final String NOTE_PITCH = "pitch";
     protected static final String NOTE_IS_MINOR = "isMinor"; // to be deleted soon
+    protected static final String NOTE_OCTAVE = "octave";
+    protected static final String NOTE_FRET_NUMBER = "fretNumber";
+    protected static final String NOTE_TABS_LINE = "tabsLine";
     protected static final String CHORD_LEADING_NOTE = "leadingNote";
     protected static final String CHORD_IS_SINGLE_NOTE = "isSingleNote";
     protected static final String SONG_PUBLISHED = "published";
@@ -35,8 +38,8 @@ public abstract class DataConstants {
     protected static final String COMMENT_COMMENT = "commentText";
     protected static final String COMMENT_USERNAME = "username";
     protected static final String INSTRUMENT_FILE_NAME = "json/instruments.json";
-    protected static final String INSTRUMENT_TEMP_FILE_NAME = "json/instruments._temp.json";
+    protected static final String INSTRUMENT_TEMP_FILE_NAME = "json/instruments_temp.json";
     protected static final String INSTRUMENT_SOUND_FILE = "instrument_sound_file";
-    protected static final String INSTRUMENT_INSTRUMENT = "instrument";
-    protected static final String INSTRUMENT_CHORD = "chords";
+    protected static final String INSTRUMENT_INSTRUMENT_NAME = "instrumentName";
+    protected static final String INSTRUMENT_CHORDS = "chords";
 }

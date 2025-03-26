@@ -77,8 +77,11 @@ public class Chord {
         Chord presetChord = instrument.getChord(leadingNote, isMinor);
         if(presetChord.getLeadingNote().getType().equals(Type.EMPTY))
             return;
-        for(int i = 1; i < presetChord.getNotes().size(); i++) {
-            notes.add(presetChord.getNotes().get(i));  
+        this.notes.clear();
+        for(int i = 0; i < presetChord.getNotes().size(); i++) {
+            Note newNote = presetChord.getNotes().get(i);
+            newNote.setType(type);
+            notes.add(newNote);  
         }
     }
 
@@ -107,16 +110,19 @@ public class Chord {
         if(isSingleNote) {
             for (Note note : notes) {
 //                note.playNote();
-                musicString = musicString + note.getNoteStringForJFugue() + note.getDurationStringForJFugue() + " ";
+                musicString = musicString + note.getNoteStringForJFugue() + note.getOctave()
+                + note.getDurationStringForJFugue() + " ";
             }
         } else {
 //            Player player = new Player();
             for(int i = 0; i < notes.size(); i++) {
                 //musicString = musicString + "V" + i + " I[Guitar] " + notes.get(i).getNoteStringForJFugue() + " "; 
                 if(i == notes.size() - 1)
-                    musicString = musicString + notes.get(i).getNoteStringForJFugue() + notes.get(i).getDurationStringForJFugue() + " ";
+                    musicString = musicString + notes.get(i).getNoteStringForJFugue() + notes.get(i).getOctave()
+                    + notes.get(i).getDurationStringForJFugue() + " ";
                 else
-                    musicString = musicString + notes.get(i).getNoteStringForJFugue() + notes.get(i).getDurationStringForJFugue() + "+";
+                    musicString = musicString + notes.get(i).getNoteStringForJFugue() + notes.get(i).getOctave()
+                    + notes.get(i).getDurationStringForJFugue() + "+";
             }
   //          Pattern finalMusicString = new Pattern(musicString);
 //            player.play(finalMusicString);

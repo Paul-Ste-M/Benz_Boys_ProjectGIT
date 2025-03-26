@@ -19,10 +19,10 @@ public class InstrumentList {
         return instrumentList;
     }
 
-    public void addInstument(Instrument Instrument){
-
+    public void addInstrument(Instrument instrument){
+        instruments.add(instrument);
     }
-    public void removeiInstrument(Instrument Instrument){
+    public void removeInstrument(Instrument instrument){
 
     }
     public ArrayList<Instrument> getInstruments(){
