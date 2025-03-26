@@ -31,7 +31,7 @@ public class DataWriter extends DataConstants {
 
         } catch (IOException e) {
             e.printStackTrace();
-            // return false;            
+            return false;            
         }
 
         return true;
@@ -74,7 +74,7 @@ public class DataWriter extends DataConstants {
 
         } catch (IOException e) {
             e.printStackTrace();
-            // return false;
+            return false;
         }
         
         return true;
@@ -118,7 +118,10 @@ public class DataWriter extends DataConstants {
                 for(Note note : notes) {
                     JSONObject noteDetails = new JSONObject();
                     noteDetails.put(NOTE_TYPE, note.getType().toString());
-                    noteDetails.put(NOTE_PITCH, note.getNoteStringForJFugue());
+                    noteDetails.put(NOTE_PITCH, note.getPitch().toString());
+                    noteDetails.put(NOTE_OCTAVE, note.getOctave());
+                    noteDetails.put(NOTE_FRET_NUMBER, note.getFretNumber());
+                    noteDetails.put(NOTE_TABS_LINE, note.getTabsLine());
 
                     notesJSON.add(noteDetails);
                 }
@@ -152,8 +155,62 @@ public class DataWriter extends DataConstants {
 
     }
 
-    public boolean saveSounds(ArrayList<Instrument> sounds) {
+    public static boolean saveInstruments(ArrayList<Instrument> instruments) {
+        JSONArray jsonInstruments = new JSONArray();
+
+        // Create and add all songs as JSON objects
+        for(int i = 0; i < instruments.size(); i++) {
+            jsonInstruments.add(getInstrumentJSON(instruments.get(i)));
+        }
+
+        // Write the JSON file
+        try (FileWriter file = new FileWriter(INSTRUMENT_FILE_NAME)) {
+            file.write(jsonInstruments.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        
         return true;
+    }
+
+    public static JSONObject getInstrumentJSON(Instrument instrument) {
+        JSONObject instrumentDetails = new JSONObject();
+        instrumentDetails.put(INSTRUMENT_INSTRUMENT_NAME, instrument.getInstrumentName().toString());
+        
+        // Storing the chords of the instrument
+        JSONArray chordsJSON = new JSONArray();
+            List<Chord> chords = instrument.getChords();
+            for(Chord chord : chords) {
+                JSONObject chordDetails = new JSONObject();
+                chordDetails.put(CHORD_LEADING_NOTE, chord.getLeadingNote().getNoteStringForJFugue());
+                chordDetails.put(CHORD_IS_SINGLE_NOTE, chord.isSingleNote());
+                chordDetails.put(CHORD_IS_MINOR, chord.isMinor());
+                chordDetails.put(CHORD_TYPE, chord.getType().toString());
+
+                // Storing the notes of the chord
+                JSONArray notesJSON = new JSONArray();
+                List<Note> notes = chord.getNotes();
+                for(Note note : notes) {
+                    JSONObject noteDetails = new JSONObject();
+                    noteDetails.put(NOTE_TYPE, note.getType().toString());
+                    noteDetails.put(NOTE_PITCH, note.getPitch().toString());
+                    noteDetails.put(NOTE_OCTAVE, note.getOctave());
+                    noteDetails.put(NOTE_FRET_NUMBER, note.getFretNumber());
+                    noteDetails.put(NOTE_TABS_LINE, note.getTabsLine());
+
+                    notesJSON.add(noteDetails);
+                }
+                chordDetails.put(CHORD_NOTES, notesJSON);
+
+                chordsJSON.add(chordDetails);
+
+            }
+            instrumentDetails.put(INSTRUMENT_CHORDS, chordsJSON);
+
+            return instrumentDetails;
     }
 
     public static void main(String[] args) {
@@ -190,12 +247,15 @@ public class DataWriter extends DataConstants {
         // songLibrary.addSong(songTest);
         // DataWriter.saveSongs(songLibrary.getSongs());
         DataReader.readUsers();
-        DataReader.readSongs();
+        DataReader.readSongs();DataReader.readInstruments();
         UserList userList = UserList.getInstance();
         SongLibrary songLibrary = SongLibrary.getInstance();
+        InstrumentList instrumentList = InstrumentList.getInstance();
         songLibrary.searchByTitle("Test Song").get(0).playSong();
+        songLibrary.searchByTitle("Test Song").get(0).printTabsToTextFile();
         DataWriter.saveUsers(userList.getUsers());
         DataWriter.saveSongs(songLibrary.getSongs());
+        DataWriter.saveInstruments(instrumentList.getInstruments());
     }
 }
 

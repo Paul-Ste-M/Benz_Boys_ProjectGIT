@@ -11,6 +11,7 @@ import org.json.simple.parser.JSONParser;
 public class DataReader {
     private static final String USERS_FILE_PATH = "json/users_temp.json"; // Users file
     private static final String SONGS_FILE_PATH = "json/songs_temp.json"; // Songs file
+    private static final String INSTRUMENTS_FILE_PATH = "json/instruments.json"; // Instruments file
 
     public static void readUsers() {
         try {
@@ -118,7 +119,11 @@ public class DataReader {
                         JSONObject leadingNoteJson = (JSONObject) notesArray.get(0);
                         String leadingNoteType = (String) leadingNoteJson.get("type");
                         String leadingNotePitch = (String) leadingNoteJson.get("pitch");
-                        Note leadingNoteAttribute = new Note(Pitch.valueOf(leadingNotePitch), Type.valueOf(leadingNoteType));
+                        String leadingNoteOctave = (String) leadingNoteJson.get("octave");
+                        String leadingNoteFretNumber = (String) leadingNoteJson.get("fretNumber");
+                        int leadingNoteTabsLine = ((Long) leadingNoteJson.get("tabsLine")).intValue();
+                        Note leadingNoteAttribute = new Note(Pitch.valueOf(leadingNotePitch), Type.valueOf(leadingNoteType), leadingNoteOctave,
+                        leadingNoteFretNumber, leadingNoteTabsLine);
                         chord.setLeadingNote(leadingNoteAttribute);
 
                         
@@ -127,9 +132,12 @@ public class DataReader {
                             JSONObject noteJson = (JSONObject) noteObj;
                             String noteType = (String) noteJson.get("type");
                             String pitch = (String) noteJson.get("pitch");
+                            String noteOctave = (String) noteJson.get("octave");
+                            String noteFretNumber = (String) noteJson.get("fretNumber");
+                            int noteTabsLine = ((Long) noteJson.get("tabsLine")).intValue();
                           //  boolean isMinor = (boolean) noteJson.get("isMinor");
 
-                            Note note = new Note(Pitch.valueOf(pitch), Type.valueOf(noteType));
+                            Note note = new Note(Pitch.valueOf(pitch), Type.valueOf(noteType), noteOctave, noteFretNumber, noteTabsLine);
                             chord.addNote(note);
                         }
 
@@ -160,6 +168,76 @@ public class DataReader {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Failed to load songs from " + SONGS_FILE_PATH);
+        }
+    }
+
+    public static void readInstruments() {
+        try {
+            // Parse the JSON file
+            JSONParser parser = new JSONParser();
+            JSONArray instrumentsArray = (JSONArray) parser.parse(new FileReader(INSTRUMENTS_FILE_PATH));
+
+            // Get the singleton instance of InstrumentList
+            InstrumentList instrumentList = InstrumentList.getInstance();
+
+            // Iterate through the JSON array and populate InstrumentList
+            for (Object obj : instrumentsArray) {
+                JSONObject instrumentJson = (JSONObject) obj;
+
+                String instrumentName = (String) instrumentJson.get("instrumentName");
+                ArrayList<Chord> chords = new ArrayList<Chord>();
+                Instrument instrument = new Instrument(InstrumentType.valueOf(instrumentName), chords);
+
+                JSONArray chordsArray = (JSONArray) instrumentJson.get("chords");
+                    for (Object chordObj : chordsArray) {
+                        JSONObject chordJson = (JSONObject) chordObj;
+                        String leadingNote = (String) chordJson.get("leadingNote"); // Might not need this
+                        boolean isSingleNote = (boolean) chordJson.get("isSingleNote");
+                        boolean isMinor = (boolean) chordJson.get("isMinor");
+                        String type = (String) chordJson.get("type");
+
+                        Chord chord = new Chord(type, isSingleNote, isMinor);
+
+                        // Get the array of notes
+                        JSONArray notesArray = (JSONArray) chordJson.get("notes");
+
+                        //Assign leading note attribute
+                        JSONObject leadingNoteJson = (JSONObject) notesArray.get(0);
+                        String leadingNoteType = (String) leadingNoteJson.get("type");
+                        String leadingNotePitch = (String) leadingNoteJson.get("pitch");
+                        String leadingNoteOctave = (String) leadingNoteJson.get("octave");
+                        String leadingNoteFretNumber = (String) leadingNoteJson.get("fretNumber");
+                        int leadingNoteTabsLine = ((Long) leadingNoteJson.get("tabsLine")).intValue();
+                        Note leadingNoteAttribute = new Note(Pitch.valueOf(leadingNotePitch), Type.valueOf(leadingNoteType), leadingNoteOctave,
+                        leadingNoteFretNumber, leadingNoteTabsLine);
+                        chord.setLeadingNote(leadingNoteAttribute);
+
+                        
+                        // Parse notes in the chord
+                        for (Object noteObj : notesArray) {
+                            JSONObject noteJson = (JSONObject) noteObj;
+                            String noteType = (String) noteJson.get("type");
+                            String pitch = (String) noteJson.get("pitch");
+                            String noteOctave = (String) noteJson.get("octave");
+                            String noteFretNumber = (String) noteJson.get("fretNumber");
+                            int noteTabsLine = ((Long) noteJson.get("tabsLine")).intValue();
+                          //  boolean isMinor = (boolean) noteJson.get("isMinor");
+
+                            Note note = new Note(Pitch.valueOf(pitch), Type.valueOf(noteType), noteOctave, noteFretNumber, noteTabsLine);
+                            chord.addNote(note);
+                        }
+
+                        chords.add(chord);
+                    }
+
+                    instrumentList.addInstrument(instrument);
+            }
+
+            System.out.println("Instruments loaded successfully!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to load instruments from " + INSTRUMENTS_FILE_PATH);
         }
     }
 
