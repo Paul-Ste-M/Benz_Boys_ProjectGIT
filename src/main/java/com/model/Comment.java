@@ -2,13 +2,13 @@ package com.model;
 
 public class Comment {
     private String commenterName;
-    private String comment;
+    private String commentText;
     private String username;
 
 
-    public Comment(String commenterName, String comment, String username) {
+    public Comment(String commenterName, String commentText, String username) {
         this.commenterName = commenterName;
-        this.comment = comment;
+        this.commentText = commentText;
         this.username = username;
     }
 
@@ -20,12 +20,12 @@ public class Comment {
         this.commenterName = commenterName;
     }
 
-    public String getComment() {
-        return comment;
+    public String getCommentText() {
+        return commentText;
     }
     
     public void setComment(String comment) {
-        this.comment = comment;
+        this.commentText = comment;
     }
 
     public String getUsername() {

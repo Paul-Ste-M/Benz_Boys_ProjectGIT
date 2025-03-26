@@ -21,15 +21,24 @@ public class UserList {
     }
 
     // Add a new user to the list
-    public void addUser(String firstName, String lastName, String userName, String password, String email) {
+    public User addUser(String firstName, String lastName, String userName, String password, String email) {
         User newUser = new User(firstName, lastName, userName, password, email);
         users.add(newUser);
+        return newUser;
     }
     // Add existing user for debugging purposes
     public void addUser(User user) {
         users.add(user);
     }
-    
+    // login method
+    public User login(String username, String password) {
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                return user; // Return the matching user
+            }
+        }
+        return null; // Return null if no user found
+    }
     // Returns the list of users
     public ArrayList<User> getUsers() {
         return this.users;

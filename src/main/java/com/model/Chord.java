@@ -34,7 +34,7 @@ public class Chord {
         
         if (!isSingleNote) {
             // Generate a chord based on the leading note
-            generateChord();
+            generateChord(getInstrument());
         } else {
             notes.add(this.leadingNote);
         }
@@ -72,8 +72,20 @@ public class Chord {
         return type;
     }
 
-    private void generateChord() {
-        notes.add(leadingNote);
+    private void generateChord(Instrument instrument) {
+//        notes.add(leadingNote);
+        Chord presetChord = instrument.getChord(leadingNote, isMinor);
+        if(presetChord.getLeadingNote().getType().equals(Type.EMPTY))
+            return;
+        for(int i = 1; i < presetChord.getNotes().size(); i++) {
+            notes.add(presetChord.getNotes().get(i));  
+        }
+    }
+
+    public Instrument getInstrument() {
+        InstrumentList instrumentList = InstrumentList.getInstance();
+        Instrument instrument = instrumentList.getInstruments().get(0); //placeholder logic
+        return instrument;
     }
 
     public void addNote(Note newNote, int position) {
@@ -88,25 +100,28 @@ public class Chord {
         notes = (newNotes);
     }
 
-    public void playChord() {
+    public String playChord(String musicString) {
 //        for (Note note : notes) {
 //            note.playNote();
 //        }
         if(isSingleNote) {
             for (Note note : notes) {
-                note.playNote();
+//                note.playNote();
+                musicString = musicString + note.getNoteStringForJFugue() + note.getDurationStringForJFugue() + " ";
             }
         } else {
-            Player player = new Player();
-            String musicString = "";
+//            Player player = new Player();
             for(int i = 0; i < notes.size(); i++) {
-                musicString = musicString + "V" + i + " I[Guitar] " + notes.get(i).getNoteStringForJFugue() + " "; 
+                //musicString = musicString + "V" + i + " I[Guitar] " + notes.get(i).getNoteStringForJFugue() + " "; 
+                if(i == notes.size() - 1)
+                    musicString = musicString + notes.get(i).getNoteStringForJFugue() + notes.get(i).getDurationStringForJFugue() + " ";
+                else
+                    musicString = musicString + notes.get(i).getNoteStringForJFugue() + notes.get(i).getDurationStringForJFugue() + "+";
             }
-            Pattern finalMusicString = new Pattern(musicString);
-            player.play(finalMusicString);
-            // instead of playing one note at a time, gather the notes and play everything
-            // add if statement for if chord is minor then add minor to note
+  //          Pattern finalMusicString = new Pattern(musicString);
+//            player.play(finalMusicString);
         }
+        return musicString;
     }
 
     public void makeChordIntoNote() {
@@ -121,7 +136,7 @@ public class Chord {
     public void makeNoteIntoChord() {
         if (isSingleNote) {
             isSingleNote = false;
-            generateChord();
+            generateChord(getInstrument());
         }
     }
 
@@ -131,7 +146,9 @@ public class Chord {
             this.notes.clear();
             this.notes.add(leadingNote);
         } else {
-            generateChord();
+            this.notes.clear();
+            this.notes.add(leadingNote);
+            generateChord(getInstrument());
         }
     }
 }

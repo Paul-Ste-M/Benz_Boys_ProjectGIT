@@ -143,9 +143,12 @@ public class DataReader {
                 JSONArray commentsArray = (JSONArray) songJson.get("comments");
                 for (Object commentObj : commentsArray) {
                     JSONObject commentJson = (JSONObject) commentObj;
-                    String commentText = (String) commentJson.get("comment");
+                    String commenterName = (String) commentJson.get("commenterName");
+                    String commentText = (String) commentJson.get("commentText");
+                    String username = (String) commentJson.get("username");
+                    Comment comment = new Comment(commenterName, commentText, username);
 
-                    song.addComment(commentText);
+                    song.addComment(comment);
                 }
 
                 // Add song to library

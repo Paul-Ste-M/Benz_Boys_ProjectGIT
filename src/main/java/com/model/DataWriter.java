@@ -141,7 +141,7 @@ public class DataWriter extends DataConstants {
         for(Comment comment : comments) {
             JSONObject commentDetails = new JSONObject();
             commentDetails.put(COMMENT_COMMENTER_NAME, comment.getCommenterName());
-            commentDetails.put(COMMENT_COMMENT, comment.getComment());
+            commentDetails.put(COMMENT_COMMENT, comment.getCommentText());
             commentDetails.put(COMMENT_USERNAME, comment.getUsername());
 
             commentsJSON.add(commentDetails);

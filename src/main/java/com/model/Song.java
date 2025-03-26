@@ -2,6 +2,7 @@ package com.model;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import org.jfugue.player.Player;
 
 public class Song {
     private String title;
@@ -76,16 +77,23 @@ public class Song {
     }
 
     public void playSong() {
+        String musicString = "";
         for (Measure measure : measures) {
-            measure.playMeasure();
+            musicString = measure.playMeasure(musicString);
         }
+        musicString = "| " + musicString;
+        System.out.println(musicString);
+        Player player = new Player();
+        player.play("I[Guitar] " + musicString);
+
     }
 
-    public void addComment(String commentText) {
-        Comment newComment = new Comment(author, commentText, authorUsername);
-        comments.add(newComment);
+    // Adding the comment to the list
+    public void addComment(Comment newComment2) {
+        comments.add(newComment2);
     }
 
+    
     public void setPublished(boolean published) {
         this.published = published;
     }

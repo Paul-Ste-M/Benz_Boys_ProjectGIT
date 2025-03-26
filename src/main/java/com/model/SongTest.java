@@ -13,7 +13,7 @@ public class SongTest {
         Note d = new Note(Pitch.D, Type.QUARTER);
         Note c = new Note(Pitch.C, Type.QUARTER);
         Note g = new Note(Pitch.G, Type.QUARTER);
-        Note restQuarter = new Note(Pitch.R, Type.QUARTER); // Rest for a quarter note duration
+        Note restQuarter = new Note(Pitch.REST, Type.QUARTER); // Rest for a quarter note duration
 
 
         // Create measures
@@ -96,16 +96,16 @@ public class SongTest {
         maryHadALittleLamb.addGenre("KIDS");
 
         // Add a comment
-        maryHadALittleLamb.addComment("A childhood classic!");
+        //maryHadALittleLamb.addComment("A childhood classic!");
 
         // Play the song
         System.out.println("Now playing: Mary Had a Little Lamb 🎵");
         maryHadALittleLamb.playSong();
 
         // Display comments
-        System.out.println("\nComments:");
-        for (Comment h : maryHadALittleLamb.getComments()) {
-            System.out.println("- " + h.getComment());
+     //   System.out.println("\nComments:");
+     //   for (Comment h : maryHadALittleLamb.getComments()) {
+            //System.out.println("- " + h.getComment());
         }
     }
-}
+
