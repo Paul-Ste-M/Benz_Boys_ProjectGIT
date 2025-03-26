@@ -28,6 +28,10 @@ public class Comment {
         this.commentText = comment;
     }
 
+    public Comment getComment() {
+        return this;
+    }
+
     public String getUsername() {
         return username;
     }

@@ -70,6 +70,10 @@ public class Note {
         return type;
     }
 
+    public Pitch getPitch() {
+        return pitch;
+    }
+
     // Map the Pitch enum to JFugue note string representation
     public String getNoteStringForJFugue() {
         // switch (pitch) {
