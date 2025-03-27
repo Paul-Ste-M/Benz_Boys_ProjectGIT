@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class SongApp {
 
     private User user;
+    private Author author;
     private Song selectedSong;
     private Instrument selectedInstrument;
     private ArrayList<Song> searchResults;
@@ -73,15 +74,26 @@ public class SongApp {
     /**
      * Start a song
      */
-    public Song startSong(String title, String author) {
-        return SongLibrary.getInstance().getSong(title, author);
+    public void startSong(String title) {
+        this.author = new Author(user);
+        Song newSong = new Song(title, author);
+        SongLibrary.getInstance().addSong(newSong);
+        this.selectedSong = newSong;
+    }
+
+    public void selectMeasure(int position) {
+        author.setMeasure(selectedSong.getMeasures().get(position));
+    }
+
+    public void addChord(int position, String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
+        author.addChord(position, type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine);
     }
 
     /**
      * Edit a song
      */
-    public void editSong(Song selectedSong, String decision) {
-        // Stub implementation
+    public void editSong(Song selectedSong, int position) {
+
     }
 
     /**

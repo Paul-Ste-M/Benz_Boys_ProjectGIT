@@ -196,6 +196,10 @@ public class Author extends User {
         }
     }
 
+    public void addChord(int position, String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
+        this.selectedMeasure.addChord(type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine, position);
+    }
+
     // Converts a note (currently a single note) into a chord in the selected measure.
     public void makeNoteIntoChord(int position) {
         if (selectedMeasure != null) {
