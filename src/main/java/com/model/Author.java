@@ -6,19 +6,23 @@ import java.util.UUID;
 public class Author extends User {
     private ArrayList<UUID> createdSongs;
     private Measure selectedMeasure;
-    private Song selectedSong; // for convenience when editing a song
+    private Song selectedSong;
+    private UUID authorID; 
 
     public Author(String firstName, String lastName, String userName, String password, String email) {
         super(firstName, lastName, userName, password, email);
         this.createdSongs = this.getCreatedSongs();
         // Set this user to be an author
+        this.authorID = super.getUserID();
         this.setAuthorStatusToTrue();
+    
     }
 
     public Author(String firstName, String lastName, String userName, String password, String email, 
                   String userID, ArrayList<UUID> createdSongs, boolean isAuthor) {
         super(firstName, lastName, userName, password, email, userID, createdSongs, isAuthor);
         this.createdSongs = this.getCreatedSongs();
+        this.authorID = super.getUserID();
         this.setAuthorStatusToTrue();
 
     }
@@ -26,7 +30,7 @@ public class Author extends User {
     public Author(User user) {
         super(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getEmail());
         this.createdSongs = this.getCreatedSongs();
-        // Set this user to be an author
+        this.authorID = super.getUserID();
         this.setAuthorStatusToTrue();
     }
 
@@ -78,6 +82,8 @@ public class Author extends User {
         this.selectedSong = newSong;
         return newSong;
     }
+
+
 
     // Helper method: deep-copies a measure by cloning each chord.
     private Measure copyMeasure(Measure measure) {
@@ -198,6 +204,10 @@ public class Author extends User {
 
     public void addChord(int position, String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
         this.selectedMeasure.addChord(type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine, position);
+    }
+
+    public UUID getAuthorId() {
+        return this.authorID;
     }
 
     // Converts a note (currently a single note) into a chord in the selected measure.

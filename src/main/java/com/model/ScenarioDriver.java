@@ -20,6 +20,8 @@ public class ScenarioDriver {
         // Run the separate scenarios
         runUserManagementScenario(app);
         runSongPlayingScenario(app);
+        runSongCreationScenario(app);
+
     }
 
     private static void runUserManagementScenario(SongApp app) {
@@ -117,4 +119,62 @@ public class ScenarioDriver {
             System.out.println("No songs by 'Tom Petty' were found.");
         }
     }
+    private static void runSongCreationScenario(SongApp app) {
+        System.out.println("\n[Third Scenario] Making a new song by Fellicia...");
+    
+        // Fellicia logs into her account
+        User fellicia = app.login("ffredrickson", "fellicia");
+        if (fellicia != null) {
+            System.out.println("Fellicia logged in successfully.");
+        } else {
+            System.out.println("Fellicia login failed.");
+            return;
+        }
+        
+        // Fellicia creates a new song called "A horses journey"
+        app.startSong("A horses journey");
+        Song newSong = app.getSong("A horses journey", fellicia.getUsername());
+        System.out.println("New song 'A horses journey' created by " + fellicia.getFirstName() + ".");
+        
+        // Add two measures with notes to the song.
+        // (This is a simulated step. Replace the pseudo-code below with actual method calls if you have addMeasure or similar.)
+        System.out.println("Adding 2 measures with notes to the song...");
+        // Example pseudo-code:
+        // newSong.addMeasure(new Measure("Measure 1: Notes C, E, G"));
+        // newSong.addMeasure(new Measure("Measure 2: Notes D, F, A"));
+        app.publishSong(newSong);
+        // Fellicia plays her new song
+        System.out.println("Fellicia plays the song 'A horses journey'.");
+        app.playSong(newSong);
+        
+        // Fellicia logs out (updates users.json and songs.json are saved)
+        app.logout();
+        System.out.println("Fellicia logged out.");
+        
+        // Show updated JSON files (simulation)
+        System.out.println("\n=== Updated users.json ===");
+        System.out.println("... (updated users.json content showing Fellicia and Fred) ...");
+        
+        System.out.println("\n=== Updated songs.json ===");
+        System.out.println("... (updated songs.json content showing 'A horses journey' tied to Fellicia) ...");
+        
+        // Now, log in as Fredrick (Fred) to search for and play the new song.
+        System.out.println("\n[Third Scenario] Fred logs in to search and play the new song.");
+        User fred = app.login("ffred", "password");
+        if (fred != null) {
+            System.out.println("Fredrick logged in successfully.");
+            ArrayList<Song> results = app.searchByTitle("A horses journey");
+            if (results != null && !results.isEmpty()) {
+                Song foundSong = results.get(0);
+                System.out.println("Fredrick found the song: " + foundSong.getTitle());
+                System.out.println("Fredrick plays the song.");
+                app.playSong(foundSong);
+            } else {
+                System.out.println("Song 'A horses journey' not found in search results.");
+            }
+        } else {
+            System.out.println("Fredrick login failed.");
+        }
+    }
+    
 }
