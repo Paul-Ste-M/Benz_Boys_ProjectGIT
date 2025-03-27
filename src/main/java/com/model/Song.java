@@ -39,6 +39,7 @@ public class Song {
         this.authorID = author.getUserID();
         this.genre = new ArrayList<>();
         this.measures = new ArrayList<>();
+        measures.add(new Measure());
         this.published = false;
         this.comments = new ArrayList<>();
     }

@@ -170,8 +170,8 @@ public class UserList {
      * @return true if save operation succeeds (stubbed)
      */
     public boolean saveUsers() {
-        System.out.println("Saving users...");
-        return true;
+        System.out.println("Saving users..."); 
+        return DataWriter.saveUsers(users);
     }
 
     /**
