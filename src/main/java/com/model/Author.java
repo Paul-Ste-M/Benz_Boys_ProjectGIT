@@ -19,6 +19,15 @@ public class Author extends User {
                   String userID, ArrayList<UUID> createdSongs, boolean isAuthor) {
         super(firstName, lastName, userName, password, email, userID, createdSongs, isAuthor);
         this.createdSongs = this.getCreatedSongs();
+        this.setAuthorStatusToTrue();
+
+    }
+
+    public Author(User user) {
+        super(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getEmail());
+        this.createdSongs = this.getCreatedSongs();
+        // Set this user to be an author
+        this.setAuthorStatusToTrue();
     }
 
     // Adds a song: records its ID and adds it to the central SongLibrary.
