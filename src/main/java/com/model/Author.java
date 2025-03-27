@@ -3,123 +3,89 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
-/**
- * Represents an Author who can create, edit, and manage songs.
- * Inherits from the User class and adds capabilities specific to song creation and manipulation.
- */
 public class Author extends User {
     private ArrayList<UUID> createdSongs;
     private Measure selectedMeasure;
-    private Song selectedSong; // for convenience when editing a song
+    private Song selectedSong;
+    private UUID authorID; 
 
-    /**
-     * Constructs an Author with basic user details.
-     *
-     * @param firstName The author's first name.
-     * @param lastName The author's last name.
-     * @param userName The author's username.
-     * @param password The author's password.
-     * @param email The author's email.
-     */
     public Author(String firstName, String lastName, String userName, String password, String email) {
         super(firstName, lastName, userName, password, email);
         this.createdSongs = this.getCreatedSongs();
+        // Set this user to be an author
+        this.authorID = super.getUserID();
         this.setAuthorStatusToTrue();
+    
     }
 
-    /**
-     * Constructs an Author with all attributes, including userID, created songs, and author status.
-     *
-     * @param firstName The author's first name.
-     * @param lastName The author's last name.
-     * @param userName The author's username.
-     * @param password The author's password.
-     * @param email The author's email.
-     * @param userID The user's unique ID.
-     * @param createdSongs List of song UUIDs created by the author.
-     * @param isAuthor Whether the user is an author.
-     */
     public Author(String firstName, String lastName, String userName, String password, String email, 
                   String userID, ArrayList<UUID> createdSongs, boolean isAuthor) {
         super(firstName, lastName, userName, password, email, userID, createdSongs, isAuthor);
         this.createdSongs = this.getCreatedSongs();
+        this.authorID = super.getUserID();
+        this.setAuthorStatusToTrue();
+
     }
 
-    /**
-     * Adds a song to the author's list and the SongLibrary.
-     *
-     * @param song The song to be added.
-     */
+    public Author(User user) {
+        super(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getEmail());
+        this.createdSongs = this.getCreatedSongs();
+        this.authorID = super.getUserID();
+        this.setAuthorStatusToTrue();
+    }
+
+    // Adds a song: records its ID and adds it to the central SongLibrary.
     public void addSong(Song song) {
         createdSongs.add(song.getSongID());
         SongLibrary.getInstance().addSong(song);
         System.out.println("Song added: " + song.getTitle());
     }
 
-    /**
-     * Adds a song by its UUID to the author's created songs list.
-     *
-     * @param songID The UUID of the song.
-     */
     public void addSong(UUID songID) {
         createdSongs.add(songID);
         System.out.println("Song ID added: " + songID.toString());
     }
 
-    /**
-     * Removes a song from the author's list and from the SongLibrary.
-     *
-     * @param song The song to be removed.
-     */
+    // Removes a song from both the Author's created list and the SongLibrary.
     public void removeSong(Song song) {
         createdSongs.remove(song.getSongID());
         SongLibrary.getInstance().removeSong(song);
         System.out.println("Song removed: " + song.getTitle());
     }
-
-    /**
-     * Removes a song by its UUID from the author's list.
-     *
-     * @param songID The UUID of the song.
-     */
+    
     public void removeSong(UUID songID) {
         createdSongs.remove(songID);
         System.out.println("Song ID removed: " + songID.toString());
     }
 
-    /**
-     * Creates a new song and optionally clones the content of an existing one.
-     *
-     * @param title The title of the new song.
-     * @param author The author creating the song.
-     * @param selectedSong An optional song to clone.
-     * @return The newly created song.
-     */
+    // Creates a new song. If a non-null selectedSong is provided, its content is cloned
+    // (genres, measures, and comments are copied) into the new song.
     public Song createNewSong(String title, Author author, Song selectedSong) {
         Song newSong = new Song(title, author);
         if (selectedSong != null) {
+            // Clone genres
             for (Genre g : selectedSong.getGenres()) {
                 newSong.addGenre(g.toString());
             }
+            // Clone measures (deep copy)
             for (Measure m : selectedSong.getMeasures()) {
                 Measure copiedMeasure = copyMeasure(m);
                 newSong.addMeasure(copiedMeasure);
             }
+            // Clone comments
             for (Comment comment : selectedSong.getComments()) {
                 newSong.addComment(comment.getComment());
             }
         }
         addSong(newSong);
+        // Also set the newly created song as the current selected song for further editing.
         this.selectedSong = newSong;
         return newSong;
     }
 
-    /**
-     * Deep copies a measure by cloning all its chords.
-     *
-     * @param measure The measure to copy.
-     * @return A new copied Measure instance.
-     */
+
+
+    // Helper method: deep-copies a measure by cloning each chord.
     private Measure copyMeasure(Measure measure) {
         Measure newMeasure = new Measure();
         for (Chord chord : measure.getChords()) {
@@ -129,13 +95,9 @@ public class Author extends User {
         return newMeasure;
     }
 
-    /**
-     * Deep copies a chord by cloning its notes and leading note.
-     *
-     * @param chord The chord to copy.
-     * @return A new copied Chord instance.
-     */
+    // Helper method: deep-copies a chord by cloning its leading note and each of its notes.
     private Chord copyChord(Chord chord) {
+        // Create a new chord with the same type, isSingleNote, and isMinor settings.
         Chord newChord = new Chord(chord.getType().toString(), chord.isSingleNote(), chord.isMinor());
         newChord.setLeadingNote(copyNote(chord.getLeadingNote()));
         for (Note note : chord.getNotes()) {
@@ -144,21 +106,12 @@ public class Author extends User {
         return newChord;
     }
 
-    /**
-     * Copies a note by creating a new instance with the same properties.
-     *
-     * @param note The note to copy.
-     * @return A new copied Note instance.
-     */
+    // Helper method: copies a note. (Assumes that Note has getters for pitch and type.)
     private Note copyNote(Note note) {
         return new Note(note.getPitch(), note.getType());
     }
 
-    /**
-     * Publishes a song and updates the SongLibrary.
-     *
-     * @param song The song to publish.
-     */
+    // Publishes a song by setting its published flag and notifying the SongLibrary.
     public void publishSong(Song song) {
         song.setPublished(true);
         SongLibrary.getInstance().publishSong(song);
@@ -166,31 +119,22 @@ public class Author extends User {
         System.out.println("Song published: " + song.getTitle());
     }
 
-    /**
-     * Placeholder method for editing a song.
-     *
-     * @param song The song to edit.
-     */
+    // Edits a song. (Here we simply print a message.
+    // In a full application you might update the title or other attributes.)
     public void editSong(Song song) {
         System.out.println("Editing song: " + song.getTitle());
+        // For example, if Song had a setTitle method:
+        // song.setTitle(newTitle);
     }
 
-    /**
-     * Saves all songs via the DataWriter.
-     *
-     * @param song The song to save.
-     */
+    // Saves a song by writing all songs from the SongLibrary via DataWriter.
     public void saveSong(Song song) {
         DataWriter.saveSongs(SongLibrary.getInstance().getSongs());
         System.out.println("Song saved: " + song.getTitle());
     }
 
-    /**
-     * Adds a measure to the currently selected song or stores it for later use.
-     *
-     * @param measure The measure to add.
-     * @return The added measure.
-     */
+    // Adds a measure. The provided measure is set as the currently selected measure
+    // and added to the selected song (if one is set).
     public Measure addMeasure(Measure measure) {
         this.selectedMeasure = measure;
         if (selectedSong != null) {
@@ -202,21 +146,13 @@ public class Author extends User {
         return measure;
     }
 
-    /**
-     * Sets the selected song for future editing.
-     *
-     * @param song The song to select.
-     */
+    // Sets the currently selected song for editing.
     public void selectSong(Song song) {
         this.selectedSong = song;
         System.out.println("Selected song: " + song.getTitle());
     }
 
-    /**
-     * Adds a genre to the currently selected song.
-     *
-     * @param genre The genre to add.
-     */
+    // Adds a genre to the currently selected song.
     public void addGenre(String genre) {
         if (selectedSong != null) {
             selectedSong.addGenre(genre);
@@ -226,21 +162,17 @@ public class Author extends User {
         }
     }
 
-    /**
-     * Placeholder method for editing a measure.
-     *
-     * @param measure The measure to edit.
-     */
-    public void editMeasure(Measure measure) {
-        System.out.println("Editing measure with beat count: " + measure.getBeatCount());
+    public void setMeasure(Measure measure) {
+        this.selectedMeasure = measure;
     }
 
-    /**
-     * Removes a measure from the selected song at a specific position.
-     *
-     * @param measure The measure to remove.
-     * @param position The index of the measure in the song.
-     */
+    // Edits a measure. (A placeholder for further measure-editing functionality.)
+    public void editMeasure(Measure measure) {
+        System.out.println("Editing measure with beat count: " + measure.getBeatCount());
+        // Further logic to change chords or beat count can be added here.
+    }
+
+    // Removes a measure from the currently selected song at a given position.
     public void removeMeasure(Measure measure, int position) {
         if (selectedSong != null) {
             ArrayList<Measure> measures = selectedSong.getMeasures();
@@ -255,13 +187,8 @@ public class Author extends User {
         }
     }
 
-    /**
-     * Edits the chord in the currently selected measure at a specific position.
-     *
-     * @param type New chord type.
-     * @param pitch New pitch for the leading note.
-     * @param position Index of the chord to edit.
-     */
+    // Edits a chord in the currently selected measure at the given position.
+    // The chord’s leading note is updated by calling its changeNote method.
     public void editChord(String type, String pitch, int position) {
         if (selectedMeasure != null) {
             ArrayList<Chord> chords = (ArrayList<Chord>) selectedMeasure.getChords();
@@ -276,11 +203,15 @@ public class Author extends User {
         }
     }
 
-    /**
-     * Converts a note into a chord in the selected measure at a given position.
-     *
-     * @param position The position of the chord to convert.
-     */
+    public void addChord(int position, String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
+        this.selectedMeasure.addChord(type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine, position);
+    }
+
+    public UUID getAuthorId() {
+        return this.authorID;
+    }
+
+    // Converts a note (currently a single note) into a chord in the selected measure.
     public void makeNoteIntoChord(int position) {
         if (selectedMeasure != null) {
             ArrayList<Chord> chords = (ArrayList<Chord>) selectedMeasure.getChords();
@@ -296,11 +227,7 @@ public class Author extends User {
         }
     }
 
-    /**
-     * Converts a chord into a single note in the selected measure at a given position.
-     *
-     * @param position The position of the chord to convert.
-     */
+    // Converts a chord into a single note in the selected measure.
     public void makeChordIntoNote(int position) {
         if (selectedMeasure != null) {
             ArrayList<Chord> chords = (ArrayList<Chord>) selectedMeasure.getChords();
@@ -316,16 +243,13 @@ public class Author extends User {
         }
     }
 
-    /**
-     * Removes a note from the first chord in the selected measure at a given position.
-     *
-     * @param position The index of the note to remove.
-     */
+    // Removes a note from the first chord in the selected measure at the given note position.
+    // (In a real application you might specify which chord to edit.)
     public void removeNote(int position) {
         if (selectedMeasure != null) {
             ArrayList<Chord> chords = (ArrayList<Chord>) selectedMeasure.getChords();
             if (!chords.isEmpty()) {
-                Chord chord = chords.get(0); // for simplicity
+                Chord chord = chords.get(0); // for simplicity, operate on the first chord
                 ArrayList<Note> notes = (ArrayList<Note>) chord.getNotes();
                 if (position >= 0 && position < notes.size()) {
                     notes.remove(position);

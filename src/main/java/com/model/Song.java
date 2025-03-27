@@ -1,8 +1,10 @@
 package com.model;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.UUID;
+
 import org.jfugue.player.Player;
 
 /**
@@ -218,17 +220,8 @@ public class Song {
     public UUID getSongID() {
         return songID;
     }
-<<<<<<< HEAD
     
 
-=======
-
-    /**
-     * Returns the UUID of the song’s author.
-     *
-     * @return the author’s UUID
-     */
->>>>>>> d19f1b4de2034961027bc81329c6f71e3eb43692
     public UUID getAuthorID() {
         return authorID;
     }
