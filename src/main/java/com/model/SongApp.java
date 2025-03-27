@@ -78,7 +78,7 @@ public class SongApp {
      */
     public Song startSong(String title) {
         this.author = new Author(user);
-        Song newSong = new Song(title, author);
+        Song newSong = new Song(title, (Author) user);
         SongLibrary.getInstance().addSong(newSong);
         this.selectedSong = newSong;
         user.addCreatedSong(newSong);

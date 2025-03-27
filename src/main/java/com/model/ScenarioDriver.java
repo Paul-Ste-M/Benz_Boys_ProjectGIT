@@ -12,7 +12,8 @@ public class ScenarioDriver {
         // Run the separate scenarios
         //runUserManagementScenario(app);
         //runSongPlayingScenario(app);
-        runSongCreationScenario(app);
+        //runSongCreationScenario(app);
+        runPlayCreatedSongScenario(app);
 
     }
 
@@ -80,6 +81,7 @@ public class ScenarioDriver {
         app.login("ffred", "password");
 
         System.out.println("\n[Step 6] Fred searches for all songs by 'Tom Petty'...");
+
         ArrayList<Song> tomPettySongs = app.searchByAuthor("Tom Petty");
 
         if (tomPettySongs != null && !tomPettySongs.isEmpty()) {
@@ -158,7 +160,8 @@ public class ScenarioDriver {
         System.out.println("Fellicia logged out.");
 
         // Show updated JSON files (simulation)
-
+    }
+private static void runPlayCreatedSongScenario(SongApp app) {
         // Now, log in as Fredrick (Fred) to search for and play the new song.
         System.out.println("\n[Third Scenario] Fred logs in to search and play the new song.");
         User fred = app.login("ffred", "password");
