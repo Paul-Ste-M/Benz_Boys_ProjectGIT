@@ -26,12 +26,12 @@ public class Measure {
         return chords;
     }
 
-    public void addChord(String type, String pitch, boolean isMinor, int position) {
+    public void addChord(String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine, int position) {
         if (position < 0 || position > chords.size()) {
             System.out.println("Invalid position");
             return;
         }
-        Chord newChord = new Chord(type, pitch, isMinor, isMinor);
+        Chord newChord = new Chord(type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine);
         chords.add(position, newChord);
         beatCount++;
     }

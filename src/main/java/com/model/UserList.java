@@ -20,6 +20,21 @@ public class UserList {
         return userList;
     }
 
+    // checks if a user already exists with provided username or email
+    public User signUp(String username, String firstName, String lastName, String email, String password) {
+        for(User user : UserList.getInstance().getUsers()) {
+            if(user.getUsername().equals(username)) {
+                System.out.println("That username is taken!");
+                return null;
+            }
+            if(user.getEmail().equals(email)) {
+                System.out.println("That email has already been used!");
+                return null;
+            }
+        }
+        return addUser(firstName, lastName, username, password, email);
+    }
+
     // Add a new user to the list
     public User addUser(String firstName, String lastName, String userName, String password, String email) {
         User newUser = new User(firstName, lastName, userName, password, email);
@@ -37,6 +52,7 @@ public class UserList {
                 return user; // Return the matching user
             }
         }
+        System.out.println("Incorrect username or password");
         return null; // Return null if no user found
     }
     // Returns the list of users
