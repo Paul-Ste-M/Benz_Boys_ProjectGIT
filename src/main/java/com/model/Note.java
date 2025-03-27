@@ -91,8 +91,6 @@ public class Note {
         return pitch;
     }
 
-<<<<<<< HEAD
-=======
     public String getOctave() {
         return octave;
     }
@@ -110,7 +108,6 @@ public class Note {
             this.type = type;
     }
 
->>>>>>> 1709958a6a8779a9b5b671fa99ed3b790424ed26
     // Map the Pitch enum to JFugue note string representation
     public String getNoteStringForJFugue() {
         // switch (pitch) {
