@@ -9,4 +9,15 @@
         "email": "jdoe@gmail.com",
         "isAuthor": false
     },
+
+    {
+        "firstName": "Tom",
+        "lastName": "Petty",
+        "password": "asdjihdw",
+        "userName": "ffredrickson",
+        "createdSongs": [],
+        "userID": "026c7cdb-aa8d-40b6-ab06-5b06034fe83f",
+        "email": "jdoe@gmail.com",
+        "isAuthor": false
+    }
 ]

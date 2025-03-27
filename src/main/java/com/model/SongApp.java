@@ -3,6 +3,7 @@ package com.model;
 import java.util.ArrayList;
 
 public class SongApp {
+
     private User user;
     private Song selectedSong;
     private Instrument selectedInstrument;
@@ -19,27 +20,32 @@ public class SongApp {
      * User login
      */
     public User login(String username, String password) {
-        return UserList.getInstance().login(username, password); 
+        return UserList.getInstance().login(username, password);
     }
 
     /**
      * Sign up a new user
      */
     public User signUp(String username, String firstName, String lastName, String email, String password) {
-         User potentialNewUser = UserList.getInstance().signUp(username, firstName, lastName, email, password);
-         this.user = potentialNewUser;
-         return potentialNewUser;
+        User potentialNewUser = UserList.getInstance().signUp(username, firstName, lastName, email, password);
+        this.user = potentialNewUser;
+        return potentialNewUser;
     }
 
     /**
      * Log out the current user
      */
     public void logout() {
-        UserList.getInstance().saveUsers();
-        SongLibrary.getInstance().saveSongs();
-        InstrumentList.getInstance().saveInstruments();
 
-        user = null; 
+        if (!SongLibrary.getInstance().getSongs().isEmpty()) {
+            UserList.getInstance().saveUsers();
+            SongLibrary.getInstance().saveSongs();
+            InstrumentList.getInstance().saveInstruments();
+        } else {
+            System.out.println("No songs to save, preserving existing songs.json content.");
+        }
+
+        user = null;
     }
 
     /**
@@ -99,7 +105,7 @@ public class SongApp {
      */
     public void removeSong(Song selectedSong) {
         SongLibrary.getInstance().removeSong(selectedSong);
-        
+
     }
 
     /**
@@ -107,7 +113,7 @@ public class SongApp {
      */
     public void playSong(Song selectedSong) {
         if (selectedSong != null) {
-            selectedSong.playSong(); 
+            selectedSong.playSong();
         }
     }
 
@@ -115,8 +121,8 @@ public class SongApp {
      * Select an instrument
      */
     public Instrument selectInstrument(String instrumentName) {
-        for(Instrument instrument : InstrumentList.getInstance().getInstruments()) {
-            if(instrument.getInstrumentName().toString().equalsIgnoreCase(instrumentName)) {
+        for (Instrument instrument : InstrumentList.getInstance().getInstruments()) {
+            if (instrument.getInstrumentName().toString().equalsIgnoreCase(instrumentName)) {
                 this.selectedInstrument = instrument;
             }
         }
@@ -155,7 +161,7 @@ public class SongApp {
     public void addComment(String commentText, String commenterName, String username) {
         Comment newComment = new Comment(commentText, commenterName, username);
         selectedSong.addComment(newComment);
-    }    
+    }
 
     /**
      * Show comments for the selected song
@@ -189,21 +195,21 @@ public class SongApp {
     public ArrayList<Song> searchByKeyboard(String genre, String artist, String title) {
         SongLibrary library = SongLibrary.getInstance();
         ArrayList<Song> results = new ArrayList<>();
-    
-        for (Song song : library.getSongs()) { 
+
+        for (Song song : library.getSongs()) {
             boolean matchesGenre = (genre == null || song.getGenres().stream()
-            .anyMatch(g -> g.name().equalsIgnoreCase(genre))); // Checks if any genre matches
+                    .anyMatch(g -> g.name().equalsIgnoreCase(genre))); // Checks if any genre matches
             boolean matchesArtist = (artist == null || song.getAuthor().equalsIgnoreCase(artist));
             boolean matchesTitle = (title == null || song.getTitle().equalsIgnoreCase(title));
-    
+
             if (matchesGenre && matchesArtist && matchesTitle) {
                 results.add(song);
             }
         }
-    
+
         return results;
     }
-    
+
     /**
      * Export to PDF
      */

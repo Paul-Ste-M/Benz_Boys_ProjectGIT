@@ -146,6 +146,10 @@ public class Author extends User {
         }
     }
 
+    public void setMeasure(Measure measure) {
+        this.selectedMeasure = measure;
+    }
+
     // Edits a measure. (A placeholder for further measure-editing functionality.)
     public void editMeasure(Measure measure) {
         System.out.println("Editing measure with beat count: " + measure.getBeatCount());

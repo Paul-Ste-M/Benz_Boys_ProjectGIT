@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.ArrayList;
+
 public class ScenarioDriver {
 
     public static void main(String[] args) {
@@ -11,24 +13,27 @@ public class ScenarioDriver {
         System.out.println("[");
         System.out.println("  { \"username\": \"ffredrickson\", \"firstName\": \"Fellicia\", \"lastName\": \"Fredrickson\", \"email\": \"fellicia@example.com\", \"password\": \"password\" }");
         System.out.println("]");
-        
-        // ----------------------------------------
+
         // Create a new instance of the SongApp which in turn loads the users.
-        // ----------------------------------------
         SongApp app = new SongApp();
-        
+
+        // Run the separate scenarios
+        runUserManagementScenario(app);
+        runSongPlayingScenario(app);
+    }
+
+    private static void runUserManagementScenario(SongApp app) {
         // ----------------------------------------
         // Step 1: Fred attempts to create an account with a duplicate username ("ffredrickson").
         // ----------------------------------------
         System.out.println("\n[Step 1] Fred tries to sign up with username 'ffredrickson' (already taken by Fellicia)...");
-        // Hardcode Fred's details
         String attemptedUsername = "ffredrickson"; // duplicate username (already taken)
         String firstName = "Fred";
         String lastName = "Smith";
         String email = "fred@example.com";
         String password = "password";
         
-        // Attempt to sign up. We assume that the signUp method returns null if the username is already in use.
+        // Attempt to sign up. We assume that signUp returns null if the username is already in use.
         User fredAttempt = app.signUp(attemptedUsername, firstName, lastName, email, password);
         if (fredAttempt == null) {
             System.out.println("Sign up failed: The username '" + attemptedUsername + "' is already taken.");
@@ -72,6 +77,44 @@ public class ScenarioDriver {
             System.out.println("Login successful! Welcome, " + loggedInFred.getFirstName() + ".");
         } else {
             System.out.println("Login failed for username '" + newUsername + "'.");
+        }
+    }
+
+    private static void runSongPlayingScenario(SongApp app) {
+        // ----------------------------------------
+        // Step 6: Playing a song scenario.
+        // Fred searches for all songs by "Tom Petty", sees the list, selects "Free Fallin",
+        // plays the song, and exports the sheet music to a text file.
+        // ----------------------------------------
+        System.out.println("\n[Step 6] Fred searches for all songs by 'Tom Petty'...");
+        ArrayList<Song> tomPettySongs = app.searchByKeyboard(null, "Tom Petty", null);
+        if (tomPettySongs != null && !tomPettySongs.isEmpty()) {
+            System.out.println("Songs by Tom Petty:");
+            for (int i = 0; i < tomPettySongs.size(); i++) {
+                Song song = tomPettySongs.get(i);
+                System.out.println((i + 1) + ". " + song.getTitle());
+            }
+            // Fred picks "Free Fallin" from the list.
+            Song selectedSong = null;
+            for (Song song : tomPettySongs) {
+                if ("Free Fallin".equalsIgnoreCase(song.getTitle())) {
+                    selectedSong = song;
+                    break;
+                }
+            }
+            if (selectedSong != null) {
+                System.out.println("\nFred selects '" + selectedSong.getTitle() + "' and plays it...");
+                app.playSong(selectedSong);
+                System.out.println("Now playing: " + selectedSong.getTitle());
+                
+                // Fred then exports the sheet music to a text file.
+                System.out.println("Exporting the sheet music for '" + selectedSong.getTitle() + "' to a text file...");
+                app.exportSong(selectedSong);
+            } else {
+                System.out.println("The song 'Free Fallin' was not found among Tom Petty's songs.");
+            }
+        } else {
+            System.out.println("No songs by 'Tom Petty' were found.");
         }
     }
 }
