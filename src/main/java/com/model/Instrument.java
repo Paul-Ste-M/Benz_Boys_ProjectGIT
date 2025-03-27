@@ -2,41 +2,71 @@ package com.model;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a musical instrument that contains a collection of preconfigured chords.
+ * Each {@code Instrument} is identified by a name (via {@link InstrumentType}) and
+ * holds a list of {@link Chord} objects that define the chord shapes available on that instrument.
+ * This class is used during chord generation (e.g., converting a single note into a full chord)
+ * and is populated when reading instrument data via {@link DataReader}.
+ */
 public class Instrument {
-    //private static final String INSTTUMENT_SOUND_FILE = "";
+
+    // The type of instrument (e.g., GUITAR, UKULELE) used to identify presets
     private InstrumentType instrumentName;
+
+    // A list of chord presets associated with this instrument
     private ArrayList<Chord> chords;
 
+    /**
+     * Constructs an Instrument with a given name and list of chord presets.
+     *
+     * @param instrumentName the name/type of the instrument
+     * @param chords the list of preset chords available on this instrument
+     */
     public Instrument(InstrumentType instrumentName, ArrayList<Chord> chords) {
         this.instrumentName = instrumentName;
         this.chords = chords;
     }
 
+    /**
+     * Retrieves a chord from the instrument’s preset chord list based on a given leading note and minor flag.
+     * <p>
+     * This is typically used when converting a single note into a full chord
+     * (e.g., during song construction or chord editing).
+     *
+     * @param leadingNote the root/starting note of the desired chord
+     * @param isMinor     whether the chord should be minor
+     * @return the matching chord if found; otherwise, an "empty" placeholder chord
+     */
     public Chord getChord(Note leadingNote, boolean isMinor) {
-        for(Chord presetChord : chords) {
-            if(presetChord.getLeadingNote().getNoteStringForJFugue().equals(leadingNote.getNoteStringForJFugue())
-               && presetChord.isMinor() == isMinor) {
+        for (Chord presetChord : chords) {
+            // Check if the preset chord matches the note and minor status
+            if (presetChord.getLeadingNote().getNoteStringForJFugue().equals(leadingNote.getNoteStringForJFugue())
+                    && presetChord.isMinor() == isMinor) {
                 return presetChord;
-               }
+            }
         }
-        // If chord is not found, just return an "empty" chord so that logic will be applied elsewhere
+
+        // Return a placeholder chord if no match is found
         System.out.println("Chord not found");
-        Chord chord = new Chord("EMPTY", true, isMinor);
-        return chord;
+        return new Chord("EMPTY", true, isMinor);
     }
 
+    /**
+     * Returns the instrument’s name/type.
+     *
+     * @return the {@link InstrumentType} of the instrument
+     */
     public InstrumentType getInstrumentName() {
         return instrumentName;
     }
 
+    /**
+     * Returns the list of chord presets associated with this instrument.
+     *
+     * @return a list of {@link Chord} objects
+     */
     public ArrayList<Chord> getChords() {
         return chords;
-    }
-
-    public void playSound(String pitch){
-    }
-
-    public void loadinSounds(){
-        
     }
 }

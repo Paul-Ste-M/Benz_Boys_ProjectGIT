@@ -6,34 +6,39 @@ import java.util.UUID;
 public class Author extends User {
     private ArrayList<UUID> createdSongs;
     private Measure selectedMeasure;
-    private Song selectedSong; // for convenience when editing a song
+    private Song selectedSong;
+    private UUID authorID; 
 
     public Author(String firstName, String lastName, String userName, String password, String email) {
         super(firstName, lastName, userName, password, email);
         this.createdSongs = this.getCreatedSongs();
         // Set this user to be an author
+        this.authorID = super.getUserID();
         this.setAuthorStatusToTrue();
+    
     }
 
     public Author(String firstName, String lastName, String userName, String password, String email, 
                   String userID, ArrayList<UUID> createdSongs, boolean isAuthor) {
         super(firstName, lastName, userName, password, email, userID, createdSongs, isAuthor);
         this.createdSongs = this.getCreatedSongs();
+        this.authorID = super.getUserID();
         this.setAuthorStatusToTrue();
 
     }
 
     public Author(User user) {
         super(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getEmail());
+        user.setAuthorStatusToTrue();
         this.createdSongs = this.getCreatedSongs();
-        // Set this user to be an author
+        this.authorID = super.getUserID();
         this.setAuthorStatusToTrue();
     }
 
     // Adds a song: records its ID and adds it to the central SongLibrary.
     public void addSong(Song song) {
         createdSongs.add(song.getSongID());
-        SongLibrary.getInstance().addSong(song);
+//        SongLibrary.getInstance().addSong(song);
         System.out.println("Song added: " + song.getTitle());
     }
 
@@ -79,6 +84,8 @@ public class Author extends User {
         return newSong;
     }
 
+
+
     // Helper method: deep-copies a measure by cloning each chord.
     private Measure copyMeasure(Measure measure) {
         Measure newMeasure = new Measure();
@@ -109,6 +116,7 @@ public class Author extends User {
     public void publishSong(Song song) {
         song.setPublished(true);
         SongLibrary.getInstance().publishSong(song);
+        this.createdSongs.add(song.getSongID());
         System.out.println("Song published: " + song.getTitle());
     }
 
@@ -198,6 +206,14 @@ public class Author extends User {
 
     public void addChord(int position, String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
         this.selectedMeasure.addChord(type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine, position);
+    }
+
+    public void addChord(String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
+        this.selectedMeasure.addChord(type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine);
+    }
+
+    public UUID getAuthorId() {
+        return this.authorID;
     }
 
     // Converts a note (currently a single note) into a chord in the selected measure.
