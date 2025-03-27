@@ -34,7 +34,7 @@ public class ScenarioDriver {
         String lastName = "Smith";
         String email = "fred@example.com";
         String password = "password";
-        
+
         // Attempt to sign up. We assume that signUp returns null if the username is already in use.
         User fredAttempt = app.signUp(attemptedUsername, firstName, lastName, email, password);
         if (fredAttempt == null) {
@@ -42,7 +42,7 @@ public class ScenarioDriver {
         } else {
             System.out.println("Unexpected: Sign up succeeded with a duplicate username!");
         }
-        
+
         // ----------------------------------------
         // Step 2: Fred changes his username and successfully creates an account.
         // ----------------------------------------
@@ -54,13 +54,13 @@ public class ScenarioDriver {
         } else {
             System.out.println("Sign up failed for username '" + newUsername + "'.");
         }
-        
+
         // ----------------------------------------
         // Step 3: Fred logs out (which saves the users.json).
         // ----------------------------------------
         System.out.println("\n[Step 3] Fred logs out.");
         app.logout();
-        
+
         // ----------------------------------------
         // Step 4: Display updated users.json showing Fred's account added.
         // ----------------------------------------
@@ -69,7 +69,7 @@ public class ScenarioDriver {
         System.out.println("  { \"username\": \"ffredrickson\", \"firstName\": \"Fellicia\", \"lastName\": \"Fredrickson\", \"email\": \"fellicia@example.com\", \"password\": \"password\" },");
         System.out.println("  { \"username\": \"ffred\", \"firstName\": \"Fred\", \"lastName\": \"Smith\", \"email\": \"fred@example.com\", \"password\": \"password\" }");
         System.out.println("]");
-        
+
         // ----------------------------------------
         // Step 5: Fred logs in successfully using his new username.
         // ----------------------------------------
@@ -108,7 +108,7 @@ public class ScenarioDriver {
                 System.out.println("\nFred selects '" + selectedSong.getTitle() + "' and plays it...");
                 app.playSong(selectedSong);
                 System.out.println("Now playing: " + selectedSong.getTitle());
-                
+
                 // Fred then exports the sheet music to a text file.
                 System.out.println("Exporting the sheet music for '" + selectedSong.getTitle() + "' to a text file...");
                 app.exportSong(selectedSong);
@@ -119,9 +119,10 @@ public class ScenarioDriver {
             System.out.println("No songs by 'Tom Petty' were found.");
         }
     }
+
     private static void runSongCreationScenario(SongApp app) {
         System.out.println("\n[Third Scenario] Making a new song by Fellicia...");
-    
+
         // Fellicia logs into her account
         User fellicia = app.login("ffredrickson", "fellicia");
         if (fellicia != null) {
@@ -130,34 +131,58 @@ public class ScenarioDriver {
             System.out.println("Fellicia login failed.");
             return;
         }
-        
+
         // Fellicia creates a new song called "A horses journey"
-        app.startSong("A horses journey");
-        Song newSong = app.getSong("A horses journey", fellicia.getUsername());
+        Song newSong = app.startSong("A horses journey");
         System.out.println("New song 'A horses journey' created by " + fellicia.getFirstName() + ".");
-        
+
+
+
         // Add two measures with notes to the song.
-        // (This is a simulated step. Replace the pseudo-code below with actual method calls if you have addMeasure or similar.)
-        System.out.println("Adding 2 measures with notes to the song...");
-        // Example pseudo-code:
-        // newSong.addMeasure(new Measure("Measure 1: Notes C, E, G"));
-        // newSong.addMeasure(new Measure("Measure 2: Notes D, F, A"));
+        System.out.println(newSong);
+
+        // Define the melody using notes
+        Note e = new Note(Pitch.E, Type.QUARTER);
+        Note d = new Note(Pitch.D, Type.QUARTER);
+        Note c = new Note(Pitch.C, Type.QUARTER);
+        Note g = new Note(Pitch.G, Type.QUARTER);
+        Note restQuarter = new Note(Pitch.REST, Type.QUARTER); // Rest for a quarter note duration
+
+        Measure measure1 = new Measure();
+        Measure measure2 = new Measure();
+
+        // Create chords for melody (Mary Had a Little Lamb)
+        Chord chord1 = new Chord();  // E D C D
+        chord1.addNote(e);
+        chord1.addNote(d);
+        chord1.addNote(c);
+        chord1.addNote(d);
+
+        Chord chord2 = new Chord();  // E E E
+        chord2.addNote(e);
+        chord2.addNote(e);
+        chord2.addNote(e);
+        chord2.addNote(restQuarter);
+
+        newSong.addMeasure(measure1);
+        newSong.addMeasure(measure2);
+
         app.publishSong(newSong);
         // Fellicia plays her new song
         System.out.println("Fellicia plays the song 'A horses journey'.");
         app.playSong(newSong);
-        
+
         // Fellicia logs out (updates users.json and songs.json are saved)
         app.logout();
         System.out.println("Fellicia logged out.");
-        
+
         // Show updated JSON files (simulation)
         System.out.println("\n=== Updated users.json ===");
         System.out.println("... (updated users.json content showing Fellicia and Fred) ...");
-        
+
         System.out.println("\n=== Updated songs.json ===");
         System.out.println("... (updated songs.json content showing 'A horses journey' tied to Fellicia) ...");
-        
+
         // Now, log in as Fredrick (Fred) to search for and play the new song.
         System.out.println("\n[Third Scenario] Fred logs in to search and play the new song.");
         User fred = app.login("ffred", "password");
@@ -176,5 +201,5 @@ public class ScenarioDriver {
             System.out.println("Fredrick login failed.");
         }
     }
-    
+
 }

@@ -76,15 +76,20 @@ public class SongApp {
     /**
      * Start a song
      */
-    public void startSong(String title) {
+    public Song startSong(String title) {
         this.author = new Author(user);
         Song newSong = new Song(title, author);
         SongLibrary.getInstance().addSong(newSong);
         this.selectedSong = newSong;
+        return newSong;
     }
 
     public void selectMeasure(int position) {
         author.setMeasure(selectedSong.getMeasures().get(position));
+    }
+
+    public void addMeasure(Measure measure) {
+        author.addMeasure(measure);
     }
 
     public void addChord(int position, String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {

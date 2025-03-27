@@ -115,6 +115,7 @@ public class Author extends User {
     public void publishSong(Song song) {
         song.setPublished(true);
         SongLibrary.getInstance().publishSong(song);
+        this.createdSongs.add(song.getSongID());
         System.out.println("Song published: " + song.getTitle());
     }
 
