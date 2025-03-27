@@ -19,6 +19,11 @@ public class InstrumentList {
         return instrumentList;
     }
 
+    public boolean saveInstruments() {
+        boolean result = DataWriter.saveInstruments(instruments); // Call the DataWriter to save songs
+        return result;
+    }
+
     public void addInstrument(Instrument instrument){
         instruments.add(instrument);
     }

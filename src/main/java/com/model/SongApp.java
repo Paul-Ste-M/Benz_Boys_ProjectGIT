@@ -6,7 +6,14 @@ public class SongApp {
     private User user;
     private Song selectedSong;
     private Instrument selectedInstrument;
+    private ArrayList<Song> searchResults;
     private int currentVolume = 0;
+
+    public SongApp() {
+        DataReader.readUsers();
+        DataReader.readSongs();
+        DataReader.readInstruments();
+    }
 
     /**
      * User login
@@ -19,13 +26,19 @@ public class SongApp {
      * Sign up a new user
      */
     public User signUp(String username, String firstName, String lastName, String email, String password) {
-        return UserList.getInstance().addUser(username, firstName, lastName, email, password);
+         User potentialNewUser = UserList.getInstance().signUp(username, firstName, lastName, email, password);
+         this.user = potentialNewUser;
+         return potentialNewUser;
     }
 
     /**
      * Log out the current user
      */
     public void logout() {
+        UserList.getInstance().saveUsers();
+        SongLibrary.getInstance().saveSongs();
+        InstrumentList.getInstance().saveInstruments();
+
         user = null; 
     }
 
@@ -101,9 +114,13 @@ public class SongApp {
     /**
      * Select an instrument
      */
-    public Instrument selectInstrument(Instrument instrument) {
-        this.selectedInstrument = instrument;
-        return instrument;
+    public Instrument selectInstrument(String instrumentName) {
+        for(Instrument instrument : InstrumentList.getInstance().getInstruments()) {
+            if(instrument.getInstrumentName().toString().equalsIgnoreCase(instrumentName)) {
+                this.selectedInstrument = instrument;
+            }
+        }
+        return selectedInstrument;
     }
 
     /**
@@ -119,7 +136,7 @@ public class SongApp {
      * Export songs
      */
     public void exportSong(Song song) {
-        // Stub implementation
+        song.printTabsToTextFile();
     }
 
     /**
@@ -186,7 +203,7 @@ public class SongApp {
     /**
      * Play ear training game, ear training game not implemented yet
      */
-    public EarTrainingGame playGame() {
-        return EarTrainingGame.getInstance(); // Assuming this method exists
-    }
+//    public EarTrainingGame playGame() {
+//        return EarTrainingGame.getInstance(); // Assuming this method exists
+//    }
 }
