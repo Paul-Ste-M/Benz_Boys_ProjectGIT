@@ -9,8 +9,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class DataReader {
-    private static final String USERS_FILE_PATH = "json/users_temp.json"; // Users file
-    private static final String SONGS_FILE_PATH = "json/songs_temp.json"; // Songs file
+    private static final String USERS_FILE_PATH = "json/users.json"; // Users file
+    private static final String SONGS_FILE_PATH = "json/songs.json"; // Songs file
     private static final String INSTRUMENTS_FILE_PATH = "json/instruments.json"; // Instruments file
 
     public static void readUsers() {

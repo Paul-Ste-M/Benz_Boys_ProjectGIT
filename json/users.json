@@ -1,35 +1,12 @@
 [
     {
-        "firstName":"Jordan",
-        "lastName":"Cantave",
-        "userName":"jcantave",
-        "password":"Ih34rtT4c0s!",
-        "email":"jcantave@email.sc.edu",
-        "userID":"dbaa3b10-0ff4-4e77-b3d9-e3536cf30368",
-        "createdSongs":["a0767ab9-c710-48c1-aed1-071af98ec20d"]
-    },{
-        "firstName":"Paul",
-        "lastName":"Stevens",
-        "userName":"pstevens",
-        "password":"sidGr$t3v5",
-        "email":"pstevens@email.sc.edu",
-        "userID":"08015cdb-01cb-4b42-8194-c41c9890cb5b",
-        "createdSongs":["4f833475-c364-4578-83c8-31fa767e26a1"]
-    },{
-        "firstName":"Abdorruhman",
-        "lastName":"Abdelwahed",
-        "userName":"abdoulaa",
-        "password":"J@v@1sc0oL",
-        "email":"abdoulaa@email.sc.edu",
-        "userID":"46bb5605-36dd-4b7a-b744-78b404a208fe",
-        "createdSongs":[null]
-    },{
-        "firstName":"Ahmed",
-        "lastName":"Elmahdi",
-        "userName":"aelmahdi",
-        "password":"pr0j3c7Mus1c",
-        "email":"aelmahdi@email.sc.edu",
-        "userID":"79dbb223-9731-41ce-a7c9-b71675e06be6",
-        "createdSongs":[null]
-    }
+        "firstName": "Fellicia",
+        "lastName": "Fredrickson",
+        "password": "asdjihdw",
+        "userName": "ffredrickson",
+        "createdSongs": [],
+        "userID": "3ebd8b82-0fea-4a21-b8a0-c80b3174836d",
+        "email": "jdoe@gmail.com",
+        "isAuthor": false
+    },
 ]
