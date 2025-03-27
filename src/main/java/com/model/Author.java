@@ -29,6 +29,7 @@ public class Author extends User {
 
     public Author(User user) {
         super(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getEmail());
+        user.setAuthorStatusToTrue();
         this.createdSongs = this.getCreatedSongs();
         this.authorID = super.getUserID();
         this.setAuthorStatusToTrue();
@@ -37,7 +38,7 @@ public class Author extends User {
     // Adds a song: records its ID and adds it to the central SongLibrary.
     public void addSong(Song song) {
         createdSongs.add(song.getSongID());
-        SongLibrary.getInstance().addSong(song);
+//        SongLibrary.getInstance().addSong(song);
         System.out.println("Song added: " + song.getTitle());
     }
 
@@ -205,6 +206,10 @@ public class Author extends User {
 
     public void addChord(int position, String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
         this.selectedMeasure.addChord(type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine, position);
+    }
+
+    public void addChord(String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
+        this.selectedMeasure.addChord(type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine);
     }
 
     public UUID getAuthorId() {

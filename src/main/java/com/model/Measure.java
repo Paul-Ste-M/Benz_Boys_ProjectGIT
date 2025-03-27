@@ -77,6 +77,12 @@ public class Measure {
         beatCount++;
     }
 
+    public void addChord(String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
+        Chord newChord = new Chord(type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine);
+        chords.add(newChord);
+        beatCount++;
+    }
+
     /**
      * Adds a Chord object to a specific position in the measure.
      * If the position is invalid, the chord is not added.

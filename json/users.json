@@ -7,15 +7,18 @@
         "createdSongs": [],
         "userID": "3ebd8b82-0fea-4a21-b8a0-c80b3174836d",
         "email": "ffredrickson@gmail.com",
-        "isAuthor": false
+        "isAuthor": true
     },
-
     {
         "firstName": "Tom",
         "lastName": "Petty",
         "password": "asdjihdw",
         "userName": "tpetty",
-        "createdSongs": [],
+        "createdSongs": [
+            "b5464838-b736-486b-b35a-406c866f9b29",
+            "4f3f074f-be1d-4239-8286-38a5bdf5bb00",
+            "0d7b7d53-bafb-4f8e-99bb-66a291e51917"
+        ],
         "userID": "026c7cdb-aa8d-40b6-ab06-5b06034fe83f",
         "email": "tpetty@gmail.com",
         "isAuthor": false

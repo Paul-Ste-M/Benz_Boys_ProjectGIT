@@ -12,16 +12,7 @@ import org.json.simple.parser.JSONParser;
  * core application data structures including users, songs, and instruments.
  * Uses JSON.simple for parsing and constructing application objects in memory.
  */
-public class DataReader {
-
-    /** Path to the JSON file that stores temporary user data. */
-    private static final String USERS_FILE_PATH = "json/users_temp.json";
-
-    /** Path to the JSON file that stores temporary song data. */
-    private static final String SONGS_FILE_PATH = "json/songs_temp.json";
-
-    /** Path to the JSON file that stores instrument definitions. */
-    private static final String INSTRUMENTS_FILE_PATH = "json/instruments.json";
+public class DataReader extends DataConstants {
 
     /**
      * Reads all users from the JSON file and populates {@link UserList}.
@@ -34,7 +25,7 @@ public class DataReader {
             /**
              * Parses the contents of the user JSON file into a JSONArray.
              */
-            JSONArray usersArray = (JSONArray) parser.parse(new FileReader(USERS_FILE_PATH));
+            JSONArray usersArray = (JSONArray) parser.parse(new FileReader(USER_FILE_NAME));
 
             /**
              * Retrieves the singleton instance of the user list.
@@ -79,7 +70,7 @@ public class DataReader {
             System.out.println("Users loaded successfully!");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Failed to load users from " + USERS_FILE_PATH);
+            System.out.println("Failed to load users from " + USER_FILE_NAME);
         }
     }
 
@@ -94,7 +85,7 @@ public class DataReader {
             /**
              * Parses the songs file into a JSONArray of song objects.
              */
-            JSONArray songsArray = (JSONArray) parser.parse(new FileReader(SONGS_FILE_PATH));
+            JSONArray songsArray = (JSONArray) parser.parse(new FileReader(SONG_FILE_NAME));
 
             /**
              * Retrieves the singleton instance of the song library.
@@ -206,7 +197,7 @@ public class DataReader {
             System.out.println("Songs loaded successfully!");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Failed to load songs from " + SONGS_FILE_PATH);
+            System.out.println("Failed to load songs from " + SONG_FILE_NAME);
         }
     }
 
@@ -221,7 +212,7 @@ public class DataReader {
             /**
              * Parses instrument data into a JSONArray of instrument definitions.
              */
-            JSONArray instrumentsArray = (JSONArray) parser.parse(new FileReader(INSTRUMENTS_FILE_PATH));
+            JSONArray instrumentsArray = (JSONArray) parser.parse(new FileReader(INSTRUMENT_FILE_NAME));
 
             /**
              * Retrieves the singleton instance of the instrument list.
@@ -285,7 +276,7 @@ public class DataReader {
             System.out.println("Instruments loaded successfully!");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Failed to load instruments from " + INSTRUMENTS_FILE_PATH);
+            System.out.println("Failed to load instruments from " + INSTRUMENT_FILE_NAME);
         }
     }
 

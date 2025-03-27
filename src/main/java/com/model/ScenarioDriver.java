@@ -5,21 +5,13 @@ import java.util.ArrayList;
 public class ScenarioDriver {
 
     public static void main(String[] args) {
-        // ----------------------------------------
-        // Step 0: Display initial users.json state.
-        // (Hardcoded to show that Fred is not present and Fellicia is present.)
-        // ----------------------------------------
-        System.out.println("=== Initial users.json ===");
-        System.out.println("[");
-        System.out.println("  { \"username\": \"ffredrickson\", \"firstName\": \"Fellicia\", \"lastName\": \"Fredrickson\", \"email\": \"fellicia@example.com\", \"password\": \"password\" }");
-        System.out.println("]");
 
         // Create a new instance of the SongApp which in turn loads the users.
         SongApp app = new SongApp();
 
         // Run the separate scenarios
-        runUserManagementScenario(app);
-        runSongPlayingScenario(app);
+        //runUserManagementScenario(app);
+        //runSongPlayingScenario(app);
         runSongCreationScenario(app);
 
     }
@@ -64,11 +56,6 @@ public class ScenarioDriver {
         // ----------------------------------------
         // Step 4: Display updated users.json showing Fred's account added.
         // ----------------------------------------
-        System.out.println("\n=== Updated users.json ===");
-        System.out.println("[");
-        System.out.println("  { \"username\": \"ffredrickson\", \"firstName\": \"Fellicia\", \"lastName\": \"Fredrickson\", \"email\": \"fellicia@example.com\", \"password\": \"password\" },");
-        System.out.println("  { \"username\": \"ffred\", \"firstName\": \"Fred\", \"lastName\": \"Smith\", \"email\": \"fred@example.com\", \"password\": \"password\" }");
-        System.out.println("]");
 
         // ----------------------------------------
         // Step 5: Fred logs in successfully using his new username.
@@ -85,33 +72,37 @@ public class ScenarioDriver {
     private static void runSongPlayingScenario(SongApp app) {
         // ----------------------------------------
         // Step 6: Playing a song scenario.
+        // Fred logs in.
         // Fred searches for all songs by "Tom Petty", sees the list, selects "Free Fallin",
         // plays the song, and exports the sheet music to a text file.
         // ----------------------------------------
+            
+        app.login("ffred", "password");
+
         System.out.println("\n[Step 6] Fred searches for all songs by 'Tom Petty'...");
-        ArrayList<Song> tomPettySongs = app.searchByKeyboard(null, "Tom Petty", null);
+        ArrayList<Song> tomPettySongs = app.searchByAuthor("Tom Petty");
+
         if (tomPettySongs != null && !tomPettySongs.isEmpty()) {
             System.out.println("Songs by Tom Petty:");
             for (int i = 0; i < tomPettySongs.size(); i++) {
                 Song song = tomPettySongs.get(i);
                 System.out.println((i + 1) + ". " + song.getTitle());
             }
-            // Fred picks "Free Fallin" from the list.
-            Song selectedSong = null;
-            for (Song song : tomPettySongs) {
-                if ("Free Fallin".equalsIgnoreCase(song.getTitle())) {
-                    selectedSong = song;
-                    break;
-                }
-            }
+        //     // Fred picks "Free Fallin" from the list.
+             Song selectedSong = app.selectSongFromResults(2);
+
             if (selectedSong != null) {
                 System.out.println("\nFred selects '" + selectedSong.getTitle() + "' and plays it...");
-                app.playSong(selectedSong);
+
+                app.playSong();
+
                 System.out.println("Now playing: " + selectedSong.getTitle());
 
                 // Fred then exports the sheet music to a text file.
                 System.out.println("Exporting the sheet music for '" + selectedSong.getTitle() + "' to a text file...");
-                app.exportSong(selectedSong);
+
+                app.exportSong();
+
             } else {
                 System.out.println("The song 'Free Fallin' was not found among Tom Petty's songs.");
             }
@@ -141,59 +132,50 @@ public class ScenarioDriver {
         // Add two measures with notes to the song.
         System.out.println(newSong);
 
-        // Define the melody using notes
-        Note e = new Note(Pitch.E, Type.QUARTER);
-        Note d = new Note(Pitch.D, Type.QUARTER);
-        Note c = new Note(Pitch.C, Type.QUARTER);
-        Note g = new Note(Pitch.G, Type.QUARTER);
-        Note restQuarter = new Note(Pitch.REST, Type.QUARTER); // Rest for a quarter note duration
+        app.selectMeasure(0);
 
-        Measure measure1 = new Measure();
-        Measure measure2 = new Measure();
+        app.addChord(0, "QUARTER", "C", true, false, "4", "3", 5);
+        app.addChord("QUARTER", "D", true, false, "4", "0", 4);
+        app.addChord("QUARTER", "G", false, true, "3", "3", 6);
+        app.addChord("QUARTER", "G", false, false, "3", "3", 6);
 
-        // Create chords for melody (Mary Had a Little Lamb)
-        Chord chord1 = new Chord();  // E D C D
-        chord1.addNote(e);
-        chord1.addNote(d);
-        chord1.addNote(c);
-        chord1.addNote(d);
-
-        Chord chord2 = new Chord();  // E E E
-        chord2.addNote(e);
-        chord2.addNote(e);
-        chord2.addNote(e);
-        chord2.addNote(restQuarter);
-
-        newSong.addMeasure(measure1);
-        newSong.addMeasure(measure2);
+        app.addMeasure(new Measure());
+        app.selectMeasure(1);
+        app.addChord("QUARTER", "C", true, false, "4", "3", 5);
+        app.addChord("EIGHTH", "D", true, false, "4", "0", 4);
+        app.addChord("EIGHTH", "D", true, false, "4", "0", 4);
+        app.addChord("QUARTER", "E", false, false, "3", "0", 6);
+        app.addChord("QUARTER", "E", false, true, "3", "0", 6);
+        
 
         app.publishSong(newSong);
         // Fellicia plays her new song
         System.out.println("Fellicia plays the song 'A horses journey'.");
-        app.playSong(newSong);
+        app.playSong();
 
         // Fellicia logs out (updates users.json and songs.json are saved)
         app.logout();
         System.out.println("Fellicia logged out.");
 
         // Show updated JSON files (simulation)
-        System.out.println("\n=== Updated users.json ===");
-        System.out.println("... (updated users.json content showing Fellicia and Fred) ...");
-
-        System.out.println("\n=== Updated songs.json ===");
-        System.out.println("... (updated songs.json content showing 'A horses journey' tied to Fellicia) ...");
 
         // Now, log in as Fredrick (Fred) to search for and play the new song.
         System.out.println("\n[Third Scenario] Fred logs in to search and play the new song.");
         User fred = app.login("ffred", "password");
         if (fred != null) {
             System.out.println("Fredrick logged in successfully.");
+            
+            // Fred searches for song by title
             ArrayList<Song> results = app.searchByTitle("A horses journey");
+
+            // Fred selects "A horses journey"
+            Song horseJourney = app.selectSongFromResults(0);
+    
             if (results != null && !results.isEmpty()) {
-                Song foundSong = results.get(0);
-                System.out.println("Fredrick found the song: " + foundSong.getTitle());
+                System.out.println("Fredrick found the song: " + horseJourney.getTitle());
                 System.out.println("Fredrick plays the song.");
-                app.playSong(foundSong);
+                app.playSong();
+                app.exportSong();
             } else {
                 System.out.println("Song 'A horses journey' not found in search results.");
             }

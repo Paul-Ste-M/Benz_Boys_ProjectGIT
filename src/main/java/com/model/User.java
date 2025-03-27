@@ -210,4 +210,8 @@ public class User {
     public ArrayList<UUID> getCreatedSongs() {
         return this.createdSongs;
     }
+
+    public void addCreatedSong(Song song) {
+        createdSongs.add(song.getSongID());
+    }
 }

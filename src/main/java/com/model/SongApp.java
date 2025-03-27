@@ -81,6 +81,9 @@ public class SongApp {
         Song newSong = new Song(title, author);
         SongLibrary.getInstance().addSong(newSong);
         this.selectedSong = newSong;
+        user.addCreatedSong(newSong);
+        this.author.addSong(newSong);
+        this.author.selectSong(newSong);
         return newSong;
     }
 
@@ -94,6 +97,10 @@ public class SongApp {
 
     public void addChord(int position, String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
         author.addChord(position, type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine);
+    }
+
+    public void addChord(String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
+        author.addChord(type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine);
     }
 
     /**
@@ -130,7 +137,7 @@ public class SongApp {
     /**
      * Play a songs
      */
-    public void playSong(Song selectedSong) {
+    public void playSong() {
         if (selectedSong != null) {
             selectedSong.playSong();
         }
@@ -160,8 +167,9 @@ public class SongApp {
     /**
      * Export songs
      */
-    public void exportSong(Song song) {
-        song.printTabsToTextFile();
+    public void exportSong() {
+        if(selectedSong != null)
+            selectedSong.printTabsToTextFile();
     }
 
     /**
@@ -203,6 +211,12 @@ public class SongApp {
         return results;
     }
 
+    public ArrayList<Song> searchByAuthor(String author) {
+        ArrayList<Song> results = SongLibrary.getInstance().searchByArtist(author);
+        this.searchResults = results;
+        return results;
+    }
+
 
     public Song selectSongFromResults(int position) {
         this.selectedSong = searchResults.get(position);
@@ -233,9 +247,9 @@ public class SongApp {
     /**
      * Export to PDF
      */
-    public void exportToPDF() {
+//    public void exportToPDF() {
         // Stub implementation
-    }
+//    }
 
     /**
      * Play ear training game, ear training game not implemented yet

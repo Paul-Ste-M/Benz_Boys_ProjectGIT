@@ -35,7 +35,7 @@ public class DataWriter extends DataConstants {
         /**
          * Write the JSON array to the designated file.
          */
-        try (FileWriter file = new FileWriter(USER_TEMP_FILE_NAME)) {
+        try (FileWriter file = new FileWriter(USER_FILE_NAME)) {
             file.write(jsonUsers.toJSONString());
             file.flush();
         } catch (IOException e) {
@@ -99,7 +99,7 @@ public class DataWriter extends DataConstants {
         /**
          * Write the JSON array to file.
          */
-        try (FileWriter file = new FileWriter(SONG_TEMP_FILE_NAME)) {
+        try (FileWriter file = new FileWriter(SONG_FILE_NAME)) {
             file.write(jsonSongs.toJSONString());
             file.flush();
         } catch (IOException e) {
