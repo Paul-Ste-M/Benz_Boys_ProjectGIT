@@ -3,26 +3,47 @@ package com.model;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.UUID;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * Responsible for reading data from JSON files and populating
+ * core application data structures including users, songs, and instruments.
+ * Uses JSON.simple for parsing and constructing application objects in memory.
+ */
 public class DataReader {
-    private static final String USERS_FILE_PATH = "json/users_temp.json"; // Users file
-    private static final String SONGS_FILE_PATH = "json/songs_temp.json"; // Songs file
-    private static final String INSTRUMENTS_FILE_PATH = "json/instruments.json"; // Instruments file
 
+    /** Path to the JSON file that stores temporary user data. */
+    private static final String USERS_FILE_PATH = "json/users_temp.json";
+
+    /** Path to the JSON file that stores temporary song data. */
+    private static final String SONGS_FILE_PATH = "json/songs_temp.json";
+
+    /** Path to the JSON file that stores instrument definitions. */
+    private static final String INSTRUMENTS_FILE_PATH = "json/instruments.json";
+
+    /**
+     * Reads all users from the JSON file and populates {@link UserList}.
+     * Creates either {@link User} or {@link Author} objects based on the data.
+     */
     public static void readUsers() {
         try {
-            // Parse the JSON file
             JSONParser parser = new JSONParser();
+
+            /**
+             * Parses the contents of the user JSON file into a JSONArray.
+             */
             JSONArray usersArray = (JSONArray) parser.parse(new FileReader(USERS_FILE_PATH));
 
-            // Get the singleton instance of UserList
+            /**
+             * Retrieves the singleton instance of the user list.
+             */
             UserList userList = UserList.getInstance();
 
-            // Iterate through the JSON array and populate the UserList
+            /**
+             * Iterates through each user object in the array to reconstruct a User or Author.
+             */
             for (Object obj : usersArray) {
                 JSONObject userJson = (JSONObject) obj;
 
@@ -33,45 +54,56 @@ public class DataReader {
                 String email = (String) userJson.get("email");
                 String userID = (String) userJson.get("userID");
                 boolean isAuthor = (boolean) userJson.get("isAuthor");
-                
-                ArrayList<UUID> createdSongs = new ArrayList<UUID>();
-                // Parse createdSongs
+
+                /**
+                 * Converts the song ID strings from JSON into UUID objects.
+                 */
+                ArrayList<UUID> createdSongs = new ArrayList<>();
                 JSONArray createdSongsArray = (JSONArray) userJson.get("createdSongs");
-                for (Object object : createdSongsArray) {
-                    createdSongs.add(UUID.fromString((String) object));
+                for (Object songID : createdSongsArray) {
+                    createdSongs.add(UUID.fromString((String) songID));
                 }
 
-                if(isAuthor) {
-                    Author author = new Author(firstName, lastName, userName, password, email, userID, createdSongs, isAuthor);
+                /**
+                 * Constructs a User or Author object depending on the isAuthor flag.
+                 */
+                if (isAuthor) {
+                    Author author = new Author(firstName, lastName, userName, password, email, userID, createdSongs, true);
                     userList.addUser(author);
                 } else {
-                    User user = new User(firstName, lastName, userName, password, email, userID, createdSongs, isAuthor);
+                    User user = new User(firstName, lastName, userName, password, email, userID, createdSongs, false);
                     userList.addUser(user);
                 }
-
-                // userList.addUser(firstName, lastName, userName, password, email);
-                // public User(String firstName, String lastName, String userName, 
-                //String password, String email, String userID, ArrayList<UUID> createdSongs, boolean isAuthor) {
             }
 
             System.out.println("Users loaded successfully!");
-
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Failed to load users from " + USERS_FILE_PATH);
         }
     }
 
+    /**
+     * Reads all songs from the JSON file and populates the {@link SongLibrary}.
+     * Parses full song structure including metadata, measures, chords, notes, and comments.
+     */
     public static void readSongs() {
         try {
-            // Parse the JSON file
             JSONParser parser = new JSONParser();
+
+            /**
+             * Parses the songs file into a JSONArray of song objects.
+             */
             JSONArray songsArray = (JSONArray) parser.parse(new FileReader(SONGS_FILE_PATH));
 
-            // Get the singleton instance of SongLibrary
+            /**
+             * Retrieves the singleton instance of the song library.
+             */
             SongLibrary songLibrary = SongLibrary.getInstance();
 
-            // Iterate through the JSON array and populate SongLibrary
+            /**
+             * Iterates through each song JSON object to reconstruct the song in memory.
+             */
             for (Object obj : songsArray) {
                 JSONObject songJson = (JSONObject) obj;
 
@@ -81,22 +113,27 @@ public class DataReader {
                 UUID authorID = UUID.fromString((String) songJson.get("authorID"));
                 boolean published = (boolean) songJson.get("published");
 
-                // Create an Author object (assuming you have an Author class)
-                //Author author = new Author(authorName, "", "", "", "");
-                UserList userList = UserList.getInstance();
-                User author = userList.getUser(authorID); // in this case we don't really need it to be a true Author?
+                /**
+                 * Retrieves the User object for the song's author.
+                 */
+                User author = UserList.getInstance().getUser(authorID);
 
-                // Create a new song
+                /**
+                 * Constructs the Song object using parsed attributes.
+                 */
                 Song song = new Song(title, authorName, author.getUsername(), songID, authorID, published);
-                //song.setPublished(published);
 
-                // Parse genres
+                /**
+                 * Parses and adds each genre to the song.
+                 */
                 JSONArray genresArray = (JSONArray) songJson.get("genre");
                 for (Object genre : genresArray) {
                     song.addGenre((String) genre);
                 }
 
-                // Parse measures
+                /**
+                 * Parses each measure in the song and its chords and notes.
+                 */
                 JSONArray measuresArray = (JSONArray) songJson.get("measures");
                 for (Object measureObj : measuresArray) {
                     JSONObject measureJson = (JSONObject) measureObj;
@@ -105,39 +142,40 @@ public class DataReader {
                     JSONArray chordsArray = (JSONArray) measureJson.get("chords");
                     for (Object chordObj : chordsArray) {
                         JSONObject chordJson = (JSONObject) chordObj;
-                        String leadingNote = (String) chordJson.get("leadingNote"); // Might not need this
+
                         boolean isSingleNote = (boolean) chordJson.get("isSingleNote");
                         boolean isMinor = (boolean) chordJson.get("isMinor");
                         String type = (String) chordJson.get("type");
 
                         Chord chord = new Chord(type, isSingleNote, isMinor);
 
-                        // Get the array of notes
                         JSONArray notesArray = (JSONArray) chordJson.get("notes");
 
-                        //Assign leading note attribute
+                        /**
+                         * Creates the leading note from the first note in the array.
+                         */
                         JSONObject leadingNoteJson = (JSONObject) notesArray.get(0);
-                        String leadingNoteType = (String) leadingNoteJson.get("type");
-                        String leadingNotePitch = (String) leadingNoteJson.get("pitch");
-                        String leadingNoteOctave = (String) leadingNoteJson.get("octave");
-                        String leadingNoteFretNumber = (String) leadingNoteJson.get("fretNumber");
-                        int leadingNoteTabsLine = ((Long) leadingNoteJson.get("tabsLine")).intValue();
-                        Note leadingNoteAttribute = new Note(Pitch.valueOf(leadingNotePitch), Type.valueOf(leadingNoteType), leadingNoteOctave,
-                        leadingNoteFretNumber, leadingNoteTabsLine);
-                        chord.setLeadingNote(leadingNoteAttribute);
+                        Note leadingNote = new Note(
+                                Pitch.valueOf((String) leadingNoteJson.get("pitch")),
+                                Type.valueOf((String) leadingNoteJson.get("type")),
+                                (String) leadingNoteJson.get("octave"),
+                                (String) leadingNoteJson.get("fretNumber"),
+                                ((Long) leadingNoteJson.get("tabsLine")).intValue()
+                        );
+                        chord.setLeadingNote(leadingNote);
 
-                        
-                        // Parse notes in the chord
+                        /**
+                         * Parses and adds each note to the chord.
+                         */
                         for (Object noteObj : notesArray) {
                             JSONObject noteJson = (JSONObject) noteObj;
-                            String noteType = (String) noteJson.get("type");
-                            String pitch = (String) noteJson.get("pitch");
-                            String noteOctave = (String) noteJson.get("octave");
-                            String noteFretNumber = (String) noteJson.get("fretNumber");
-                            int noteTabsLine = ((Long) noteJson.get("tabsLine")).intValue();
-                          //  boolean isMinor = (boolean) noteJson.get("isMinor");
-
-                            Note note = new Note(Pitch.valueOf(pitch), Type.valueOf(noteType), noteOctave, noteFretNumber, noteTabsLine);
+                            Note note = new Note(
+                                    Pitch.valueOf((String) noteJson.get("pitch")),
+                                    Type.valueOf((String) noteJson.get("type")),
+                                    (String) noteJson.get("octave"),
+                                    (String) noteJson.get("fretNumber"),
+                                    ((Long) noteJson.get("tabsLine")).intValue()
+                            );
                             chord.addNote(note);
                         }
 
@@ -147,106 +185,120 @@ public class DataReader {
                     song.addMeasure(measure);
                 }
 
-                // Parse comments
+                /**
+                 * Parses all comments and attaches them to the song.
+                 */
                 JSONArray commentsArray = (JSONArray) songJson.get("comments");
                 for (Object commentObj : commentsArray) {
                     JSONObject commentJson = (JSONObject) commentObj;
+
                     String commenterName = (String) commentJson.get("commenterName");
                     String commentText = (String) commentJson.get("commentText");
                     String username = (String) commentJson.get("username");
-                    Comment comment = new Comment(commenterName, commentText, username);
 
+                    Comment comment = new Comment(commenterName, commentText, username);
                     song.addComment(comment);
                 }
 
-                // Add song to library
                 songLibrary.addSong(song);
             }
 
             System.out.println("Songs loaded successfully!");
-
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Failed to load songs from " + SONGS_FILE_PATH);
         }
     }
 
+    /**
+     * Reads instruments and their chord definitions from the JSON file
+     * and adds them to the {@link InstrumentList}.
+     */
     public static void readInstruments() {
         try {
-            // Parse the JSON file
             JSONParser parser = new JSONParser();
+
+            /**
+             * Parses instrument data into a JSONArray of instrument definitions.
+             */
             JSONArray instrumentsArray = (JSONArray) parser.parse(new FileReader(INSTRUMENTS_FILE_PATH));
 
-            // Get the singleton instance of InstrumentList
+            /**
+             * Retrieves the singleton instance of the instrument list.
+             */
             InstrumentList instrumentList = InstrumentList.getInstance();
 
-            // Iterate through the JSON array and populate InstrumentList
+            /**
+             * Iterates through each instrument and reconstructs its chord list.
+             */
             for (Object obj : instrumentsArray) {
                 JSONObject instrumentJson = (JSONObject) obj;
 
                 String instrumentName = (String) instrumentJson.get("instrumentName");
-                ArrayList<Chord> chords = new ArrayList<Chord>();
+
+                ArrayList<Chord> chords = new ArrayList<>();
                 Instrument instrument = new Instrument(InstrumentType.valueOf(instrumentName), chords);
 
                 JSONArray chordsArray = (JSONArray) instrumentJson.get("chords");
-                    for (Object chordObj : chordsArray) {
-                        JSONObject chordJson = (JSONObject) chordObj;
-                        String leadingNote = (String) chordJson.get("leadingNote"); // Might not need this
-                        boolean isSingleNote = (boolean) chordJson.get("isSingleNote");
-                        boolean isMinor = (boolean) chordJson.get("isMinor");
-                        String type = (String) chordJson.get("type");
+                for (Object chordObj : chordsArray) {
+                    JSONObject chordJson = (JSONObject) chordObj;
 
-                        Chord chord = new Chord(type, isSingleNote, isMinor);
+                    boolean isSingleNote = (boolean) chordJson.get("isSingleNote");
+                    boolean isMinor = (boolean) chordJson.get("isMinor");
+                    String type = (String) chordJson.get("type");
 
-                        // Get the array of notes
-                        JSONArray notesArray = (JSONArray) chordJson.get("notes");
+                    Chord chord = new Chord(type, isSingleNote, isMinor);
 
-                        //Assign leading note attribute
-                        JSONObject leadingNoteJson = (JSONObject) notesArray.get(0);
-                        String leadingNoteType = (String) leadingNoteJson.get("type");
-                        String leadingNotePitch = (String) leadingNoteJson.get("pitch");
-                        String leadingNoteOctave = (String) leadingNoteJson.get("octave");
-                        String leadingNoteFretNumber = (String) leadingNoteJson.get("fretNumber");
-                        int leadingNoteTabsLine = ((Long) leadingNoteJson.get("tabsLine")).intValue();
-                        Note leadingNoteAttribute = new Note(Pitch.valueOf(leadingNotePitch), Type.valueOf(leadingNoteType), leadingNoteOctave,
-                        leadingNoteFretNumber, leadingNoteTabsLine);
-                        chord.setLeadingNote(leadingNoteAttribute);
+                    JSONArray notesArray = (JSONArray) chordJson.get("notes");
 
-                        
-                        // Parse notes in the chord
-                        for (Object noteObj : notesArray) {
-                            JSONObject noteJson = (JSONObject) noteObj;
-                            String noteType = (String) noteJson.get("type");
-                            String pitch = (String) noteJson.get("pitch");
-                            String noteOctave = (String) noteJson.get("octave");
-                            String noteFretNumber = (String) noteJson.get("fretNumber");
-                            int noteTabsLine = ((Long) noteJson.get("tabsLine")).intValue();
-                          //  boolean isMinor = (boolean) noteJson.get("isMinor");
+                    /**
+                     * Sets the leading note from the first note object.
+                     */
+                    JSONObject leadingNoteJson = (JSONObject) notesArray.get(0);
+                    Note leadingNote = new Note(
+                            Pitch.valueOf((String) leadingNoteJson.get("pitch")),
+                            Type.valueOf((String) leadingNoteJson.get("type")),
+                            (String) leadingNoteJson.get("octave"),
+                            (String) leadingNoteJson.get("fretNumber"),
+                            ((Long) leadingNoteJson.get("tabsLine")).intValue()
+                    );
+                    chord.setLeadingNote(leadingNote);
 
-                            Note note = new Note(Pitch.valueOf(pitch), Type.valueOf(noteType), noteOctave, noteFretNumber, noteTabsLine);
-                            chord.addNote(note);
-                        }
-
-                        chords.add(chord);
+                    for (Object noteObj : notesArray) {
+                        JSONObject noteJson = (JSONObject) noteObj;
+                        Note note = new Note(
+                                Pitch.valueOf((String) noteJson.get("pitch")),
+                                Type.valueOf((String) noteJson.get("type")),
+                                (String) noteJson.get("octave"),
+                                (String) noteJson.get("fretNumber"),
+                                ((Long) noteJson.get("tabsLine")).intValue()
+                        );
+                        chord.addNote(note);
                     }
 
-                    instrumentList.addInstrument(instrument);
+                    chords.add(chord);
+                }
+
+                instrumentList.addInstrument(instrument);
             }
 
             System.out.println("Instruments loaded successfully!");
-
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Failed to load instruments from " + INSTRUMENTS_FILE_PATH);
         }
     }
 
+    /**
+     * Entry point for debugging. Loads users and songs,
+     * then prints them to the console.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
-        // Read both users and songs
         readUsers();
         readSongs();
 
-        // Display all users and songs for verification
         UserList.getInstance().displayUsers();
         SongLibrary.getInstance().displaySongs();
     }
