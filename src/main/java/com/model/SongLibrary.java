@@ -48,7 +48,7 @@ public class SongLibrary {
     public ArrayList<Song> searchByTitle(String title) {
         ArrayList<Song> result = new ArrayList<>();
         for (Song song : songs) {
-            if (song.getTitle().equalsIgnoreCase(title) && song.isPublished()) {
+            if (song.getTitle().equalsIgnoreCase(title)) {
                 result.add(song);
             }
         }
