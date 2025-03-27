@@ -2,11 +2,11 @@
     {
         "firstName": "Fellicia",
         "lastName": "Fredrickson",
-        "password": "asdjihdw",
+        "password": "fellicia",
         "userName": "ffredrickson",
         "createdSongs": [],
         "userID": "3ebd8b82-0fea-4a21-b8a0-c80b3174836d",
-        "email": "jdoe@gmail.com",
+        "email": "ffredrickson@gmail.com",
         "isAuthor": false
     },
 
@@ -14,10 +14,10 @@
         "firstName": "Tom",
         "lastName": "Petty",
         "password": "asdjihdw",
-        "userName": "ffredrickson",
+        "userName": "tpetty",
         "createdSongs": [],
         "userID": "026c7cdb-aa8d-40b6-ab06-5b06034fe83f",
-        "email": "jdoe@gmail.com",
+        "email": "tpetty@gmail.com",
         "isAuthor": false
     }
 ]

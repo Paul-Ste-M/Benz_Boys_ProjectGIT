@@ -20,7 +20,7 @@ public class Song {
         this.title = title;
         this.author = author.getFullName();
         this.authorUsername = author.getUsername();
-        this.songID = UUID.randomUUID();
+        this.songID = author.getAuthorId();
         this.authorID = author.getUserID();
         this.genre = new ArrayList<>();
         this.measures = new ArrayList<>();
@@ -122,7 +122,7 @@ public class Song {
     public UUID getSongID() {
         return songID;
     }
-
+    
     public UUID getAuthorID() {
         return authorID;
     }

@@ -21,7 +21,9 @@ public class SongApp {
      * User login
      */
     public User login(String username, String password) {
-        return UserList.getInstance().login(username, password);
+        this.user = UserList.getInstance().login(username, password);
+
+        return this.user;
     }
 
     /**
@@ -106,7 +108,7 @@ public class SongApp {
     /**
      * Publishes a song
      */
-    public void publishSong(Song selectedSong, String name, String author, String username) {
+    public void publishSong(Song selectedSong) {
         if (selectedSong != null) {
             selectedSong.setPublished(true);
         }
@@ -195,6 +197,7 @@ public class SongApp {
         this.searchResults = results;
         return results;
     }
+
 
     public Song selectSongFromResults(int position) {
         this.selectedSong = searchResults.get(position);
