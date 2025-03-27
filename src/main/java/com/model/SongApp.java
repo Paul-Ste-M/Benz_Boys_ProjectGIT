@@ -172,6 +172,17 @@ public class SongApp {
         }
     }
 
+    public ArrayList<Song> searchByTitle(String title) {
+        ArrayList<Song> results = SongLibrary.getInstance().searchByTitle(title);
+        this.searchResults = results;
+        return results;
+    }
+
+    public Song selectSongFromResults(int position) {
+        this.selectedSong = searchResults.get(position);
+        return selectedSong;
+    }
+
     /**
      * Search for a song by genre, artist, or title
      */
