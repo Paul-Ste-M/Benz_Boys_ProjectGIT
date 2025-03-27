@@ -3,16 +3,32 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * Singleton class that manages all user accounts in the system.
+ * Provides user registration, authentication, user lookup, and basic persistence hooks.
+ */
 public class UserList {
-    private static UserList userList;  // Singleton instance
-    private ArrayList<User> users;     // List of users
 
-    // Private constructor to prevent instantiation from outside
+    /** Singleton instance of UserList. */
+    private static UserList userList;
+
+    /** List of all users registered in the system. */
+    private ArrayList<User> users;
+
+    /**
+     * Private constructor to enforce singleton behavior.
+     * Initializes an empty user list.
+     */
     private UserList() {
         users = new ArrayList<>();
     }
 
-    // Singleton instance getter
+    /**
+     * Returns the singleton instance of UserList.
+     * If the instance does not exist yet, it will be created.
+     *
+     * @return the singleton instance of UserList
+     */
     public static UserList getInstance() {
         if (userList == null) {
             userList = new UserList();
@@ -20,14 +36,23 @@ public class UserList {
         return userList;
     }
 
-    // checks if a user already exists with provided username or email
+    /**
+     * Registers a new user in the system if their username and email are unique.
+     *
+     * @param username   the desired username
+     * @param firstName  the user's first name
+     * @param lastName   the user's last name
+     * @param email      the user's email address
+     * @param password   the user's chosen password
+     * @return the newly created User if successful, or null if the username or email is taken
+     */
     public User signUp(String username, String firstName, String lastName, String email, String password) {
-        for(User user : UserList.getInstance().getUsers()) {
-            if(user.getUsername().equals(username)) {
+        for (User user : UserList.getInstance().getUsers()) {
+            if (user.getUsername().equals(username)) {
                 System.out.println("That username is taken!");
                 return null;
             }
-            if(user.getEmail().equals(email)) {
+            if (user.getEmail().equals(email)) {
                 System.out.println("That email has already been used!");
                 return null;
             }
@@ -35,69 +60,125 @@ public class UserList {
         return addUser(firstName, lastName, username, password, email);
     }
 
-    // Add a new user to the list
+    /**
+     * Creates a new user with the provided information and adds them to the list.
+     *
+     * @param firstName the user's first name
+     * @param lastName  the user's last name
+     * @param userName  the desired username
+     * @param password  the user's password
+     * @param email     the user's email address
+     * @return the newly created User object
+     */
     public User addUser(String firstName, String lastName, String userName, String password, String email) {
         User newUser = new User(firstName, lastName, userName, password, email);
         users.add(newUser);
         return newUser;
     }
-    // Add existing user for debugging purposes
+
+    /**
+     * Adds an existing User object to the list.
+     * This is typically used when loading users from persistent storage.
+     *
+     * @param user the User object to add
+     */
     public void addUser(User user) {
         users.add(user);
     }
-    // login method
+
+    /**
+     * Attempts to log in a user by matching the provided username and password.
+     *
+     * @param username the username entered
+     * @param password the password entered
+     * @return the matching User if credentials are valid, or null otherwise
+     */
     public User login(String username, String password) {
         for (User user : users) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                return user; // Return the matching user
+                return user;
             }
         }
         System.out.println("Incorrect username or password");
-        return null; // Return null if no user found
+        return null;
     }
-    // Returns the list of users
+
+    /**
+     * Returns the full list of registered users.
+     *
+     * @return a list of all User objects
+     */
     public ArrayList<User> getUsers() {
         return this.users;
     }
 
-    // Retrieve a user based on username and password
+    /**
+     * Searches for a user by matching both username and password.
+     *
+     * @param userName the username to match
+     * @param password the password to match
+     * @return the matching User, or null if not found
+     */
     public User getUser(String userName, String password) {
         for (User user : users) {
             if (user.getUsername().equals(userName) && user.getPassword().equals(password)) {
                 return user;
             }
         }
-        return null; // User not found
+        return null;
     }
 
-    // Retrieve a user based on userID
+    /**
+     * Searches for a user by their UUID.
+     *
+     * @param userID the UUID of the user
+     * @return the matching User if found, or null if no match
+     */
     public User getUser(UUID userID) {
-        for ( User user : users) {
-            if (user.getUserID().equals(userID))
+        for (User user : users) {
+            if (user.getUserID().equals(userID)) {
                 return user;
+            }
         }
-        return null; // User not found, I don't like this though. Maybe another way?
+        return null;
     }
 
-    // Remove a user from the list
+    /**
+     * Removes the specified user from the list.
+     *
+     * @param user the user to remove
+     */
     public void removeUser(User user) {
         users.remove(user);
     }
 
-    // Display all users (for debugging purposes)
+    /**
+     * Prints all registered users to the console.
+     * Each user's full name and username is displayed.
+     * This method is primarily used for debugging purposes.
+     */
     public void displayUsers() {
         for (User user : users) {
             System.out.println(user.getFullName() + " (" + user.getUsername() + ")");
         }
     }
 
-    // Save users (stub method, actual implementation depends on storage solution)
+    /**
+     * Saves the current user list to persistent storage.
+     * This method is currently a stub and should be implemented to support file or database storage.
+     *
+     * @return true if save operation succeeds (stubbed)
+     */
     public boolean saveUsers() {
-        // Implementation for saving user data (e.g., to a file or database)
         System.out.println("Saving users...");
         return true;
     }
 
+    /**
+     * A test method that adds two users and prints the user list.
+     *
+     * @param args command-line arguments (unused)
+     */
     public static void main(String[] args) {
         UserList userList = UserList.getInstance();
 
@@ -105,6 +186,5 @@ public class UserList {
         userList.addUser("Jane", "Smith", "janesmith", "password", "jsmith@gmail.com");
 
         userList.displayUsers();
-
     }
 }

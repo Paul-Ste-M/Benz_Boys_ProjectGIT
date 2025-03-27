@@ -2,15 +2,20 @@ package com.model;
 
 import java.util.ArrayList;
 
+/**
+ * The main application controller for managing users, songs, instruments, and overall session state.
+ * Provides methods for logging in/out, managing songs, selecting instruments, saving data, and interacting with comments.
+ */
 public class SongApp {
-
     private User user;
-    private Author author;
     private Song selectedSong;
     private Instrument selectedInstrument;
     private ArrayList<Song> searchResults;
     private int currentVolume = 0;
 
+    /**
+     * Constructs the SongApp and loads all users, songs, and instruments from disk.
+     */
     public SongApp() {
         DataReader.readUsers();
         DataReader.readSongs();
@@ -18,55 +23,67 @@ public class SongApp {
     }
 
     /**
-     * User login
+     * Attempts to log in a user with the given credentials.
+     *
+     * @param username the username to authenticate
+     * @param password the password to check
+     * @return the logged-in User if credentials are valid, or null otherwise
      */
     public User login(String username, String password) {
-        this.user = UserList.getInstance().login(username, password);
-
-        return this.user;
+        return UserList.getInstance().login(username, password); 
     }
 
     /**
-     * Sign up a new user
+     * Registers a new user and sets them as the current user.
+     *
+     * @param username  the desired username
+     * @param firstName first name
+     * @param lastName  last name
+     * @param email     user’s email
+     * @param password  desired password
+     * @return the newly created User object
      */
     public User signUp(String username, String firstName, String lastName, String email, String password) {
-        User potentialNewUser = UserList.getInstance().signUp(username, firstName, lastName, email, password);
-        this.user = potentialNewUser;
-        return potentialNewUser;
+         User potentialNewUser = UserList.getInstance().signUp(username, firstName, lastName, email, password);
+         this.user = potentialNewUser;
+         return potentialNewUser;
     }
 
     /**
-     * Log out the current user
+     * Logs out the current user and saves all relevant data to disk.
      */
     public void logout() {
-
-        if (!SongLibrary.getInstance().getSongs().isEmpty()) {
-            UserList.getInstance().saveUsers();
-            SongLibrary.getInstance().saveSongs();
-            InstrumentList.getInstance().saveInstruments();
-        } else {
-            System.out.println("No songs to save, preserving existing songs.json content.");
-        }
-
-        user = null;
+        UserList.getInstance().saveUsers();
+        SongLibrary.getInstance().saveSongs();
+        InstrumentList.getInstance().saveInstruments();
+        user = null; 
     }
 
     /**
-     * Retrieve a song by title and author
+     * Retrieves a song from the library by title and author.
+     *
+     * @param name   the title of the song
+     * @param author the author’s name
+     * @return the Song object if found, null otherwise
      */
     public Song getSong(String name, String author) {
         return SongLibrary.getInstance().getSong(name, author);
     }
 
     /**
-     * Add a song to the library
+     * Adds a new song to the song library.
+     *
+     * @param name   the title of the song
+     * @param author the Author creating the song
      */
     public void addSong(String name, Author author) {
         SongLibrary.getInstance().addSong(new Song(name, author));
     }
 
     /**
-     * Save a song
+     * Saves the current list of songs to disk.
+     *
+     * @param selectedSong the song to save (not directly used)
      */
     public void saveSong(Song selectedSong) {
         ArrayList<Song> allSongs = SongLibrary.getInstance().getSongs();
@@ -74,8 +91,13 @@ public class SongApp {
     }
 
     /**
-     * Start a song
+     * Retrieves and returns a song from the library to begin editing or playback.
+     *
+     * @param title  the song title
+     * @param author the song author
+     * @return the retrieved Song object
      */
+<<<<<<< HEAD
     public Song startSong(String title) {
         this.author = new Author(user);
         Song newSong = new Song(title, author);
@@ -94,50 +116,73 @@ public class SongApp {
 
     public void addChord(int position, String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
         author.addChord(position, type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine);
+=======
+    public Song startSong(String title, String author) {
+        return SongLibrary.getInstance().getSong(title, author);
+>>>>>>> d19f1b4de2034961027bc81329c6f71e3eb43692
     }
 
     /**
-     * Edit a song
+     * Placeholder method for editing a song (not yet implemented).
+     *
+     * @param selectedSong the song to edit
+     * @param decision     user’s input or edit action
      */
-    public void editSong(Song selectedSong, int position) {
-
+    public void editSong(Song selectedSong, String decision) {
+        // Stub implementation
     }
 
     /**
-     * Saves project
+     * Placeholder for saving a song project with metadata.
+     *
+     * @param selectedSong the song to save
+     * @param name         title of the song
+     * @param author       name of the author
+     * @param username     author's username
      */
     public void saveProject(Song selectedSong, String name, String author, String username) {
         // Stub implementation
     }
 
     /**
-     * Publishes a song
+     * Publishes the selected song, marking it as publicly available.
+     *
+     * @param selectedSong the song to publish
+     * @param name         title of the song
+     * @param author       name of the author
+     * @param username     author's username
      */
-    public void publishSong(Song selectedSong) {
+    public void publishSong(Song selectedSong, String name, String author, String username) {
         if (selectedSong != null) {
             selectedSong.setPublished(true);
         }
     }
 
     /**
-     * Removes a song
+     * Removes the selected song from the library.
+     *
+     * @param selectedSong the song to remove
      */
     public void removeSong(Song selectedSong) {
         SongLibrary.getInstance().removeSong(selectedSong);
-
     }
 
     /**
-     * Play a songs
+     * Plays the selected song using JFugue playback.
+     *
+     * @param selectedSong the song to play
      */
     public void playSong(Song selectedSong) {
         if (selectedSong != null) {
-            selectedSong.playSong();
+            selectedSong.playSong(); 
         }
     }
 
     /**
-     * Select an instrument
+     * Selects an instrument by name from the loaded list.
+     *
+     * @param instrumentName the name of the instrument to select
+     * @return the selected Instrument, or null if not found
      */
     public Instrument selectInstrument(String instrumentName) {
         for (Instrument instrument : InstrumentList.getInstance().getInstruments()) {
@@ -149,7 +194,9 @@ public class SongApp {
     }
 
     /**
-     * Changes the volume of the music
+     * Sets the application's playback volume.
+     *
+     * @param volume value between 0 and 100
      */
     public void changeVolume(int volume) {
         if (volume >= 0 && volume <= 100) {
@@ -158,14 +205,18 @@ public class SongApp {
     }
 
     /**
-     * Export songs
+     * Exports the selected song as a text-based tablature file.
+     *
+     * @param song the song to export
      */
     public void exportSong(Song song) {
         song.printTabsToTextFile();
     }
 
     /**
-     * Get comments for the selected song
+     * Retrieves the comments associated with the selected song.
+     *
+     * @return a list of Comment objects, or empty list if no song is selected
      */
     public ArrayList<Comment> getComments() {
         if (selectedSong == null) {
@@ -175,7 +226,11 @@ public class SongApp {
     }
 
     /**
-     * Add a comment to the currently selected song
+     * Adds a comment to the currently selected song.
+     *
+     * @param commentText   the content of the comment
+     * @param commenterName the name of the person commenting
+     * @param username      the commenter's username
      */
     public void addComment(String commentText, String commenterName, String username) {
         Comment newComment = new Comment(commentText, commenterName, username);
@@ -183,10 +238,7 @@ public class SongApp {
     }
 
     /**
-     * Show comments for the selected song
-     */
-    /**
-     * Show comments for the selected song
+     * Prints all comments for the selected song to the console.
      */
     public void showComments() {
         if (selectedSong != null) {
@@ -197,20 +249,14 @@ public class SongApp {
         }
     }
 
-    public ArrayList<Song> searchByTitle(String title) {
-        ArrayList<Song> results = SongLibrary.getInstance().searchByTitle(title);
-        this.searchResults = results;
-        return results;
-    }
-
-
-    public Song selectSongFromResults(int position) {
-        this.selectedSong = searchResults.get(position);
-        return selectedSong;
-    }
-
     /**
-     * Search for a song by genre, artist, or title
+     * Searches the song library using optional genre, artist, or title filters.
+     * Any null parameter is treated as a wildcard.
+     *
+     * @param genre  the genre to match (can be null)
+     * @param artist the author name to match (can be null)
+     * @param title  the title to match (can be null)
+     * @return a list of matching songs
      */
     public ArrayList<Song> searchByKeyboard(String genre, String artist, String title) {
         SongLibrary library = SongLibrary.getInstance();
@@ -218,7 +264,7 @@ public class SongApp {
 
         for (Song song : library.getSongs()) {
             boolean matchesGenre = (genre == null || song.getGenres().stream()
-                    .anyMatch(g -> g.name().equalsIgnoreCase(genre))); // Checks if any genre matches
+                .anyMatch(g -> g.name().equalsIgnoreCase(genre)));
             boolean matchesArtist = (artist == null || song.getAuthor().equalsIgnoreCase(artist));
             boolean matchesTitle = (title == null || song.getTitle().equalsIgnoreCase(title));
 
@@ -231,16 +277,10 @@ public class SongApp {
     }
 
     /**
-     * Export to PDF
+     * Stub method to export the song project to a PDF file.
+     * Currently not implemented.
      */
     public void exportToPDF() {
         // Stub implementation
     }
-
-    /**
-     * Play ear training game, ear training game not implemented yet
-     */
-//    public EarTrainingGame playGame() {
-//        return EarTrainingGame.getInstance(); // Assuming this method exists
-//    }
 }
