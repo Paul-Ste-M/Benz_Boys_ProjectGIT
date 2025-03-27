@@ -22,7 +22,7 @@ public class Chord {
 
     }
 
-    public Chord(String type, String leadingNote, boolean isSingleNote, boolean isMinor) {
+    public Chord(String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
         this.notes = new ArrayList<>();
         this.isSingleNote = isSingleNote;
         this.isMinor = isMinor;
@@ -30,7 +30,7 @@ public class Chord {
 
         // Convert leadingNote to an actual Note object (assuming Type and Pitch enums exist)
         //this.leadingNote = new Note(Pitch.valueOf(leadingNote.toUpperCase()), Type.valueOf(type.toUpperCase()),false);
-        this.leadingNote = new Note(Pitch.valueOf(leadingNote.toUpperCase()), this.type);
+        this.leadingNote = new Note(Pitch.valueOf(leadingNote.toUpperCase()), this.type, octave, fretNumber, tabsLine);
         
         if (!isSingleNote) {
             // Generate a chord based on the leading note
