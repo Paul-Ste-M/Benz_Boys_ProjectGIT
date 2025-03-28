@@ -3,6 +3,7 @@ package com.model;
 /**
  * Represents the rhythmic duration of a musical note or chord.
  * Each enum value maps to a shorthand string used by the JFugue music library.
+ * @author Benz Boyz
  */
 public enum Type {
 

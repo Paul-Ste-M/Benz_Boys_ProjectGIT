@@ -5,7 +5,7 @@ import java.util.UUID;
 
 /**
  * Singleton class that manages all user accounts in the system.
- * Provides user registration, authentication, user lookup, and basic persistence hooks.
+ * @author Benz Boyz
  */
 public class UserList {
 
@@ -26,7 +26,6 @@ public class UserList {
     /**
      * Returns the singleton instance of UserList.
      * If the instance does not exist yet, it will be created.
-     *
      * @return the singleton instance of UserList
      */
     public static UserList getInstance() {
@@ -38,7 +37,6 @@ public class UserList {
 
     /**
      * Registers a new user in the system if their username and email are unique.
-     *
      * @param username   the desired username
      * @param firstName  the user's first name
      * @param lastName   the user's last name
@@ -62,7 +60,6 @@ public class UserList {
 
     /**
      * Creates a new user with the provided information and adds them to the list.
-     *
      * @param firstName the user's first name
      * @param lastName  the user's last name
      * @param userName  the desired username
@@ -78,8 +75,7 @@ public class UserList {
 
     /**
      * Adds an existing User object to the list.
-     * This is typically used when loading users from persistent storage.
-     *
+     * This is typically used when loading users from the JSON files.
      * @param user the User object to add
      */
     public void addUser(User user) {
@@ -88,7 +84,6 @@ public class UserList {
 
     /**
      * Attempts to log in a user by matching the provided username and password.
-     *
      * @param username the username entered
      * @param password the password entered
      * @return the matching User if credentials are valid, or null otherwise
@@ -105,7 +100,6 @@ public class UserList {
 
     /**
      * Returns the full list of registered users.
-     *
      * @return a list of all User objects
      */
     public ArrayList<User> getUsers() {
@@ -114,7 +108,6 @@ public class UserList {
 
     /**
      * Searches for a user by matching both username and password.
-     *
      * @param userName the username to match
      * @param password the password to match
      * @return the matching User, or null if not found
@@ -130,7 +123,6 @@ public class UserList {
 
     /**
      * Searches for a user by their UUID.
-     *
      * @param userID the UUID of the user
      * @return the matching User if found, or null if no match
      */
@@ -145,7 +137,6 @@ public class UserList {
 
     /**
      * Removes the specified user from the list.
-     *
      * @param user the user to remove
      */
     public void removeUser(User user) {
@@ -166,7 +157,6 @@ public class UserList {
     /**
      * Saves the current user list to persistent storage.
      * This method is currently a stub and should be implemented to support file or database storage.
-     *
      * @return true if save operation succeeds (stubbed)
      */
     public boolean saveUsers() {
@@ -174,17 +164,16 @@ public class UserList {
         return DataWriter.saveUsers(users);
     }
 
-    /**
-     * A test method that adds two users and prints the user list.
-     *
-     * @param args command-line arguments (unused)
-     */
-    public static void main(String[] args) {
-        UserList userList = UserList.getInstance();
+    // /**
+    //  * A test method that adds two users and prints the user list.
+    //  * @param args command-line arguments (unused)
+    //  */
+    // public static void main(String[] args) {
+    //     UserList userList = UserList.getInstance();
 
-        userList.addUser("John", "Doe", "johndoe", "password", "jdoe@gmail.com");
-        userList.addUser("Jane", "Smith", "janesmith", "password", "jsmith@gmail.com");
+    //     userList.addUser("John", "Doe", "johndoe", "password", "jdoe@gmail.com");
+    //     userList.addUser("Jane", "Smith", "janesmith", "password", "jsmith@gmail.com");
 
-        userList.displayUsers();
-    }
+    //     userList.displayUsers();
+    // }
 }

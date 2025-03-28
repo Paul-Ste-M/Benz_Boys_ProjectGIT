@@ -3,7 +3,7 @@ package com.model;
 /**
  * Represents the set of musical pitches that a {@link Note} can have.
  * Each pitch is mapped to its corresponding JFugue string for playback using the JFugue music library.
- * This includes all standard chromatic pitches as well as a {@code REST} symbol ("R") to indicate silence.
+ * @author Benz Boyz
  */
 public enum Pitch {
 
@@ -54,7 +54,6 @@ public enum Pitch {
 
     /**
      * Constructs a Pitch enum with its JFugue string value.
-     *
      * @param JFugueString the string used by JFugue to represent this pitch
      */
     private Pitch(String JFugueString) {

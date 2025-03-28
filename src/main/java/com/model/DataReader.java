@@ -8,9 +8,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 /**
- * Responsible for reading data from JSON files and populating
- * core application data structures including users, songs, and instruments.
- * Uses JSON.simple for parsing and constructing application objects in memory.
+ * A data reader that reads from JSON files to populate UserList, SongLibrary, and InstrumentList
+ * with pre-existing data. Used on startup of application.
+ * @author Benz Boyz
  */
 public class DataReader extends DataConstants {
 
@@ -280,17 +280,12 @@ public class DataReader extends DataConstants {
         }
     }
 
-    /**
-     * Entry point for debugging. Loads users and songs,
-     * then prints them to the console.
-     *
-     * @param args command-line arguments (not used)
-     */
-    public static void main(String[] args) {
-        readUsers();
-        readSongs();
+    //
+    // public static void main(String[] args) {
+    //     readUsers();
+    //     readSongs();
 
-        UserList.getInstance().displayUsers();
-        SongLibrary.getInstance().displaySongs();
-    }
+    //     UserList.getInstance().displayUsers();
+    //     SongLibrary.getInstance().displaySongs();
+    // }
 }

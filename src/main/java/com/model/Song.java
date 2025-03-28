@@ -8,10 +8,9 @@ import java.util.UUID;
 import org.jfugue.player.Player;
 
 /**
- * Represents a musical song composed by an author.
- * A song contains a title, author info, a unique ID, genres, measures (music structure),
- * published status, and user comments.
+ * A song composed by an author.
  * Songs can be played back using JFugue and exported as tablature to a text file.
+ * @author Benz Boyz
  */
 public class Song {
     private String title;
@@ -27,7 +26,6 @@ public class Song {
     /**
      * Constructs a new Song from an Author object.
      * Generates a new UUID and initializes empty genres, measures, and comments.
-     *
      * @param title  the song title
      * @param author the Author who created the song
      */
@@ -46,7 +44,6 @@ public class Song {
 
     /**
      * Constructs a Song with all core fields, typically used when loading from saved data.
-     *
      * @param title          the song title
      * @param author         the author's full name
      * @param authorUsername the author's username
@@ -68,7 +65,6 @@ public class Song {
 
     /**
      * Adds a measure to a specific index in the song.
-     *
      * @param measure  the measure to insert
      * @param position the position to insert it at
      */
@@ -82,7 +78,6 @@ public class Song {
 
     /**
      * Adds a measure to the end of the song.
-     *
      * @param measure the measure to add
      */
     public void addMeasure(Measure measure) {
@@ -91,7 +86,6 @@ public class Song {
 
     /**
      * Replaces the song’s current measures with a new list.
-     *
      * @param newMeasures the new set of measures
      */
     public void addMeasures(ArrayList<Measure> newMeasures) {
@@ -100,7 +94,6 @@ public class Song {
 
     /**
      * Removes the measure at the given index, if the position is valid.
-     *
      * @param measure  unused parameter (can be removed)
      * @param position the index of the measure to remove
      */
@@ -114,7 +107,6 @@ public class Song {
 
     /**
      * Adds a genre to the song based on the provided genre name string.
-     *
      * @param genreName the name of the genre (must match the Genre enum)
      */
     public void addGenre(String genreName) {
@@ -124,7 +116,6 @@ public class Song {
 
     /**
      * Returns whether the song is published.
-     *
      * @return true if published, false otherwise
      */
     public boolean isPublished() {
@@ -133,7 +124,6 @@ public class Song {
 
     /**
      * Returns the list of measures in the song.
-     *
      * @return a list of Measure objects
      */
     public ArrayList<Measure> getMeasures() {
@@ -157,7 +147,6 @@ public class Song {
 
     /**
      * Adds a new comment to the song.
-     *
      * @param newComment2 the comment to add
      */
     public void addComment(Comment newComment2) {
@@ -166,7 +155,6 @@ public class Song {
 
     /**
      * Sets the published status of the song.
-     *
      * @param published true if the song should be marked as published
      */
     public void setPublished(boolean published) {
@@ -175,7 +163,6 @@ public class Song {
 
     /**
      * Returns the list of comments on the song.
-     *
      * @return a list of Comment objects
      */
     public ArrayList<Comment> getComments() {
@@ -184,7 +171,6 @@ public class Song {
 
     /**
      * Returns the list of genres associated with the song.
-     *
      * @return a list of Genre enums
      */
     public ArrayList<Genre> getGenres() {
@@ -197,7 +183,6 @@ public class Song {
 
     /**
      * Returns the title of the song.
-     *
      * @return the song title
      */
     public String getTitle() {
@@ -206,7 +191,6 @@ public class Song {
 
     /**
      * Returns the full name of the author.
-     *
      * @return the author's name
      */
     public String getAuthor() {
@@ -215,14 +199,16 @@ public class Song {
 
     /**
      * Returns the unique identifier of the song.
-     *
      * @return the song's UUID
      */
     public UUID getSongID() {
         return songID;
     }
     
-
+    /**
+     * Returns the ID of the author
+     * @return The author's ID
+     */
     public UUID getAuthorID() {
         return authorID;
     }
@@ -270,7 +256,6 @@ public class Song {
 
     /**
      * Returns the string name of a guitar string based on tablature line number.
-     *
      * @param tabsLine the tablature line number (1 to 6)
      * @return the string name (E, B, G, D, A, or E)
      */

@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Represents a single measure in a song.
  * A measure consists of a list of chords and tracks the total beat count.
+ * @author Benz Boyz
  */
 public class Measure {
 
@@ -25,7 +26,6 @@ public class Measure {
 
     /**
      * Validates whether the measure has a beat count within the expected range.
-     *
      * @return true if beatCount is between 1 and 4 (inclusive), false otherwise
      */
     public boolean checkIfValid() {
@@ -37,8 +37,7 @@ public class Measure {
     }
 
     /**
-     * Retrieves the number of beats (chords) in the measure.
-     *
+     * Retrieves the number of beats in the measure.
      * @return the total beat count
      */
     public int getBeatCount() {
@@ -47,7 +46,6 @@ public class Measure {
 
     /**
      * Returns the list of chords contained in this measure.
-     *
      * @return a list of Chord objects
      */
     public List<Chord> getChords() {
@@ -57,7 +55,6 @@ public class Measure {
     /**
      * Adds a new chord to a specific position in the measure using individual note parameters.
      * If the position is invalid, the chord is not added.
-     *
      * @param type        the note type (e.g., "QUARTER", "HALF")
      * @param leadingNote the pitch of the leading note (e.g., "C", "D")
      * @param isSingleNote whether the chord is a single note
@@ -86,7 +83,6 @@ public class Measure {
     /**
      * Adds a Chord object to a specific position in the measure.
      * If the position is invalid, the chord is not added.
-     *
      * @param chord    the chord object to insert
      * @param position the position in the list of chords to insert at
      */
@@ -101,7 +97,6 @@ public class Measure {
 
     /**
      * Adds a chord to the end of the measure.
-     *
      * @param chord the Chord object to append
      */
     public void addChord(Chord chord) {
@@ -112,7 +107,6 @@ public class Measure {
     /**
      * Removes the chord at a specific position in the measure.
      * If the position is invalid, no chord is removed.
-     *
      * @param position the index of the chord to remove
      */
     public void removeChord(int position) {
@@ -127,7 +121,6 @@ public class Measure {
     /**
      * Changes the chord at the specified position by updating its type and pitch.
      * If the position is invalid, no changes are made.
-     *
      * @param type     the new note type (e.g., "QUARTER")
      * @param pitch    the new pitch (e.g., "C", "D")
      * @param position the index of the chord to change
@@ -143,7 +136,6 @@ public class Measure {
     /**
      * Converts all chords in this measure to a JFugue-compatible music string
      * and appends the result to the provided string.
-     *
      * @param musicString the current music string being built
      * @return the updated music string including this measure's content
      */

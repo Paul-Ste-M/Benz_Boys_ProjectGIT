@@ -10,9 +10,9 @@ public class ScenarioDriver {
         SongApp app = new SongApp();
 
         // Run the separate scenarios
-        //runUserManagementScenario(app);
-        //runSongPlayingScenario(app);
-        //runSongCreationScenario(app);
+        runUserManagementScenario(app);
+        runSongPlayingScenario(app);
+        runSongCreationScenario(app);
         runPlayCreatedSongScenario(app);
 
     }

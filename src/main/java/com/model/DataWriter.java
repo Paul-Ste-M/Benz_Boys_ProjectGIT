@@ -10,8 +10,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- * Handles writing Users, Songs, and Instruments to JSON files.
- * Converts Java objects into JSON format and saves them to disk.
+ * A data writer that saves the objects in UserList, SongLibrary, and InstrumentList too JSON files.
+ * Used when logging out or performing important actions
+ * @author Benz Boyz
  */
 public class DataWriter extends DataConstants {
 
@@ -115,7 +116,6 @@ public class DataWriter extends DataConstants {
      * Converts a Song object to a JSONObject.
      * Includes metadata (title, author info), genres, measures (with chords and notes),
      * published status, and comments.
-     *
      * @param song the song to convert
      * @return a JSONObject representing the song
      */
@@ -278,39 +278,33 @@ public class DataWriter extends DataConstants {
         return instrumentDetails;
     }
 
-    /**
-     * A test driver for the DataWriter class.
-     * Loads users, songs, and instruments from disk, plays a sample song,
-     * prints its tablature to a file, and saves everything back.
-     *
-     * @param args command line arguments (not used)
-     */
-    public static void main(String[] args) {
-        /**
-         * Load data from disk.
-         */
-        DataReader.readUsers();
-        DataReader.readSongs();
-        DataReader.readInstruments();
 
-        /**
-         * Retrieve data instances.
-         */
-        UserList userList = UserList.getInstance();
-        SongLibrary songLibrary = SongLibrary.getInstance();
-        InstrumentList instrumentList = InstrumentList.getInstance();
+//     public static void main(String[] args) {
+//         /**
+//          * Load data from disk.
+//          */
+//         DataReader.readUsers();
+//         DataReader.readSongs();
+//         DataReader.readInstruments();
 
-        /**
-         * Play and print a test song.
-         */
-        songLibrary.searchByTitle("Test Song").get(0).playSong();
-        songLibrary.searchByTitle("Test Song").get(0).printTabsToTextFile();
+//         /**
+//          * Retrieve data instances.
+//          */
+//         UserList userList = UserList.getInstance();
+//         SongLibrary songLibrary = SongLibrary.getInstance();
+//         InstrumentList instrumentList = InstrumentList.getInstance();
 
-        /**
-         * Save updated data back to JSON.
-         */
-        DataWriter.saveUsers(userList.getUsers());
-        DataWriter.saveSongs(songLibrary.getSongs());
-        DataWriter.saveInstruments(instrumentList.getInstruments());
-    }
+//         /**
+//          * Play and print a test song.
+//          */
+//         songLibrary.searchByTitle("Test Song").get(0).playSong();
+//         songLibrary.searchByTitle("Test Song").get(0).printTabsToTextFile();
+
+//         /**
+//          * Save updated data back to JSON.
+//          */
+//         DataWriter.saveUsers(userList.getUsers());
+//         DataWriter.saveSongs(songLibrary.getSongs());
+//         DataWriter.saveInstruments(instrumentList.getInstruments());
+//     }
 }

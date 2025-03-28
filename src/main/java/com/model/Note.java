@@ -4,8 +4,8 @@ import org.jfugue.pattern.Pattern;
 import org.jfugue.player.Player;
 
 /**
- * Represents a musical note, including its pitch, duration (type), octave, and tablature information.
- * This class also handles both normal notes and rest (pause) notes. Notes can be played using the JFugue library.
+ * A musical note, including its pitch, duration (type), octave, and tabature information.
+ * @author Benz Boyz
  */
 public class Note {
     private Pitch pitch;
@@ -18,7 +18,6 @@ public class Note {
     /**
      * Constructs a note with the given pitch and type.
      * Automatically marks the note as a rest if its pitch maps to "R" in JFugue.
-     *
      * @param pitch the musical pitch (C, D, E, etc. or R for rest)
      * @param type  the duration/type of the note (e.g. QUARTER, WHOLE)
      */
@@ -29,9 +28,8 @@ public class Note {
     }
 
     /**
-     * Constructs a note with full data, typically used when loading from JSON.
+     * Constructs a note with full data, used when loading from JSON and receiving information from facade.
      * Includes fret and tablature position in addition to pitch/type.
-     *
      * @param pitch       the pitch of the note
      * @param type        the note duration/type
      * @param octave      the octave string (e.g., "3", "4")
@@ -49,7 +47,6 @@ public class Note {
 
     /**
      * Returns whether this note is a rest (pause) rather than a sound.
-     *
      * @return true if this is a rest, false otherwise
      */
     public boolean isRest() {
@@ -82,7 +79,6 @@ public class Note {
     /**
      * Returns the playback duration in milliseconds for this note,
      * based on its type.
-     *
      * @return the duration in milliseconds
      */
     private long getDuration() {
@@ -102,7 +98,6 @@ public class Note {
 
     /**
      * Returns the JFugue-compatible duration string for this note.
-     *
      * @return a string like "w", "h", "q", "i" based on the note type
      */
     public String getDurationStringForJFugue() {
@@ -111,7 +106,6 @@ public class Note {
 
     /**
      * Returns the type (duration) of the note.
-     *
      * @return the note's type
      */
     public Type getType() {
@@ -120,7 +114,6 @@ public class Note {
 
     /**
      * Returns the pitch of the note.
-     *
      * @return the note's pitch
      */
     public Pitch getPitch() {
@@ -128,8 +121,7 @@ public class Note {
     }
 
     /**
-     * Returns the string representation of the octave (used in tabs).
-     *
+     * Returns the string representation of the octave (used in JFugue).
      * @return the octave string
      */
     public String getOctave() {
@@ -138,7 +130,6 @@ public class Note {
 
     /**
      * Returns the fret number this note is associated with.
-     *
      * @return fret number as a string
      */
     public String getFretNumber() {
@@ -147,7 +138,6 @@ public class Note {
 
     /**
      * Returns the tablature line number (e.g., string on guitar).
-     *
      * @return the tablature line index
      */
     public int getTabsLine() {
@@ -156,7 +146,6 @@ public class Note {
 
     /**
      * Sets the type of this note. Ignores null input.
-     *
      * @param type the new note type
      */
     public void setType(Type type) {
@@ -165,9 +154,7 @@ public class Note {
     }
 
     /**
-     * Converts the pitch of this note to a JFugue-compatible note string.
-     * If the pitch is "R" (rest), returns "R".
-     *
+     * Returns the string attribute in the Pitch enum for JFugue 
      * @return the note string for JFugue playback (e.g., "C", "G#", "R")
      */
     public String getNoteStringForJFugue() {
@@ -177,7 +164,6 @@ public class Note {
     /**
      * Returns a string representation of this note.
      * For rest notes, shows "Rest(type)", otherwise shows "Note(pitch, type)".
-     *
      * @return formatted string representation of the note
      */
     @Override
