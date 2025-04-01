@@ -6,7 +6,7 @@ import java.util.UUID;
 /**
  * Represents a user in the system.
  * A user may or may not be an author and can have associated created songs.
- * Users have personal information including name, username, email, and a UUID identifier.
+ * @author Benz Boyz
  */
 public class User {
 
@@ -36,7 +36,6 @@ public class User {
 
     /**
      * Constructs a new User when registering a new account.
-     *
      * @param firstName the user's first name
      * @param lastName  the user's last name
      * @param userName  the unique username
@@ -55,7 +54,7 @@ public class User {
     }
 
     /**
-     * Constructs a User from existing data, such as when reading from persistent storage.
+     * Constructs a User using information from the JSON files.
      *
      * @param firstName     the user's first name
      * @param lastName      the user's last name
@@ -102,30 +101,28 @@ public class User {
 
     /**
      * Placeholder method to pause a song.
-     *
      * @param song the song to pause
      */
     public void pauseSong(Song song) {
-        // TODO: Implement pause logic
+
     }
 
     /**
      * Placeholder method to increase playback volume.
      */
     public void volumeIncrease() {
-        // TODO: Implement volume increase
+
     }
 
     /**
      * Placeholder method to decrease playback volume.
      */
     public void volumeDescrease() {
-        // TODO: Implement volume decrease
+
     }
 
     /**
      * Gets the user's first name.
-     *
      * @return the first name
      */
     public String getFirstName() {
@@ -134,7 +131,6 @@ public class User {
 
     /**
      * Gets the user's last name.
-     *
      * @return the last name
      */
     public String getLastName() {
@@ -143,7 +139,6 @@ public class User {
 
     /**
      * Gets the user's full name by combining first and last name.
-     *
      * @return the full name
      */
     public String getFullName() {
@@ -152,7 +147,6 @@ public class User {
 
     /**
      * Gets the user's username.
-     *
      * @return the username
      */
     public String getUsername() {
@@ -161,7 +155,6 @@ public class User {
 
     /**
      * Gets the user's password.
-     *
      * @return the password
      */
     public String getPassword() {
@@ -170,7 +163,6 @@ public class User {
 
     /**
      * Gets the user's email address.
-     *
      * @return the email
      */
     public String getEmail() {
@@ -179,7 +171,6 @@ public class User {
 
     /**
      * Gets the user's UUID.
-     *
      * @return the UUID
      */
     public UUID getUserID() {
@@ -188,7 +179,6 @@ public class User {
 
     /**
      * Checks whether this user is an author.
-     *
      * @return true if the user is an author, false otherwise
      */
     public boolean isAuthor() {
@@ -204,13 +194,18 @@ public class User {
 
     /**
      * Gets the list of song UUIDs that the user has created.
-     *
      * @return the list of created song UUIDs
      */
     public ArrayList<UUID> getCreatedSongs() {
         return this.createdSongs;
     }
 
+    /**
+     * Adds a song to the user's list of created songs.
+     * Only happens when a song is started, by which point the user will
+     * be turned into an Author
+     * @param song The song to be added
+     */
     public void addCreatedSong(Song song) {
         createdSongs.add(song.getSongID());
     }

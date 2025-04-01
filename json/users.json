@@ -4,7 +4,9 @@
         "lastName": "Fredrickson",
         "password": "fellicia",
         "userName": "ffredrickson",
-        "createdSongs": [],
+        "createdSongs": [
+            "4077c383-48cf-4084-b420-deab14162bf1"
+        ],
         "userID": "3ebd8b82-0fea-4a21-b8a0-c80b3174836d",
         "email": "ffredrickson@gmail.com",
         "isAuthor": true
@@ -21,6 +23,16 @@
         ],
         "userID": "026c7cdb-aa8d-40b6-ab06-5b06034fe83f",
         "email": "tpetty@gmail.com",
+        "isAuthor": false
+    },
+    {
+        "firstName": "Fred",
+        "lastName": "Smith",
+        "password": "password",
+        "userName": "ffred",
+        "createdSongs": [],
+        "userID": "85bc43f5-7ac8-45d4-895a-f19cdc549295",
+        "email": "fred@example.com",
         "isAuthor": false
     }
 ]

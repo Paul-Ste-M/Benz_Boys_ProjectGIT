@@ -3,11 +3,8 @@ package com.model;
 import java.util.ArrayList;
 
 /**
- * Represents a musical instrument that contains a collection of preconfigured chords.
- * Each {@code Instrument} is identified by a name (via {@link InstrumentType}) and
- * holds a list of {@link Chord} objects that define the chord shapes available on that instrument.
- * This class is used during chord generation (e.g., converting a single note into a full chord)
- * and is populated when reading instrument data via {@link DataReader}.
+ * An instrument that contains all the chord formations of the instrument.
+ * @author Benz Boyz
  */
 public class Instrument {
 
@@ -19,7 +16,6 @@ public class Instrument {
 
     /**
      * Constructs an Instrument with a given name and list of chord presets.
-     *
      * @param instrumentName the name/type of the instrument
      * @param chords the list of preset chords available on this instrument
      */
@@ -30,12 +26,9 @@ public class Instrument {
 
     /**
      * Retrieves a chord from the instrument’s preset chord list based on a given leading note and minor flag.
-     * <p>
-     * This is typically used when converting a single note into a full chord
-     * (e.g., during song construction or chord editing).
-     *
+     * Used when converting a single note into a full chord
      * @param leadingNote the root/starting note of the desired chord
-     * @param isMinor     whether the chord should be minor
+     * @param isMinor whether the chord should be minor
      * @return the matching chord if found; otherwise, an "empty" placeholder chord
      */
     public Chord getChord(Note leadingNote, boolean isMinor) {
@@ -54,7 +47,6 @@ public class Instrument {
 
     /**
      * Returns the instrument’s name/type.
-     *
      * @return the {@link InstrumentType} of the instrument
      */
     public InstrumentType getInstrumentName() {
@@ -63,7 +55,6 @@ public class Instrument {
 
     /**
      * Returns the list of chord presets associated with this instrument.
-     *
      * @return a list of {@link Chord} objects
      */
     public ArrayList<Chord> getChords() {

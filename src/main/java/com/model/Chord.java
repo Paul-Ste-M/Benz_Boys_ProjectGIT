@@ -7,8 +7,8 @@ import org.jfugue.pattern.Pattern;
 import org.jfugue.player.Player;
 
 /**
- * Represents a musical chord, which can be either a single note or a group of notes
- * based on a leading note, a chord type, and whether it is minor or not.
+ * A musical chord, which can be either a single note or a group of notes
+ * @author Benz Boyz
  */
 public class Chord {
     private List<Note> notes;
@@ -29,13 +29,13 @@ public class Chord {
     /**
      * Constructs a chord with full parameters including fretboard information.
      *
-     * @param type The chord type (e.g., MAJOR, MINOR).
-     * @param leadingNote The pitch of the leading note (e.g., C, D, E).
-     * @param isSingleNote Whether this is just a single note.
-     * @param isMinor Whether the chord is minor.
-     * @param octave The octave of the leading note.
-     * @param fretNumber The fret number where the note is played.
-     * @param tabsLine The tab line index.
+     * @param type The chord's duration Type
+     * @param leadingNote The leading note's Pitch
+     * @param isSingleNote Whether or not it is a chord or a single note
+     * @param isMinor Whether or not the chord is minor
+     * @param octave The octave of the leadingNote
+     * @param fretNumber The fretNumber of the leadingNote
+     * @param tabsLine The line on which the note goes on for tabs
      */
     public Chord(String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
         this.notes = new ArrayList<>();
@@ -54,7 +54,7 @@ public class Chord {
     /**
      * Constructor used by DataReader when loading chords.
      *
-     * @param type The chord type.
+     * @param type The chord's duration Type.
      * @param isSingleNote Whether it's a single note.
      * @param isMinor Whether the chord is minor.
      */
@@ -65,26 +65,50 @@ public class Chord {
         this.isMinor = isMinor;
     }
 
+    /**
+     * Sets the leadingNote to the given note
+     * @param leadingNote The note to be set
+     */
     public void setLeadingNote(Note leadingNote) {
         this.leadingNote = leadingNote;
     }
 
+    /**
+     * Returns the leadingNote
+     * @return The leadingNote
+     */
     public Note getLeadingNote() {
         return leadingNote;
     }
 
+    /**
+     * Returns whether or not the Chord is a single note
+     * @return The chord's status
+     */
     public boolean isSingleNote() {
         return isSingleNote;
     }
 
+    /**
+     * Returns the ArrayList of notes
+     * @return The arraylist of notes
+     */
     public List<Note> getNotes() {
         return notes;
     }
 
+    /**
+     * Returns whether or not the Chord is minor
+     * @return The chord's status
+     */
     public boolean isMinor() {
         return isMinor;
     }
 
+    /**
+     * Returns the duration Type of the Chord
+     * @return The duration Type
+     */
     public Type getType() {
         return type;
     }
@@ -92,7 +116,6 @@ public class Chord {
     /**
      * Generates the chord notes from the leading note and minor flag
      * using a predefined instrument's chord definition.
-     *
      * @param instrument The instrument used to generate the chord.
      */
     private void generateChord(Instrument instrument) {
@@ -110,7 +133,6 @@ public class Chord {
 
     /**
      * Returns a default instrument to use for chord generation.
-     *
      * @return The default instrument.
      */
     public Instrument getInstrument() {
@@ -121,7 +143,6 @@ public class Chord {
 
     /**
      * Adds a note at a specific position in the chord.
-     *
      * @param newNote The note to add.
      * @param position The position to insert the note at.
      */
@@ -131,7 +152,6 @@ public class Chord {
 
     /**
      * Adds a note to the end of the chord.
-     *
      * @param newNote The note to add.
      */
     public void addNote(Note newNote) {
@@ -140,7 +160,6 @@ public class Chord {
 
     /**
      * Replaces the current notes with a new list of notes.
-     *
      * @param newNotes The new list of notes.
      */
     public void addNotes(ArrayList<Note> newNotes) {
@@ -148,8 +167,7 @@ public class Chord {
     }
 
     /**
-     * Generates the JFugue music string for this chord, whether it's a single note or polyphonic.
-     *
+     * Generates the JFugue music string for this chord, whether it's a single note or multiple.
      * @param musicString A base string to append to.
      * @return The resulting JFugue music string.
      */
@@ -196,9 +214,8 @@ public class Chord {
 
     /**
      * Changes the leading note and updates the chord accordingly.
-     *
-     * @param type The type of the new chord.
-     * @param pitch The pitch of the new leading note.
+     * @param type The duration Type of the new chord.
+     * @param pitch The letter Pitch of the new leading note.
      */
     public void changeNote(String type, String pitch) {
         this.leadingNote = new Note(Pitch.valueOf(pitch), Type.valueOf(type));

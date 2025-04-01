@@ -1,9 +1,8 @@
 package com.model;
 
 /**
- * Represents a comment made by a user on a song or musical element.
- * Each comment includes the name of the commenter, the comment text,
- * and the username of the commenter.
+ * A comment made by a user on a song.
+ * @author Benz Boyz
  */
 public class Comment {
     private String commenterName;
@@ -25,7 +24,6 @@ public class Comment {
 
     /**
      * Returns the display name of the commenter.
-     *
      * @return The commenter's name.
      */
     public String getCommenterName() {
@@ -34,7 +32,6 @@ public class Comment {
 
     /**
      * Sets the display name of the commenter.
-     *
      * @param commenterName The new commenter name.
      */
     public void setCommenterName(String commenterName) {
@@ -43,7 +40,6 @@ public class Comment {
 
     /**
      * Returns the text content of the comment.
-     *
      * @return The comment text.
      */
     public String getCommentText() {
@@ -52,7 +48,6 @@ public class Comment {
 
     /**
      * Sets the comment text.
-     *
      * @param comment The new comment text.
      */
     public void setComment(String comment) {
@@ -60,8 +55,7 @@ public class Comment {
     }
 
     /**
-     * Returns this Comment object (useful for chaining or reference).
-     *
+     * Returns this Comment object
      * @return The current Comment instance.
      */
     public Comment getComment() {
@@ -70,7 +64,6 @@ public class Comment {
 
     /**
      * Returns the username of the commenter.
-     *
      * @return The commenter's username.
      */
     public String getUsername() {
@@ -79,7 +72,6 @@ public class Comment {
 
     /**
      * Sets the username of the commenter.
-     *
      * @param username The new username.
      */
     public void setUsername(String username) {

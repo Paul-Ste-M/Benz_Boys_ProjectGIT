@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Singleton class that manages a library of all available songs.
- * Provides methods to search, add, remove, and publish songs, as well as to save them to disk.
+ * @author Benz Boyz
  */
 public class SongLibrary {
     private static SongLibrary songLibrary;  
@@ -19,7 +19,6 @@ public class SongLibrary {
 
     /**
      * Returns the singleton instance of the SongLibrary.
-     *
      * @return the SongLibrary instance
      */
     public static SongLibrary getInstance() {
@@ -31,7 +30,6 @@ public class SongLibrary {
 
     /**
      * Returns the list of all songs in the library.
-     *
      * @return list of Song objects
      */
     public ArrayList<Song> getSongs() {
@@ -40,7 +38,6 @@ public class SongLibrary {
 
     /**
      * Searches for a song by title and author.
-     *
      * @param name   the song title
      * @param author the author’s name
      * @return the Song object if found, or null if not found
@@ -56,7 +53,6 @@ public class SongLibrary {
 
     /**
      * Searches for songs by artist name.
-     *
      * @param artist the artist to search for
      * @return a list of matching songs
      */
@@ -72,7 +68,6 @@ public class SongLibrary {
 
     /**
      * Searches for songs by title.
-     *
      * @param title the song title to search for
      * @return a list of matching songs
      */
@@ -88,7 +83,6 @@ public class SongLibrary {
 
     /**
      * Searches for songs by genre.
-     *
      * @param genre the genre to search for
      * @return a list of matching songs
      */
@@ -106,7 +100,6 @@ public class SongLibrary {
 
     /**
      * Saves all songs in the library to persistent storage.
-     *
      * @return true if saving was successful, false otherwise
      */
     public boolean saveSongs() {
@@ -115,7 +108,6 @@ public class SongLibrary {
 
     /**
      * Publishes a song by setting its published status to true.
-     *
      * @param selectedSong the song to publish
      */
     public void publishSong(Song selectedSong) {
@@ -125,7 +117,6 @@ public class SongLibrary {
 
     /**
      * Removes a song from the library.
-     *
      * @param selectedSong the song to remove
      */
     public void removeSong(Song selectedSong) {
@@ -134,7 +125,6 @@ public class SongLibrary {
 
     /**
      * Creates a new song and adds it to the library.
-     *
      * @param title  the song title
      * @param author the author of the song
      */
@@ -145,7 +135,6 @@ public class SongLibrary {
 
     /**
      * Adds an existing song to the library.
-     *
      * @param song the Song object to add
      */
     public void addSong(Song song) {
@@ -161,19 +150,19 @@ public class SongLibrary {
         }
     }
 
-    /**
-     * Test main method to demonstrate functionality.
-     *
-     * @param args command-line arguments (not used)
-     */
-    public static void main(String[] args) {
-        SongLibrary songLibrary = SongLibrary.getInstance();
+    // /**
+    //  * Test main method to demonstrate functionality.
+    //  *
+    //  * @param args command-line arguments (not used)
+    //  */
+    // public static void main(String[] args) {
+    //     SongLibrary songLibrary = SongLibrary.getInstance();
 
-        Author author = new Author("John", "Doe", "johndoe", "password", "jdoe@gamil.com");
-        songLibrary.addSong("My Song", author);
-        songLibrary.addSong("Your Song", author);
-        songLibrary.addSong("Our Song", author);
+    //     Author author = new Author("John", "Doe", "johndoe", "password", "jdoe@gamil.com");
+    //     songLibrary.addSong("My Song", author);
+    //     songLibrary.addSong("Your Song", author);
+    //     songLibrary.addSong("Our Song", author);
 
-        songLibrary.displaySongs();
-    }
+    //     songLibrary.displaySongs();
+    // }
 }
