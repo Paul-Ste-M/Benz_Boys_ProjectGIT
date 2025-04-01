@@ -2,6 +2,7 @@ package com.model;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -37,10 +38,12 @@ public class DataWriter extends DataConstants {
         /**
          * Write the JSON array to the designated file.
          */
-        try (FileWriter file = new FileWriter(USER_FILE_NAME)) {
+        try {
+            String path = getFileWritingPath(USER_FILE_NAME, USER_FILE_NAME_JUNIT);
+            FileWriter file = new FileWriter(path);
             file.write(jsonUsers.toJSONString());
             file.flush();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -101,10 +104,12 @@ public class DataWriter extends DataConstants {
         /**
          * Write the JSON array to file.
          */
-        try (FileWriter file = new FileWriter(SONG_FILE_NAME)) {
+        try {
+            String path = getFileWritingPath(SONG_FILE_NAME, SONG_FILE_NAME_JUNIT);
+            FileWriter file = new FileWriter(path);
             file.write(jsonSongs.toJSONString());
             file.flush();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -225,10 +230,12 @@ public class DataWriter extends DataConstants {
         /**
          * Write the array to the file.
          */
-        try (FileWriter file = new FileWriter(INSTRUMENT_FILE_NAME)) {
+        try {
+            String path = getFileWritingPath(INSTRUMENT_FILE_NAME, INSTRUMENT_FILE_NAME_JUNIT);
+            FileWriter file = new FileWriter(path);
             file.write(jsonInstruments.toJSONString());
             file.flush();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -277,6 +284,20 @@ public class DataWriter extends DataConstants {
         instrumentDetails.put(INSTRUMENT_CHORDS, chordsJSON);
         return instrumentDetails;
     }
+
+    private static String getFileWritingPath(String PATH_NAME, String JUNIT_PATH_NAME) {
+		try {
+			if(isJUnitTest()){
+				URI url = DataWriter.class.getResource(JUNIT_PATH_NAME).toURI();
+				return url.getPath();
+			} else {
+				return PATH_NAME;
+			}
+		} catch(Exception e){
+			System.out.println("Difficulty getting resource path");
+			return "";
+		}
+	}
 
 
 //     public static void main(String[] args) {

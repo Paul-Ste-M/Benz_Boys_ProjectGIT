@@ -1,6 +1,9 @@
 package com.model;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.UUID;
 import org.json.simple.JSONArray;
@@ -19,13 +22,15 @@ public class DataReader extends DataConstants {
      * Creates either {@link User} or {@link Author} objects based on the data.
      */
     public static void readUsers() {
+        
+        BufferedReader reader = getReaderFromFile(USER_FILE_NAME, USER_FILE_NAME_JUNIT);
         try {
             JSONParser parser = new JSONParser();
 
             /**
              * Parses the contents of the user JSON file into a JSONArray.
              */
-            JSONArray usersArray = (JSONArray) parser.parse(new FileReader(USER_FILE_NAME));
+            JSONArray usersArray = (JSONArray) parser.parse(reader);
 
             /**
              * Retrieves the singleton instance of the user list.
@@ -79,13 +84,15 @@ public class DataReader extends DataConstants {
      * Parses full song structure including metadata, measures, chords, notes, and comments.
      */
     public static void readSongs() {
+        
+        BufferedReader reader = getReaderFromFile(SONG_FILE_NAME, SONG_FILE_NAME_JUNIT);
         try {
             JSONParser parser = new JSONParser();
 
             /**
              * Parses the songs file into a JSONArray of song objects.
              */
-            JSONArray songsArray = (JSONArray) parser.parse(new FileReader(SONG_FILE_NAME));
+            JSONArray songsArray = (JSONArray) parser.parse(reader);
 
             /**
              * Retrieves the singleton instance of the song library.
@@ -206,6 +213,8 @@ public class DataReader extends DataConstants {
      * and adds them to the {@link InstrumentList}.
      */
     public static void readInstruments() {
+        
+        BufferedReader reader = getReaderFromFile(INSTRUMENT_FILE_NAME, INSTRUMENT_FILE_NAME_JUNIT);
         try {
             JSONParser parser = new JSONParser();
 
@@ -279,6 +288,23 @@ public class DataReader extends DataConstants {
             System.out.println("Failed to load instruments from " + INSTRUMENT_FILE_NAME);
         }
     }
+
+    private static BufferedReader getReaderFromFile(String fileName, String junitFileName){
+		try {
+			if(isJUnitTest()){
+				InputStream inputStream = DataReader.class.getResourceAsStream(junitFileName);
+				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+				return new BufferedReader(inputStreamReader);
+			} else {
+				FileReader reader = new FileReader(fileName);
+				return new BufferedReader(reader);
+			}
+		} catch(Exception e){
+			System.out.println("Can't load");
+			return null;
+		}
+			
+	}
 
     //
     // public static void main(String[] args) {
