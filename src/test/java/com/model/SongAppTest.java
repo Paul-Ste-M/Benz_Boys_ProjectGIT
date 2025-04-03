@@ -2,21 +2,27 @@
 package com.model;
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Optional;
 /** SongAppTest.java
- * Originally the tests worked with the SongApp class, but
- * reworked the SongApp, but due to the time constraints I wasn't able to implement the newer SongApp class.
+ * Originally the test were made to work with the older SongApp class, but I think I may done formatting wrong for the tests and now they
+ * longer work with the SongApp class, however I reworked the SongApp class to be a facade for the other classes.
+ * CHANGELOG TO SONGAPP CLASS:
+ * Reworked The Way Data Updates in the Logout Funtion in SongApp, it saves the instrument selected, the song library, and the Userlist.
+ * Added Null Exceptions to the SongApp class for addSong.
+ * Reworked SelectSongFromResults to selecte the song from the results and it postions.
+ * Added Upcoming Implementation for Volume.
+ * Implemented Savesong to save the current song being worked on/Replaces SaveProject Function /
+ * Removed EarTrainingGame from SongApp Class, until it can be implemented proerly.
+ * Other Slight Altered Classes To Match The Facade: Song.java
  * @author Paul Stevens
  */
 
 public class SongAppTest {
 
     private SongApp songApp;
-    private User testUser;
     private Author testAuthor;
     private Song selectedSong; // Declare selectedSong as a field
 
