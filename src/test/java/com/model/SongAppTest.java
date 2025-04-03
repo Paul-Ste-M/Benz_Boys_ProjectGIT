@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Optional;
-/**
- * A facade that acts as the bridge between the UI and the backend of the program.
- * Simplified and improved for better readability and maintainability.
+/** SongAppTest.java
+ * Originally the tests worked with the SongApp class, but
+ * reworked the SongApp, but due to the time constraints I wasn't able to implement the newer SongApp class.
  * @author Paul Stevens
  */
 
