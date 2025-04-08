@@ -3,3 +3,6 @@ This is a music app that will include songs to play for a selected instrument of
 
 Back End Implementation Presentation:
 https://youtu.be/0X4Prz-RaZg?si=XdTWS1vRBRqgketc
+
+Mockitt Prototype Link:
+https://mockitt.com/proto/euXwaR1sud5owbXYA2NeB/sharing?view_mode=device&screen=rbpUhiIM9vLH4Vksi&canvasId=rcUhiIM9wkygBalT
