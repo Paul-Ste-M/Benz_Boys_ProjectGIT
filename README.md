@@ -6,7 +6,7 @@ https://youtu.be/0X4Prz-RaZg?si=XdTWS1vRBRqgketc
 
 
 Hi-Fi Prototype Presentation:
-https://www.youtube.com/watch?v=xsX5HONzKk0
+https://www.youtube.com/watch?v=w0upIPJ8-5E
 
 Mockitt Prototype Link 1:
 https://paul-ste-m.github.io/Benz_Boys_ProjectGIT/index
