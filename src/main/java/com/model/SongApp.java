@@ -16,15 +16,23 @@ public class SongApp {
     private Instrument selectedInstrument;
     private ArrayList<Song> searchResults;
     private int currentVolume = 0;
+    private static SongApp songApp;
 
     /**
      * Initializes a new instance of the facade
      */
-    public SongApp() {
+    private SongApp() {
         // Initialize the data by reading users, songs, and instruments
         DataReader.readUsers();
         DataReader.readSongs();
         DataReader.readInstruments();
+    }
+
+    public static SongApp getInstance() {
+        if(songApp == null) {
+            songApp = new SongApp();
+        }
+        return songApp;
     }
 
     /**
@@ -56,7 +64,7 @@ public class SongApp {
     /**
      * Logs out the current user and saves the session data.
      */
-    public void logout(User user) {
+    public void logout() {
         if (user != null) {
             DataWriter.saveUsers(UserList.getInstance().getUsers());
             SongLibrary.getInstance().saveSongs();
@@ -73,6 +81,10 @@ public class SongApp {
      */
     public Song getSong(String name, String author) {
         return SongLibrary.getInstance().getSong(name, author);
+    }
+
+    public User getUser() {
+        return user;
     }
 
     /**

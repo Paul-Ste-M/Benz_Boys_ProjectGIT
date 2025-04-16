@@ -8,7 +8,7 @@ public class ScenarioDriver {
     public static void main(String[] args) {
 
         // Create a new instance of the SongApp which in turn loads the users.
-        SongApp app = new SongApp();
+        SongApp app = SongApp.getInstance();
 
         // Run the separate scenarios
         runUserManagementScenario(app);
