@@ -14,3 +14,20 @@
     -fx-background-color: #BBB;
   }
   
+/* Top bar background and border */
+.top-bar {
+    -fx-padding: 8;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 0 0 1 0; /* bottom border only */
+  }
+  
+  /* Icon‐only buttons: transparent background, no chrome */
+  .icon-button {
+    -fx-background-color: transparent;
+    -fx-padding: 4;
+  }
+  .icon-button:hover {
+    -fx-background-color: #F0F0F0;
+  }
+  

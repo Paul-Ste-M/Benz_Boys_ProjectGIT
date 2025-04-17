@@ -59,4 +59,14 @@ public class HomeController implements Initializable {
         loadCenter("about.fxml");
     }
 
+    @FXML
+    private void onProfile(ActionEvent e) {
+        System.out.println("Profile clicked");
+    }
+
+    @FXML
+    private void onSettings(ActionEvent e) {
+        System.out.println("Settings clicked");
+    }
+
 }
