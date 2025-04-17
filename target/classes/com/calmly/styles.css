@@ -1,3 +1,16 @@
 .label {
     -fx-text-fill: #000000;
 }
+.nav-button {
+    -fx-font-size: 14px;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+    -fx-padding: 8 20;
+  }
+  .nav-button:hover {
+    -fx-background-color: #DDD;
+  }
+  .nav-button:selected, .nav-button:armed {
+    -fx-background-color: #BBB;
+  }
+  
