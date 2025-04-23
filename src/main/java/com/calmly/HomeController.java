@@ -31,7 +31,7 @@ public class HomeController implements Initializable {
 
     private void loadCenter(String fxmlFile) {
         try {
-            Node view = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Node view = FXMLLoader.load(HomeController.class.getResource(fxmlFile));
             rootPane.setCenter(view);
         } catch (IOException e) {
             e.printStackTrace();
@@ -40,8 +40,11 @@ public class HomeController implements Initializable {
 
     @FXML
     private void onHome(ActionEvent e) {
-        // reload Home content (could be same FXML or just leave as-is)
-        loadCenter("home.fxml");
+        try {
+            App.setRoot("home");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML
@@ -51,7 +54,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void onCreate(ActionEvent e) {
-        loadCenter("create.fxml");
+        loadCenter("songeditor.fxml");
     }
 
     @FXML

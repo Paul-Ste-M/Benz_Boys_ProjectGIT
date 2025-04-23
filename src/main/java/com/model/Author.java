@@ -55,7 +55,8 @@ public class Author extends User {
      * @param user The current logged in user
      */
     public Author(User user) {
-        super(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getEmail());
+        super(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getEmail(), 
+                user.getUserID().toString(), user.getCreatedSongs(), user.isAuthor());
         user.setAuthorStatusToTrue();
         this.createdSongs = this.getCreatedSongs();
         this.authorID = super.getUserID();

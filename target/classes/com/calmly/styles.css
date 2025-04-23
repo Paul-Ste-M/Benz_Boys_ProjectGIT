@@ -13,4 +13,12 @@
   .nav-button:selected, .nav-button:armed {
     -fx-background-color: #BBB;
   }
+  .secondaryColor {
+    -fx-text-fill: #dbbc52;
+
+  }
+
+  .errorText {
+    -fx-text-fill: red;
+  }
   

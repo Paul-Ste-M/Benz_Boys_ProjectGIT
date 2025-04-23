@@ -116,12 +116,21 @@ public class SongApp {
      * @return The newly created song
      */
     public Song startSong(String title) {
-        this.author = new Author(user); // Ensure the user is the author
-        Song newSong = new Song(title, (Author) user);
+        // this.author = new Author(user); // Ensure the user is the author
+        // Song newSong = new Song(title, (Author) user);
+        if (!(user instanceof Author)) {
+            // Promote user to Author if not already
+            this.author = new Author(user);
+            this.user = this.author; // Update the reference
+        } else {
+            this.author = (Author) user;
+        }
+    
+        Song newSong = new Song(title, author);
         SongLibrary.getInstance().addSong(newSong);
         this.selectedSong = newSong;
         user.addCreatedSong(newSong);
-        this.author.addSong(newSong);
+        //this.author.addSong(newSong);
         this.author.selectSong(newSong);
         return newSong;
     }
