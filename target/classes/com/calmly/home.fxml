@@ -56,7 +56,7 @@
 
   <!-- ── BOTTOM NAV (from before) ───────────────────────────────────────────── -->
   <bottom>
-    <HBox alignment="CENTER" spacing="40" style="-fx-padding:10; -fx-background-color:#EEE;">
+    <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0" spacing="40" style="-fx-padding:10; -fx-background-color:#EEE;">
       <!-- ... your Home, Songs, Create, About Us buttons ... -->
     </HBox>
   </bottom>
