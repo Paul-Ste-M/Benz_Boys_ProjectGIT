@@ -91,20 +91,18 @@ public class SettingsController {
             songApp.selectSongFromLibrary(selectedSong.getTitle(), selectedSong.getAuthor());
             songApp.playSong();
             
-            // Visual feedback
-            playButton.setText("Playing...");
-            new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        javafx.application.Platform.runLater(() -> 
-                            playButton.setText("Play Song"));
-                    }
-                },
-                2000
-            );
         }
     }
+
+    @FXML
+    private void onPrintSong() {
+        if (selectedSong != null) {
+            songApp.selectSongFromLibrary(selectedSong.getTitle(), selectedSong.getAuthor());
+            selectedSong.printTabsToTextFile();
+
+                    }
+    }
+
 
     @FXML
     private void onSave() {

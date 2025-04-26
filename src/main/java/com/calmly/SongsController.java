@@ -28,6 +28,7 @@ public class SongsController {
     @FXML private VBox songDetailsBox;
     @FXML private Label selectedSongLabel;
     @FXML private Button playButton;
+    @FXML private Button printButton;
     
     private ObservableList<String> allSongsData;
     private ObservableList<String> userSongsData;
@@ -133,20 +134,16 @@ public class SongsController {
         if (selectedSong != null) {
             songApp.selectSongFromLibrary(selectedSong.getTitle(), selectedSong.getAuthor());
             songApp.playSong();
-            
-            // Update button text temporarily
-            playButton.setText("Playing...");
-            new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        javafx.application.Platform.runLater(() -> 
-                            playButton.setText("Play Song"));
                     }
-                },
-                2000
-            );
-        }
+    }
+
+    @FXML
+    private void onPrintSong() {
+        if (selectedSong != null) {
+            songApp.selectSongFromLibrary(selectedSong.getTitle(), selectedSong.getAuthor());
+            selectedSong.printTabsToTextFile();
+
+                    }
     }
 
     private void loadAllSongs() {
