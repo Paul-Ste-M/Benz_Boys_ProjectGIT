@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.calmly.SettingsController"
+    stylesheets="@styles.css @settings.css"
+    prefWidth="600" prefHeight="400">
+
+    <top>
+        <HBox style="-fx-padding: 15; -fx-background-color: #f4f4f4;" alignment="CENTER_LEFT">
+            <children>
+                <Label text="Settings" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" alignment="TOP_LEFT" styleClass="settings-container">
+            <children>
+                <VBox styleClass="settings-box" alignment="CENTER_LEFT" spacing="10">
+                    <Label text="Account Information" />
+                    <Label fx:id="usernameLabel" text="Username: " />
+                    <Label fx:id="emailLabel" text="Email: " />
+                    <Label fx:id="firstNameLabel" text="First name: " />
+                    <Label fx:id="lastNameLabel" text="Last name: " />
+                </VBox>
+                                <VBox styleClass="settings-box">
+                    <Label text="Edit Profile" />
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

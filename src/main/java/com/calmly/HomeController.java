@@ -37,13 +37,17 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
     }
+    
 
     @FXML
     private void onHome(ActionEvent e) {
-        // reload Home content (could be same FXML or just leave as-is)
-        loadCenter("home.fxml");
+        try {
+            App.setRoot("home");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
-
+    
     @FXML
     private void onSongs(ActionEvent e) {
         loadCenter("songs.fxml");
@@ -66,7 +70,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void onSettings(ActionEvent e) {
-        System.out.println("Settings clicked");
+        loadCenter("settings.fxml");
     }
-
+        
 }
