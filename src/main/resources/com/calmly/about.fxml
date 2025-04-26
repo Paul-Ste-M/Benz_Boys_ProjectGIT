@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    stylesheets="@styles.css "
+    prefWidth="600" prefHeight="400">
+
+    <top>
+        <HBox style="-fx-padding: 15; -fx-background-color: #f4f4f4;" alignment="CENTER_LEFT">
+            <children>
+                <Label text="From the BenzBoyz Dev Team:"
+                    style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox spacing="20" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+
+
+            <!-- Account Information -->
+            <VBox styleClass="settings-box" spacing="10">
+                <Text wrappingWidth="560" style="-fx-font-size: 16px; -fx-font-weight: bold;">
+                    Hello, we are the dev team behind Calm.ly! This project has been under development for a couple of months and we're absolutely excited to release our alpha version of this product. We are for the people and by the people. We hope you all enjoy Calm.ly and it fulfills all of your musical needs. More updates coming in the near future!
+                </Text>
+                <Text styleClass="secondary-color">Thank you for your support!</Text>
+                </VBox>
+
+        </HBox>
+    </center>
+</BorderPane>

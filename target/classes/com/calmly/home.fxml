@@ -86,9 +86,9 @@
       style="-fx-padding:10; -fx-background-color:#EEE;">
   <children>
 <Button fx:id="homeBtn" text="Home" onAction="#onHome" styleClass="nav-button"/>
-     <Button fx:id="songsBtn" text="Songs" styleClass="nav-button"/>
+     <Button fx:id="songsBtn" text="Songs" styleClass="nav-button" onAction="#onSongs"/>
     <Button fx:id="createBtn" text="Create" styleClass="nav-button"/>
-    <Button fx:id="aboutBtn" text="About Us" styleClass="nav-button"/>
+    <Button fx:id="aboutBtn" text="About Us" styleClass="nav-button" onAction="#onAboutUs"/>
   </children>
 </HBox>
   </bottom>
