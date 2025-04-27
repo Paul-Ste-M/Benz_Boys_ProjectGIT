@@ -1,0 +1,21 @@
+.settings-container {
+    -fx-padding: 30;
+    -fx-spacing: 100;
+    -fx-alignment: center;
+}
+
+.settings-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 15;
+    -fx-min-width: 200;
+    -fx-margin: 0 70;  /* left and right margins */
+
+    -fx-spacing: 10;
+    -fx-pref-width: 250;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-alignment: top-center;
+}
+

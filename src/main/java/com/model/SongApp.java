@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 /**
- * A facade that acts as the bridge between the UI and the backend of the program.
+ * A facade that acts as the bridge between the UI and the backend of the
+ * program.
  * Simplified and improved for better readability and maintainability.
+ * 
  * @author Benz Boyz
  */
 public class SongApp {
@@ -29,7 +31,7 @@ public class SongApp {
     }
 
     public static SongApp getInstance() {
-        if(songApp == null) {
+        if (songApp == null) {
             songApp = new SongApp();
         }
         return songApp;
@@ -37,6 +39,7 @@ public class SongApp {
 
     /**
      * Logs the user in based on the given username and password.
+     * 
      * @param username The provided username
      * @param password The provided password
      * @return The logged-in user
@@ -48,11 +51,12 @@ public class SongApp {
 
     /**
      * Signs up a new user with the provided information.
-     * @param username The username of the new user
+     * 
+     * @param username  The username of the new user
      * @param firstName The first name of the new user
-     * @param lastName The last name of the new user
-     * @param email The email of the new user
-     * @param password The password of the new user
+     * @param lastName  The last name of the new user
+     * @param email     The email of the new user
+     * @param password  The password of the new user
      * @return The new user
      */
     public User signUp(String username, String firstName, String lastName, String email, String password) {
@@ -75,7 +79,8 @@ public class SongApp {
 
     /**
      * Retrieves a song by title and author.
-     * @param name The name of the song
+     * 
+     * @param name   The name of the song
      * @param author The full name of the author
      * @return The retrieved song
      */
@@ -89,7 +94,8 @@ public class SongApp {
 
     /**
      * Adds a song to the library.
-     * @param name The name of the song
+     * 
+     * @param name   The name of the song
      * @param author The author of the song
      */
     public void addSong(String name, Author author) {
@@ -112,6 +118,7 @@ public class SongApp {
 
     /**
      * Starts a new song and makes the user an Author if not already.
+     * 
      * @param title The title of the new song
      * @return The newly created song
      */
@@ -128,6 +135,7 @@ public class SongApp {
 
     /**
      * Selects a measure from the selected song.
+     * 
      * @param position The position of the measure in the song
      */
     public void selectMeasure(int position) {
@@ -136,6 +144,7 @@ public class SongApp {
 
     /**
      * Adds a constructed measure to the selected song.
+     * 
      * @param measure The measure to be added
      */
     public void addMeasure(Measure measure) {
@@ -144,35 +153,40 @@ public class SongApp {
 
     /**
      * Adds a chord to a specific position in the selected measure.
-     * @param position The position to insert the chord
-     * @param type The chord's type
-     * @param leadingNote The leading note's pitch
+     * 
+     * @param position     The position to insert the chord
+     * @param type         The chord's type
+     * @param leadingNote  The leading note's pitch
      * @param isSingleNote Whether the chord is a single note
-     * @param isMinor Whether the chord is minor
-     * @param octave The octave of the note
-     * @param fretNumber The fret number
-     * @param tabsLine The line on the tab
+     * @param isMinor      Whether the chord is minor
+     * @param octave       The octave of the note
+     * @param fretNumber   The fret number
+     * @param tabsLine     The line on the tab
      */
-    public void addChord(int position, String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
+    public void addChord(int position, String type, String leadingNote, boolean isSingleNote, boolean isMinor,
+            String octave, String fretNumber, int tabsLine) {
         author.addChord(position, type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine);
     }
 
     /**
      * Adds a chord to the end of the selected measure.
-     * @param type The chord's type
-     * @param leadingNote The leading note's pitch
+     * 
+     * @param type         The chord's type
+     * @param leadingNote  The leading note's pitch
      * @param isSingleNote Whether the chord is a single note
-     * @param isMinor Whether the chord is minor
-     * @param octave The octave of the note
-     * @param fretNumber The fret number
-     * @param tabsLine The line on the tab
+     * @param isMinor      Whether the chord is minor
+     * @param octave       The octave of the note
+     * @param fretNumber   The fret number
+     * @param tabsLine     The line on the tab
      */
-    public void addChord(String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave, String fretNumber, int tabsLine) {
+    public void addChord(String type, String leadingNote, boolean isSingleNote, boolean isMinor, String octave,
+            String fretNumber, int tabsLine) {
         author.addChord(type, leadingNote, isSingleNote, isMinor, octave, fretNumber, tabsLine);
     }
 
     /**
      * Publishes the song to make it public.
+     * 
      * @param selectedSong The selected song to publish
      */
     public void publishSong(Song selectedSong) {
@@ -183,6 +197,7 @@ public class SongApp {
 
     /**
      * Removes a song from the library.
+     * 
      * @param selectedSong The selected song to be removed
      */
     public void removeSong(Song selectedSong) {
@@ -199,7 +214,18 @@ public class SongApp {
     }
 
     /**
+     * Selects a song from the library by title and author
+     * 
+     * @param title  The song title
+     * @param author The song author
+     */
+    public void selectSongFromLibrary(String title, String author) {
+        this.selectedSong = SongLibrary.getInstance().getSong(title, author);
+    }
+
+    /**
      * Selects an instrument by name.
+     * 
      * @param instrumentName The name of the instrument
      * @return The selected instrument
      */
@@ -215,6 +241,7 @@ public class SongApp {
 
     /**
      * Changes the volume of the music.
+     * 
      * @param volume The new volume level (0 to 100)
      */
     public void changeVolume(int volume) {
@@ -222,8 +249,10 @@ public class SongApp {
             this.currentVolume = volume;
         }
     }
+
     /**
      * Gets the current volume level.
+     * 
      * @return currentVolume The current volume level (0 to 100)
      */
     public int getVolume() {
@@ -241,6 +270,7 @@ public class SongApp {
 
     /**
      * Retrieves comments for the selected song.
+     * 
      * @return The list of comments
      */
     public ArrayList<Comment> getComments() {
@@ -249,9 +279,10 @@ public class SongApp {
 
     /**
      * Adds a comment to the currently selected song.
-     * @param commentText The comment text
+     * 
+     * @param commentText   The comment text
      * @param commenterName The commenter's name
-     * @param username The username of the commenter
+     * @param username      The username of the commenter
      */
     public void addComment(String commentText, String commenterName, String username) {
         if (selectedSong != null) {
@@ -274,6 +305,7 @@ public class SongApp {
 
     /**
      * Searches for songs by title.
+     * 
      * @param title The title to search for
      * @return The list of matching songs
      */
@@ -285,6 +317,7 @@ public class SongApp {
 
     /**
      * Searches for songs by author.
+     * 
      * @param author The author to search for
      * @return The list of matching songs
      */
@@ -296,22 +329,24 @@ public class SongApp {
 
     /**
      * Selects a song from the search results.
+     * 
      * @param position The position of the song in the search results
      * @return The selected song
      */
     public Optional<Song> selectSongFromResults(int position) {
-    if (position < 0 || position >= searchResults.size()) {
-        return Optional.empty(); 
+        if (position < 0 || position >= searchResults.size()) {
+            return Optional.empty();
+        }
+        this.selectedSong = searchResults.get(position);
+        return Optional.of(selectedSong);
     }
-    this.selectedSong = searchResults.get(position);
-    return Optional.of(selectedSong);
-}
 
     /**
      * Search for a song by genre, artist, or title.
-     * @param genre The genre of the song
+     * 
+     * @param genre  The genre of the song
      * @param artist The artist of the song
-     * @param title The title of the song
+     * @param title  The title of the song
      * @return The list of matching songs
      */
     public ArrayList<Song> searchByKeyboard(String genre, String artist, String title) {
@@ -319,7 +354,8 @@ public class SongApp {
         ArrayList<Song> results = new ArrayList<>();
 
         for (Song song : library.getSongs()) {
-            boolean matchesGenre = (genre == null || song.getGenres().stream().anyMatch(g -> g.name().equalsIgnoreCase(genre)));
+            boolean matchesGenre = (genre == null
+                    || song.getGenres().stream().anyMatch(g -> g.name().equalsIgnoreCase(genre)));
             boolean matchesArtist = (artist == null || song.getAuthor().equalsIgnoreCase(artist));
             boolean matchesTitle = (title == null || song.getTitle().equalsIgnoreCase(title));
 
