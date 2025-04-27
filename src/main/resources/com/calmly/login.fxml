@@ -21,7 +21,7 @@
                   <Image url="@../images/pexels-photo-7097459.jpeg" />
                </image>
             </ImageView>
-            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="232.0" layoutX="87.0" layoutY="97.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="423.0">
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="232.0" layoutX="87.0" layoutY="97.0" stroke="BLACK" strokeType="OUTSIDE" width="423.0">
                <effect>
                   <InnerShadow choke="0.71" />
                </effect></Rectangle>
