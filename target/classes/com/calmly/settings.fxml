@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.*?>
 
-<BorderPane prefHeight="400" prefWidth="600" stylesheets="@styles.css @settings.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calmly.SettingsController">
+<BorderPane xmlns="http://javafx.com/javafx/21" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.calmly.SettingsController"
+            stylesheets="@styles.css @settings.css"
+            prefWidth="600" prefHeight="400">
 
     <top>
-        <HBox alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color: #f4f4f4;">
+        <HBox style="-fx-padding: 15; -fx-background-color: #f4f4f4;" alignment="CENTER_LEFT">
             <children>
-                <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Settings" />
+                <Label text="Settings" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
             </children>
         </HBox>
     </top>
 
     <center>
-        <VBox alignment="CENTER" spacing="20">
-            <HBox alignment="CENTER" spacing="20">
+        <VBox spacing="20" alignment="CENTER">
+            <HBox spacing="20" alignment="CENTER">
                 <padding>
-                    <Insets bottom="20" left="20" right="20" top="20" />
+                    <Insets top="20" right="20" bottom="20" left="20"/>
                 </padding>
 
                 <VBox>
                     <!-- Account Information -->
-                    <VBox spacing="10" styleClass="settings-box">
-                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Account Information" />
+                    <VBox styleClass="settings-box" spacing="10">
+                        <Label text="Account Information" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
                         <Label fx:id="usernameLabel" text="Username: " />
                         <Label fx:id="emailLabel" text="Email: " />
                         <Label fx:id="firstNameLabel" text="First name: " />
@@ -36,38 +37,34 @@
                     </VBox>
 
                     <!-- logout -->
-                    <VBox spacing="10" styleClass="settings-box" />
-                     <Button fx:id="logoutButton" onAction="#onLogout" text="Logout" />
+                    <VBox styleClass="settings-box" spacing="10">
+                        <Button fx:id="logoutButton" text="Logout" onAction="#onLogout"/>
+                    </VBox>
                 </VBox>
 
                 <!-- Your Songs -->
-                <VBox spacing="10" styleClass="settings-box">
-                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Your Recent Projects" />
-                    <ListView fx:id="createdSongsList" prefHeight="164.0" prefWidth="312.0">
+                <VBox styleClass="settings-box" spacing="10">
+                    <Label text="Your Recent Projects" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                    <ListView fx:id="createdSongsList" prefWidth="200" prefHeight="200">
                         <placeholder>
-                            <Label text="No songs yet" />
+                            <Label text="No songs yet"/>
                         </placeholder>
                     </ListView>
                 </VBox>
             </HBox>
 
             <!-- Song Details Box -->
-            <VBox fx:id="songDetailsBox" spacing="10" style="-fx-padding: 10; -fx-alignment: center;" styleClass="song-details" visible="false">
-                <Label fx:id="selectedSongLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            <VBox styleClass="song-details" spacing="10" visible="false" fx:id="songDetailsBox" 
+                  style="-fx-padding: 10; -fx-alignment: center;">
+                <Label fx:id="selectedSongLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
                 <HBox alignment="CENTER" spacing="10">
-                    <Button fx:id="playButton" onAction="#onPlaySong" style="-fx-font-size: 14px; -fx-pref-width: 120; " text="Play Song" />
-             <Button fx:id="printButton" onAction="#onPrintSong" style="-fx-font-size: 14px; -fx-pref-width: 120; " text="Print Song" />
+                    <Button text="Play Song" onAction="#onPlaySong" fx:id="playButton" 
+                    style="-fx-font-size: 14px; -fx-pref-width: 120; "/>
+             <Button text="Print Song" onAction="#onPrintSong" fx:id="printButton" 
+                    style="-fx-font-size: 14px; -fx-pref-width: 120; "/>
 
                 </HBox>
             </VBox>
-         <HBox alignment="CENTER" spacing="40" style="-fx-padding:10; -fx-background-color:#EEE;">
-            <children>
-               <Button fx:id="homeBtn" onAction="#onHome" styleClass="nav-button" text="Home" />
-               <Button fx:id="songsBtn" onAction="#onSongs" styleClass="nav-button" text="Songs" />
-               <Button fx:id="createBtn" styleClass="nav-button" text="Create" />
-               <Button fx:id="aboutBtn" onAction="#onAboutUs" styleClass="nav-button" text="About Us" />
-            </children>
-         </HBox>
         </VBox>
     </center>
 </BorderPane>
