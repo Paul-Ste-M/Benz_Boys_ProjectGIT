@@ -32,39 +32,4 @@
                         <Label text="Account Information" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
                         <Label fx:id="usernameLabel" text="Username: " />
                         <Label fx:id="emailLabel" text="Email: " />
-                        <Label fx:id="firstNameLabel" text="First name: " />
-                        <Label fx:id="lastNameLabel" text="Last name: " />
-                    </VBox>
-
-                    <!-- logout -->
-                    <VBox styleClass="settings-box" spacing="10">
-                        <Button fx:id="logoutButton" text="Logout" onAction="#onLogout"/>
-                    </VBox>
-                </VBox>
-
-                <!-- Your Songs -->
-                <VBox styleClass="settings-box" spacing="10">
-                    <Label text="Your Recent Projects" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-                    <ListView fx:id="createdSongsList" prefWidth="200" prefHeight="200">
-                        <placeholder>
-                            <Label text="No songs yet"/>
-                        </placeholder>
-                    </ListView>
-                </VBox>
-            </HBox>
-
-            <!-- Song Details Box -->
-            <VBox styleClass="song-details" spacing="10" visible="false" fx:id="songDetailsBox" 
-                  style="-fx-padding: 10; -fx-alignment: center;">
-                <Label fx:id="selectedSongLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-                <HBox alignment="CENTER" spacing="10">
-                    <Button text="Play Song" onAction="#onPlaySong" fx:id="playButton" 
-                    style="-fx-font-size: 14px; -fx-pref-width: 120; "/>
-             <Button text="Print Song" onAction="#onPrintSong" fx:id="printButton" 
-                    style="-fx-font-size: 14px; -fx-pref-width: 120; "/>
-
-                </HBox>
-            </VBox>
-        </VBox>
-    </center>
-</BorderPane>
+                        <Label fx:id="firstN
