@@ -31,4 +31,26 @@
     -fx-background-color: #F0F0F0;
   }
 
- 
+  .secondary-color {
+    -fx-fill: #ffb300;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+  }
+
+  .song-details {
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+
+#playButton {
+    -fx-background-color: #ffb300;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+#playButton:hover {
+    -fx-background-color: #cd7618;
+}
