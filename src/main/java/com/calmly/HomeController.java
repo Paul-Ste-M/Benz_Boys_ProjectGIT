@@ -26,12 +26,12 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         songApp = SongApp.getInstance();
         user = songApp.getUser();
-        welcomeLabel.setText("Welcome " + user.getFullName());
+        //welcomeLabel.setText("Welcome " + user.getFullName());
     }
 
     private void loadCenter(String fxmlFile) {
         try {
-            Node view = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Node view = FXMLLoader.load(HomeController.class.getResource(fxmlFile));
             rootPane.setCenter(view);
         } catch (IOException e) {
             e.printStackTrace();
@@ -55,6 +55,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void onCreate(ActionEvent e) {
+        System.out.println("Button works?");
         loadCenter("create.fxml");
     }
 

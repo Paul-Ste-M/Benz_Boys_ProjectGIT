@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calmly.SongEditorController">
+   <children>
+      <AnchorPane fx:id="anchorPane" prefHeight="455.0" prefWidth="600.0" style="-fx-background-color: #000000;">
+         <children>
+            <Button fx:id="prevMeasure" layoutX="202.0" layoutY="52.0" mnemonicParsing="false" onAction="#clickedPrevMeasure" prefHeight="18.0" prefWidth="19.0" style="-fx-background-color: #000000;" text="&lt;" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Arial Bold" size="19.0" />
+               </font>
+            </Button>
+            <Button fx:id="nextMeasure" layoutX="294.0" layoutY="52.0" mnemonicParsing="false" onAction="#clickedNextMeasure" prefHeight="18.0" prefWidth="19.0" style="-fx-background-color: #000000;" text="&gt;" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Arial Bold" size="19.0" />
+               </font>
+            </Button>
+            <VBox layoutX="15.0" layoutY="78.0" prefHeight="275.0" prefWidth="127.0" spacing="30.0">
+               <children>
+                  <Button fx:id="saveAndGoHomeButton" mnemonicParsing="false" onAction="#clickedSaveandGoHome" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: #ffffff;" text="Save and Go Home" />
+                  <Button fx:id="publishButton" mnemonicParsing="false" onAction="#clickedPublishProject" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: ffffff;" text="Publish Project" />
+                  <Button fx:id="printButton" layoutX="10.0" layoutY="91.0" mnemonicParsing="false" onAction="#clickedPrintButton" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: ffffff;" text="Print" />
+                  <Button layoutX="10.0" layoutY="172.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: ffffff;" text="Delete Project" />
+               </children>
+            </VBox>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dbbc52" height="51.0" layoutX="14.0" layoutY="11.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+            <Label layoutX="17.0" layoutY="13.0" prefHeight="21.0" prefWidth="127.0" text="Current Project:" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Label>
+            <Button fx:id="addButton" layoutX="479.0" layoutY="24.0" mnemonicParsing="false" onAction="#clickedPlusButton" text="+">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+               <contextMenu>
+                  <ContextMenu fx:id="addMenu" onAction="#showAddOptions">
+                    <items>
+                        <MenuItem fx:id="addNoteButton" mnemonicParsing="false" onAction="#clickedAddNote" text="Add Note" />
+                        <MenuItem fx:id="addChordButton" mnemonicParsing="false" onAction="#clickedAddChord" text="Add Chord" />
+                        <MenuItem fx:id="addMeasureButton" mnemonicParsing="false" onAction="#clickedAddMeasure" text="Add Measure" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Button>
+            <Label fx:id="currentProjectText" layoutX="17.0" layoutY="35.0" prefHeight="21.0" prefWidth="127.0" text="Project Name" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Label>
+            <GridPane fx:id="gridPane" layoutX="243.0" layoutY="87.0" prefHeight="264.0" prefWidth="353.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="275.0" layoutX="170.0" layoutY="78.0" stroke="BLACK" strokeType="INSIDE" width="54.0" />
+            <VBox layoutX="170.0" layoutY="78.0" prefHeight="275.0" prefWidth="54.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="36.0" prefWidth="54.0" text="E">
+                     <font>
+                        <Font name="Arial Bold" size="31.0" />
+                     </font>
+                     <padding>
+                        <Insets left="17.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="54.0" text="B">
+                     <font>
+                        <Font name="Arial Bold" size="31.0" />
+                     </font>
+                     <padding>
+                        <Insets left="17.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="46.0" prefHeight="36.0" prefWidth="54.0" text="G">
+                     <font>
+                        <Font name="Arial Bold" size="31.0" />
+                     </font>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="82.0" prefHeight="36.0" prefWidth="54.0" text="D">
+                     <font>
+                        <Font name="Arial Bold" size="31.0" />
+                     </font>
+                     <padding>
+                        <Insets left="17.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="118.0" prefHeight="36.0" prefWidth="54.0" text="A">
+                     <font>
+                        <Font name="Arial Bold" size="31.0" />
+                     </font>
+                     <padding>
+                        <Insets left="17.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="154.0" prefHeight="36.0" prefWidth="54.0" text="E">
+                     <font>
+                        <Font name="Arial Bold" size="31.0" />
+                     </font>
+                     <padding>
+                        <Insets left="17.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+            <Rectangle fx:id="measureBar" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="275.0" layoutX="231.0" layoutY="78.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
+            <Label fx:id="measureText" layoutX="231.0" layoutY="62.0" text="Measure" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox fx:id="pitchOptionsBar" layoutX="20.0" layoutY="402.0" prefHeight="42.0" prefWidth="567.0" style="-fx-background-color: ffffff;" visible="false">
+               <children>
+                  <Button fx:id="Pitch_C" mnemonicParsing="false" onAction="#clickedPitchC" style="-fx-background-color: ffffff;" text="C">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="51.0" style="-fx-background-color: ffffff;" text="C#">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="Pitch_D" layoutX="47.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickedPitchD" style="-fx-background-color: ffffff;" text="D">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="83.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="58.0" style="-fx-background-color: ffffff;" text="D#">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="Pitch_E" layoutX="120.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickedPitchE" style="-fx-background-color: ffffff;" text="E">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="156.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: ffffff;" text="F">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="193.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="46.0" style="-fx-background-color: ffffff;" text="F#">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="Pitch_G" layoutX="229.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickedPitchG" style="-fx-background-color: ffffff;" text="G">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="266.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="50.0" style="-fx-background-color: ffffff;" text="G#">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="302.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: ffffff;" text="A">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="390.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="48.0" style="-fx-background-color: ffffff;" text="A#">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="393.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: ffffff;" text="B">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="Pitch_REST" layoutX="429.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickedPitchREST" prefHeight="33.0" prefWidth="59.0" style="-fx-background-color: ffffff;" text="R">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </HBox>
+            <Label fx:id="promptingText" layoutX="284.0" layoutY="378.0" text="PromptText" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <HBox fx:id="durationOptionsBar" layoutX="20.0" layoutY="402.0" prefHeight="42.0" prefWidth="567.0" spacing="65.0" style="-fx-background-color: ffffff;" visible="false">
+               <children>
+                  <Button fx:id="Duration_Whole" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickedDurationWhole" style="-fx-background-color: ffffff;" text="WHOLE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="Duration_Half" layoutX="101.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickedDurationHalf" style="-fx-background-color: ffffff;" text="HALF">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="Duration_Quarter" mnemonicParsing="false" onAction="#clickedDurationQuarter" style="-fx-background-color: ffffff;" text="QUARTER">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="Duration_Eighth" layoutX="173.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickedDurationEighth" style="-fx-background-color: ffffff;" text="EIGHTH">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </HBox>
+            <HBox fx:id="majorMinorOptionsBar" layoutX="20.0" layoutY="402.0" prefHeight="42.0" prefWidth="567.0" spacing="60.0" style="-fx-background-color: ffffff;" visible="false">
+               <children>
+                  <Button fx:id="ChordMajor" mnemonicParsing="false" onAction="#clickedChordMajor" style="-fx-background-color: ffffff;" text="MAJOR">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="ChordMinor" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickedChordMinor" style="-fx-background-color: ffffff;" text="MINOR">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="175.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox fx:id="HorizontalBox" layoutX="241.0" layoutY="89.0" prefHeight="256.0" prefWidth="353.0" spacing="10.0" />
+            <HBox fx:id="stringOptionsBar" layoutX="20.0" layoutY="402.0" prefHeight="42.0" prefWidth="567.0" spacing="40.0" style="-fx-background-color: ffffff;" visible="false">
+               <children>
+                  <Button fx:id="StringOne" mnemonicParsing="false" onAction="#clickedStringOne" style="-fx-background-color: ffffff;" text="HIGH E">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="StringTwo" layoutX="185.0" layoutY="15.0" mnemonicParsing="false" onAction="#clickedStringTwo" style="-fx-background-color: ffffff;" text="B">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="StringThree" layoutX="147.0" layoutY="15.0" mnemonicParsing="false" onAction="#clickedStringThree" style="-fx-background-color: ffffff;" text="C">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="StringFour" layoutX="234.0" layoutY="15.0" mnemonicParsing="false" onAction="#clickedStringFour" style="-fx-background-color: ffffff;" text="D">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="StringFive" layoutX="321.0" layoutY="15.0" mnemonicParsing="false" onAction="#clickedStringFive" style="-fx-background-color: ffffff;" text="A">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="StringSix" layoutX="368.0" layoutY="15.0" mnemonicParsing="false" onAction="#clickedStringSix" style="-fx-background-color: ffffff;" text="LOW E">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </HBox>
+            <Polygon fx:id="playButton" fill="WHITE" layoutX="417.0" layoutY="47.0" onMouseClicked="#clickedPlayButton" points="-50.0, 40.0, 50.0, 40.0, 0.0, -60.0" rotate="90.0" scaleX="0.3" scaleY="0.25" scaleZ="0.25" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

@@ -1,50 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.calmly.HomeController"
-            stylesheets="@styles.css"
-            fx:id="rootPane">
+<BorderPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calmly.HomeController">
 
   <!-- ── TOP BAR ───────────────────────────────────────────────────────────── -->
   <top>
-    <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="10">
+    <HBox alignment="CENTER_LEFT" prefHeight="87.0" prefWidth="600.0" spacing="10" styleClass="top-bar">
       <children>
-        <!-- calm.ly logo (make sure calmly-logo.png is on your classpath under /images/) -->
-        <ImageView fitHeight="40" preserveRatio="true">
-          <image>
-    <Image url="https://i.etsystatic.com/18511626/r/il/d4fca5/2813832918/il_570xN.2813832918_qkgo.jpg"
-           backgroundLoading="true"/>
-          </image>
-        </ImageView>
+            <ImageView fitHeight="54.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Image%203@1x.png" />
+               </image>
+            </ImageView>
 
         <!-- flexible spacer -->
-        <Region HBox.hgrow="ALWAYS"/>
-        <Label fx:id="welcomeLabel"
-               layoutX="14.0" layoutY="14.0"
-               prefHeight="70.0" prefWidth="390.0"
-               text="Hello">
-          <font>
-            <Font size="32.0"/>
-          </font>
-        </Label>
+        <Region HBox.hgrow="ALWAYS" />
 
         <!-- profile icon button -->
         <Button fx:id="profileBtn" onAction="#onProfile" styleClass="icon-button">
           <graphic>
             <ImageView fitHeight="24" preserveRatio="true">
               <image>
-                <Image url="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
-                backgroundLoading="true"/>
+                <Image backgroundLoading="true" url="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" />
               </image>
             </ImageView>
           </graphic>
@@ -55,7 +42,7 @@
           <graphic>
             <ImageView fitHeight="24" preserveRatio="true">
               <image>
-                <Image url="https://static-00.iconduck.com/assets.00/settings-icon-245x256-yljp2dn9.png"/>
+                <Image url="https://static-00.iconduck.com/assets.00/settings-icon-245x256-yljp2dn9.png" />
               </image>
             </ImageView>
           </graphic>
@@ -66,29 +53,30 @@
 
   <!-- ── CENTER CONTENT ────────────────────────────────────────────────────── -->
   <center>
-    <AnchorPane prefHeight="455.0" prefWidth="600.0">
-      <children>
-        <!-- <Label fx:id="welcomeLabel"
-               layoutX="14.0" layoutY="14.0"
-               prefHeight="70.0" prefWidth="390.0"
-               text="Hello">
-          <font>
-            <Font size="32.0"/>
-          </font>
-        </Label> -->
-      </children>
-    </AnchorPane>
+    <AnchorPane prefHeight="412.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="258.0" fitWidth="415.0" layoutX="211.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Image%201@1x%20(1).png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="258.0" layoutX="-5.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="218.0" />
+            <Text fill="WHITE" layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To Calm.ly. The Music App. " wrappingWidth="254.11569213867188">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
   </center>
 
   <!-- ── BOTTOM NAV (from before) ───────────────────────────────────────────── -->
   <bottom>
-<HBox alignment="CENTER" spacing="40"
-      style="-fx-padding:10; -fx-background-color:#EEE;">
+<HBox alignment="CENTER" spacing="40" style="-fx-padding:10; -fx-background-color:#EEE;">
   <children>
-<Button fx:id="homeBtn" text="Home" onAction="#onHome" styleClass="nav-button"/>
-     <Button fx:id="songsBtn" text="Songs" styleClass="nav-button" onAction="#onSongs"/>
-    <Button fx:id="createBtn" text="Create" styleClass="nav-button"/>
-    <Button fx:id="aboutBtn" text="About Us" styleClass="nav-button" onAction="#onAboutUs"/>
+<Button fx:id="homeBtn" onAction="#onHome" styleClass="nav-button" text="Home" />
+     <Button fx:id="songsBtn" onAction="#onSongs" styleClass="nav-button" text="Songs" />
+    <Button fx:id="createBtn" onAction="#onCreate" styleClass="nav-button" text="Create" />
+    <Button fx:id="aboutBtn" onAction="#onAboutUs" styleClass="nav-button" text="About Us" />
   </children>
 </HBox>
   </bottom>
