@@ -1,1 +1,407 @@
-[{"instrumentName":"GUITAR","chords":[{"isMinor":false,"notes":[{"octave":"4","fretNumber":"3","tabsLine":5,"pitch":"C","type":"QUARTER"},{"octave":"4","fretNumber":"2","tabsLine":4,"pitch":"E","type":"QUARTER"},{"octave":"4","fretNumber":"0","tabsLine":3,"pitch":"G","type":"QUARTER"},{"octave":"5","fretNumber":"1","tabsLine":2,"pitch":"C","type":"QUARTER"},{"octave":"5","fretNumber":"0","tabsLine":1,"pitch":"E","type":"QUARTER"},{"octave":"","fretNumber":"-","tabsLine":6,"pitch":"REST","type":"QUARTER"}],"leadingNote":"C","isSingleNote":false,"type":"QUARTER"},{"isMinor":true,"notes":[{"octave":"4","fretNumber":"3","tabsLine":5,"pitch":"C","type":"QUARTER"},{"octave":"4","fretNumber":"5","tabsLine":4,"pitch":"G","type":"QUARTER"},{"octave":"5","fretNumber":"5","tabsLine":3,"pitch":"C","type":"QUARTER"},{"octave":"5","fretNumber":"4","tabsLine":2,"pitch":"D_SHARP","type":"QUARTER"},{"octave":"5","fretNumber":"5","tabsLine":1,"pitch":"G","type":"QUARTER"},{"octave":"","fretNumber":"-","tabsLine":6,"pitch":"REST","type":"QUARTER"}],"leadingNote":"C","isSingleNote":false,"type":"QUARTER"},{"isMinor":false,"notes":[{"octave":"4","fretNumber":"0","tabsLine":4,"pitch":"D","type":"QUARTER"},{"octave":"4","fretNumber":"2","tabsLine":3,"pitch":"A","type":"QUARTER"},{"octave":"5","fretNumber":"3","tabsLine":2,"pitch":"D","type":"QUARTER"},{"octave":"5","fretNumber":"2","tabsLine":1,"pitch":"F_SHARP","type":"QUARTER"},{"octave":"","fretNumber":"-","tabsLine":5,"pitch":"REST","type":"QUARTER"},{"octave":"","fretNumber":"-","tabsLine":6,"pitch":"REST","type":"QUARTER"}],"leadingNote":"D","isSingleNote":false,"type":"QUARTER"},{"isMinor":true,"notes":[{"octave":"4","fretNumber":"0","tabsLine":4,"pitch":"D","type":"QUARTER"},{"octave":"4","fretNumber":"2","tabsLine":3,"pitch":"A","type":"QUARTER"},{"octave":"5","fretNumber":"3","tabsLine":2,"pitch":"D","type":"QUARTER"},{"octave":"5","fretNumber":"1","tabsLine":1,"pitch":"F","type":"QUARTER"},{"octave":"","fretNumber":"-","tabsLine":5,"pitch":"REST","type":"QUARTER"},{"octave":"","fretNumber":"-","tabsLine":6,"pitch":"REST","type":"QUARTER"}],"leadingNote":"D","isSingleNote":false,"type":"QUARTER"},{"isMinor":false,"notes":[{"octave":"3","fretNumber":"0","tabsLine":6,"pitch":"E","type":"QUARTER"},{"octave":"3","fretNumber":"2","tabsLine":5,"pitch":"B","type":"QUARTER"},{"octave":"4","fretNumber":"2","tabsLine":4,"pitch":"E","type":"QUARTER"},{"octave":"4","fretNumber":"1","tabsLine":3,"pitch":"G_SHARP","type":"QUARTER"},{"octave":"4","fretNumber":"0","tabsLine":2,"pitch":"B","type":"QUARTER"},{"octave":"5","fretNumber":"0","tabsLine":1,"pitch":"E","type":"QUARTER"}],"leadingNote":"E","isSingleNote":false,"type":"QUARTER"},{"isMinor":true,"notes":[{"octave":"3","fretNumber":"0","tabsLine":6,"pitch":"E","type":"QUARTER"},{"octave":"3","fretNumber":"2","tabsLine":5,"pitch":"B","type":"QUARTER"},{"octave":"4","fretNumber":"2","tabsLine":4,"pitch":"E","type":"QUARTER"},{"octave":"4","fretNumber":"0","tabsLine":3,"pitch":"G","type":"QUARTER"},{"octave":"4","fretNumber":"0","tabsLine":2,"pitch":"B","type":"QUARTER"},{"octave":"5","fretNumber":"0","tabsLine":1,"pitch":"E","type":"QUARTER"}],"leadingNote":"E","isSingleNote":false,"type":"QUARTER"},{"isMinor":false,"notes":[{"octave":"3","fretNumber":"3","tabsLine":6,"pitch":"G","type":"QUARTER"},{"octave":"3","fretNumber":"2","tabsLine":5,"pitch":"B","type":"QUARTER"},{"octave":"4","fretNumber":"0","tabsLine":4,"pitch":"D","type":"QUARTER"},{"octave":"4","fretNumber":"1","tabsLine":3,"pitch":"G","type":"QUARTER"},{"octave":"4","fretNumber":"0","tabsLine":2,"pitch":"B","type":"QUARTER"},{"octave":"5","fretNumber":"5","tabsLine":1,"pitch":"G","type":"QUARTER"}],"leadingNote":"G","isSingleNote":false,"type":"QUARTER"},{"isMinor":true,"notes":[{"octave":"3","fretNumber":"3","tabsLine":6,"pitch":"G","type":"QUARTER"},{"octave":"4","fretNumber":"5","tabsLine":5,"pitch":"D","type":"QUARTER"},{"octave":"4","fretNumber":"5","tabsLine":4,"pitch":"G","type":"QUARTER"},{"octave":"4","fretNumber":"3","tabsLine":3,"pitch":"A_SHARP","type":"QUARTER"},{"octave":"5","fretNumber":"3","tabsLine":2,"pitch":"D","type":"QUARTER"},{"octave":"5","fretNumber":"5","tabsLine":1,"pitch":"G","type":"QUARTER"}],"leadingNote":"G","isSingleNote":false,"type":"QUARTER"}]}]
+[
+    {
+        "instrumentName": "GUITAR",
+        "chords": [
+            {
+                "isMinor": false,
+                "notes": [
+                    {
+                        "octave": "4",
+                        "fretNumber": "3",
+                        "tabsLine": 5,
+                        "pitch": "C",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "2",
+                        "tabsLine": 4,
+                        "pitch": "E",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "0",
+                        "tabsLine": 3,
+                        "pitch": "G",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "1",
+                        "tabsLine": 2,
+                        "pitch": "C",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "0",
+                        "tabsLine": 1,
+                        "pitch": "E",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "",
+                        "fretNumber": "-",
+                        "tabsLine": 6,
+                        "pitch": "REST",
+                        "type": "QUARTER"
+                    }
+                ],
+                "leadingNote": "C",
+                "isSingleNote": false,
+                "type": "QUARTER"
+            },
+            {
+                "isMinor": true,
+                "notes": [
+                    {
+                        "octave": "4",
+                        "fretNumber": "3",
+                        "tabsLine": 5,
+                        "pitch": "C",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "5",
+                        "tabsLine": 4,
+                        "pitch": "G",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "5",
+                        "tabsLine": 3,
+                        "pitch": "C",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "4",
+                        "tabsLine": 2,
+                        "pitch": "D_SHARP",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "5",
+                        "tabsLine": 1,
+                        "pitch": "G",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "",
+                        "fretNumber": "-",
+                        "tabsLine": 6,
+                        "pitch": "REST",
+                        "type": "QUARTER"
+                    }
+                ],
+                "leadingNote": "C",
+                "isSingleNote": false,
+                "type": "QUARTER"
+            },
+            {
+                "isMinor": false,
+                "notes": [
+                    {
+                        "octave": "4",
+                        "fretNumber": "0",
+                        "tabsLine": 4,
+                        "pitch": "D",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "2",
+                        "tabsLine": 3,
+                        "pitch": "A",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "3",
+                        "tabsLine": 2,
+                        "pitch": "D",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "2",
+                        "tabsLine": 1,
+                        "pitch": "F_SHARP",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "",
+                        "fretNumber": "-",
+                        "tabsLine": 5,
+                        "pitch": "REST",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "",
+                        "fretNumber": "-",
+                        "tabsLine": 6,
+                        "pitch": "REST",
+                        "type": "QUARTER"
+                    }
+                ],
+                "leadingNote": "D",
+                "isSingleNote": false,
+                "type": "QUARTER"
+            },
+            {
+                "isMinor": true,
+                "notes": [
+                    {
+                        "octave": "4",
+                        "fretNumber": "0",
+                        "tabsLine": 4,
+                        "pitch": "D",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "2",
+                        "tabsLine": 3,
+                        "pitch": "A",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "3",
+                        "tabsLine": 2,
+                        "pitch": "D",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "1",
+                        "tabsLine": 1,
+                        "pitch": "F",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "",
+                        "fretNumber": "-",
+                        "tabsLine": 5,
+                        "pitch": "REST",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "",
+                        "fretNumber": "-",
+                        "tabsLine": 6,
+                        "pitch": "REST",
+                        "type": "QUARTER"
+                    }
+                ],
+                "leadingNote": "D",
+                "isSingleNote": false,
+                "type": "QUARTER"
+            },
+            {
+                "isMinor": false,
+                "notes": [
+                    {
+                        "octave": "3",
+                        "fretNumber": "0",
+                        "tabsLine": 6,
+                        "pitch": "E",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "3",
+                        "fretNumber": "2",
+                        "tabsLine": 5,
+                        "pitch": "B",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "2",
+                        "tabsLine": 4,
+                        "pitch": "E",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "1",
+                        "tabsLine": 3,
+                        "pitch": "G_SHARP",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "0",
+                        "tabsLine": 2,
+                        "pitch": "B",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "0",
+                        "tabsLine": 1,
+                        "pitch": "E",
+                        "type": "QUARTER"
+                    }
+                ],
+                "leadingNote": "E",
+                "isSingleNote": false,
+                "type": "QUARTER"
+            },
+            {
+                "isMinor": true,
+                "notes": [
+                    {
+                        "octave": "3",
+                        "fretNumber": "0",
+                        "tabsLine": 6,
+                        "pitch": "E",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "3",
+                        "fretNumber": "2",
+                        "tabsLine": 5,
+                        "pitch": "B",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "2",
+                        "tabsLine": 4,
+                        "pitch": "E",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "0",
+                        "tabsLine": 3,
+                        "pitch": "G",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "0",
+                        "tabsLine": 2,
+                        "pitch": "B",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "0",
+                        "tabsLine": 1,
+                        "pitch": "E",
+                        "type": "QUARTER"
+                    }
+                ],
+                "leadingNote": "E",
+                "isSingleNote": false,
+                "type": "QUARTER"
+            },
+            {
+                "isMinor": false,
+                "notes": [
+                    {
+                        "octave": "3",
+                        "fretNumber": "3",
+                        "tabsLine": 6,
+                        "pitch": "G",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "3",
+                        "fretNumber": "2",
+                        "tabsLine": 5,
+                        "pitch": "B",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "0",
+                        "tabsLine": 4,
+                        "pitch": "D",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "1",
+                        "tabsLine": 3,
+                        "pitch": "G",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "0",
+                        "tabsLine": 2,
+                        "pitch": "B",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "5",
+                        "tabsLine": 1,
+                        "pitch": "G",
+                        "type": "QUARTER"
+                    }
+                ],
+                "leadingNote": "G",
+                "isSingleNote": false,
+                "type": "QUARTER"
+            },
+            {
+                "isMinor": true,
+                "notes": [
+                    {
+                        "octave": "3",
+                        "fretNumber": "3",
+                        "tabsLine": 6,
+                        "pitch": "G",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "5",
+                        "tabsLine": 5,
+                        "pitch": "D",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "5",
+                        "tabsLine": 4,
+                        "pitch": "G",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "4",
+                        "fretNumber": "3",
+                        "tabsLine": 3,
+                        "pitch": "A_SHARP",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "3",
+                        "tabsLine": 2,
+                        "pitch": "D",
+                        "type": "QUARTER"
+                    },
+                    {
+                        "octave": "5",
+                        "fretNumber": "5",
+                        "tabsLine": 1,
+                        "pitch": "G",
+                        "type": "QUARTER"
+                    }
+                ],
+                "leadingNote": "G",
+                "isSingleNote": false,
+                "type": "QUARTER"
+            }
+        ]
+    }
+]

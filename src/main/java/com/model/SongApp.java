@@ -87,6 +87,14 @@ public class SongApp {
         return user;
     }
 
+    public Song getSelectedSong() {
+        return selectedSong;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
     /**
      * Adds a song to the library.
      * @param name The name of the song

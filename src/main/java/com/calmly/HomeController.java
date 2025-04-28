@@ -54,7 +54,12 @@ public class HomeController implements Initializable {
 
     @FXML
     private void onCreate(ActionEvent e) {
-        loadCenter("songeditor.fxml");
+        loadCenter("create.fxml");
+        // try{
+        //     App.setRoot("songeditor");
+        // } catch (IOException ex) {
+        //     ex.printStackTrace();
+        // }
     }
 
     @FXML

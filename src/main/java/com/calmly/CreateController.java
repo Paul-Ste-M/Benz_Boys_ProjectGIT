@@ -1,5 +1,7 @@
 package com.calmly;
 
+import java.io.IOException;
+
 import com.model.SongApp;
 
 import javafx.event.ActionEvent;
@@ -29,7 +31,13 @@ public class CreateController {
         }
 
         SongApp songApp = SongApp.getInstance();
-        songApp.startSong(songTitle);    
+        songApp.startSong(songTitle);
+        
+        try {
+        App.setRoot("songeditor");    
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

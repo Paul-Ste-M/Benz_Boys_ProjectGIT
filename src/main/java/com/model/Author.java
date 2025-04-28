@@ -249,6 +249,10 @@ public class Author extends User {
         this.selectedMeasure = measure;
     }
 
+    public Measure getSelectedMeasure() {
+        return selectedMeasure;
+    }
+
     /**
      * Edits a measure. (A placeholder for further measure-editing functionality.)
      * @param measure The measure to be edited
@@ -396,5 +400,9 @@ public class Author extends User {
         } else {
             System.out.println("No measure selected. Cannot remove note.");
         }
+    }
+
+    public void removeChord(int position) {
+        selectedMeasure.removeChord(position);
     }
 }
