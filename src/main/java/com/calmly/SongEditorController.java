@@ -248,7 +248,10 @@ public class SongEditorController implements Initializable {
                 }
             });
             chordAnchor.getChildren().add(removeButton);
-            removeButton.setLayoutY(chordAnchor.getLayoutY() + chordAnchor.getHeight());
+            //removeButton.setLayoutY(chordAnchor.getLayoutY() + chordAnchor.getHeight());
+            removeButton.setLayoutY(6 * 46 + 10); // Appears below the last string
+            removeButton.setLayoutX(40); // Optional: center or align as you like
+
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -321,7 +324,10 @@ public class SongEditorController implements Initializable {
                 }
             });
             chordAnchor.getChildren().add(removeButton);
-            removeButton.setLayoutY(chordAnchor.getLayoutY() + chordAnchor.getHeight());
+            //removeButton.setLayoutY(chordAnchor.getLayoutY() + chordAnchor.getHeight());
+            removeButton.setLayoutY(6 * 46 + 10); // Appears below the last string
+            removeButton.setLayoutX(40); // Optional: center or align as you like
+
         } catch(Exception e) {
             e.printStackTrace();
         }
