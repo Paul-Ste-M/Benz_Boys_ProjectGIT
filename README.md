@@ -13,3 +13,6 @@ https://paul-ste-m.github.io/Benz_Boys_ProjectGIT/index
 
 Mockitt Prototype Link 2 (song creation portion):
 https://paul-ste-m.github.io/Benz_Boys_ProjectGIT/index2
+
+Final Presentation Youtube Video:
+https://www.youtube.com/watch?v=rwjiwo2tVpg
