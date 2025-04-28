@@ -75,7 +75,7 @@
   <children>
 <Button fx:id="homeBtn" onAction="#onHome" styleClass="nav-button" text="Home" />
      <Button fx:id="songsBtn" onAction="#onSongs" styleClass="nav-button" text="Songs" />
-    <Button fx:id="createBtn" styleClass="nav-button" text="Create" />
+    <Button fx:id="createBtn" onAction="#onCreate" styleClass="nav-button" text="Create" />
     <Button fx:id="aboutBtn" onAction="#onAboutUs" styleClass="nav-button" text="About Us" />
   </children>
 </HBox>

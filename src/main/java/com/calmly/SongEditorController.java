@@ -1,5 +1,6 @@
 package com.calmly;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -133,7 +134,16 @@ public class SongEditorController implements Initializable {
     private Button prevMeasure;
 
     @FXML
+    private Button printButton;
+
+    @FXML
     private Label promptingText;
+
+    @FXML
+    private Button publishButton;
+
+    @FXML
+    private Button saveAndGoHomeButton;
 
     private SongApp songApp;
     private Author author;
@@ -249,8 +259,8 @@ public class SongEditorController implements Initializable {
             });
             chordAnchor.getChildren().add(removeButton);
             //removeButton.setLayoutY(chordAnchor.getLayoutY() + chordAnchor.getHeight());
-            removeButton.setLayoutY(6 * 46 + 10); // Appears below the last string
-            removeButton.setLayoutX(40); // Optional: center or align as you like
+            removeButton.setLayoutY(5 * 46 + 20); // Appears below the last string
+            //removeButton.setLayoutX(40); // Optional: center or align as you like
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -325,7 +335,7 @@ public class SongEditorController implements Initializable {
             });
             chordAnchor.getChildren().add(removeButton);
             //removeButton.setLayoutY(chordAnchor.getLayoutY() + chordAnchor.getHeight());
-            removeButton.setLayoutY(6 * 46 + 10); // Appears below the last string
+            removeButton.setLayoutY(5 * 46 + 20); // Appears below the last string
             removeButton.setLayoutX(40); // Optional: center or align as you like
 
         } catch(Exception e) {
@@ -531,6 +541,25 @@ public class SongEditorController implements Initializable {
         HorizontalBox.getChildren().clear();
         loadMeasure();
 
+    }
+
+    @FXML
+    void clickedPrintButton(ActionEvent event) {
+        songApp.exportSong();
+    }
+
+    @FXML
+    void clickedPublishProject(ActionEvent event) {
+        songApp.publishSong(selectedSong);
+    }
+
+    @FXML
+    void clickedSaveandGoHome(ActionEvent event) {
+           try {
+            App.setRoot("home");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML

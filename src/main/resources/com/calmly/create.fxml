@@ -8,17 +8,17 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calmly.CreateController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" stylesheets="@styles.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calmly.CreateController">
    <children>
       <AnchorPane prefHeight="454.0" prefWidth="600.0" style="-fx-background-color: #000000;">
          <children>
             <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="169.0" layoutX="101.0" layoutY="99.0" stroke="BLACK" strokeType="INSIDE" width="388.0" />
-            <Label layoutX="182.0" layoutY="145.0" text="Title Your">
+            <Label layoutX="182.0" layoutY="145.0" styleClass="secondary-color" text="Title Your">
                <font>
                   <Font name="Arial Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="278.0" layoutY="145.0" styleClass="secondaryColor" text="Masterpiece." textFill="#dbbc52">
+            <Label layoutX="278.0" layoutY="145.0" styleClass="secondary-color" text="Masterpiece." textFill="#dbbc52">
                <font>
                   <Font name="Arial Bold Italic" size="19.0" />
                </font>

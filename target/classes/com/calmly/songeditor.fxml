@@ -31,9 +31,9 @@
             </Button>
             <VBox layoutX="15.0" layoutY="78.0" prefHeight="275.0" prefWidth="127.0" spacing="30.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: #ffffff;" text="Save Project" />
-                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: ffffff;" text="Publish Project" />
-                  <Button layoutX="10.0" layoutY="91.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: ffffff;" text="Print" />
+                  <Button fx:id="saveAndGoHomeButton" mnemonicParsing="false" onAction="#clickedSaveandGoHome" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: #ffffff;" text="Save and Go Home" />
+                  <Button fx:id="publishButton" mnemonicParsing="false" onAction="#clickedPublishProject" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: ffffff;" text="Publish Project" />
+                  <Button fx:id="printButton" layoutX="10.0" layoutY="91.0" mnemonicParsing="false" onAction="#clickedPrintButton" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: ffffff;" text="Print" />
                   <Button layoutX="10.0" layoutY="172.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="127.0" style="-fx-background-color: ffffff;" text="Delete Project" />
                </children>
             </VBox>
